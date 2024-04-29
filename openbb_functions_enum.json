@@ -273,21 +273,7 @@
         "description": "Search available cryptocurrency pairs within a provider.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Search query.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -707,35 +693,7 @@
         "description": "Snapshots of currency exchange rates from an indirect or direct perspective of a base currency.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "base": {
-                    "type": "string",
-                    "description": "The base currency symbol. Multiple items allowed for provider(s): fmp.",
-                    "default": "usd"
-                },
-                "quote_type": {
-                    "description": "Whether the quote is direct or indirect. Selecting 'direct' will return the exchange rate as the amount of domestic currency required to buy one unit of the foreign currency. Selecting 'indirect' (default) will return the exchange rate as the amount of foreign currency required to buy one unit of the domestic currency.",
-                    "default": "indirect",
-                    "type": "string",
-                    "enum": [
-                        "direct",
-                        "indirect"
-                    ]
-                },
-                "counter_currencies": {
-                    "type": "string",
-                    "description": "An optional list of counter currency symbols to filter for. None returns all.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -746,28 +704,8 @@
         "description": "Get the complete options chain for a ticker.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                },
-                "date": {
-                    "type": "string",
-                    "description": "The end-of-day date for options chains data.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -777,75 +715,7 @@
         "description": "Get the complete options chain for a ticker.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. (the underlying symbol)",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format. If no symbol is supplied, requests are only allowed for a single date. Use the start_date for the target date. Intrinio appears to have data beginning Feb/2022, but is unclear when it actually began.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format. If a symbol is not supplied, do not include an end date.",
-                    "default": null
-                },
-                "trade_type": {
-                    "description": "The type of unusual activity to query for.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "block",
-                        "sweep",
-                        "large"
-                    ]
-                },
-                "sentiment": {
-                    "description": "The sentiment type to query for.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "bullish",
-                        "bearish",
-                        "neutral"
-                    ]
-                },
-                "min_value": {
-                    "type": "integer",
-                    "description": "The inclusive minimum total value for the unusual activity.",
-                    "default": null
-                },
-                "max_value": {
-                    "type": "integer",
-                    "description": "The inclusive maximum total value for the unusual activity.",
-                    "default": null
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return. A typical day for all symbols will yield 50-80K records. The API will paginate at 1000 records. The high default limit (100K) is to be able to reliably capture the most days. The high absolute limit (1.25M) is to allow for outlier days. Queries at the absolute limit will take a long time, and might be unreliable. Apply filters to improve performance.",
-                    "default": 100000
-                },
-                "source": {
-                    "description": "The source of the data. Either realtime or delayed.",
-                    "default": "delayed",
-                    "type": "string",
-                    "enum": [
-                        "delayed",
-                        "realtime"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -856,58 +726,8 @@
         "description": "Historical futures prices.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): yfinance.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "expiration": {
-                    "type": "string",
-                    "description": "Future expiry date with format YYYY-MM",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                },
-                "interval": {
-                    "description": "Time interval of the data to return.",
-                    "default": "1d",
-                    "type": "string",
-                    "enum": [
-                        "1m",
-                        "2m",
-                        "5m",
-                        "15m",
-                        "30m",
-                        "60m",
-                        "90m",
-                        "1h",
-                        "1d",
-                        "5d",
-                        "1W",
-                        "1M",
-                        "1Q"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -917,28 +737,8 @@
         "description": "Futures Term Structure, current or historical.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "date": {
-                    "type": "string",
-                    "description": "A specific date to get data for.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -948,105 +748,7 @@
         "description": "Get Forecasted GDP Data.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "period": {
-                    "description": "Time period of the data to return. Units for nominal GDP period. Either quarter or annual.",
-                    "default": "annual",
-                    "type": "string",
-                    "enum": [
-                        "quarter",
-                        "annual"
-                    ]
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "type": {
-                    "description": "Type of GDP to get forecast of. Either nominal or real.",
-                    "default": "real",
-                    "type": "string",
-                    "enum": [
-                        "nominal",
-                        "real"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'oecd' if there is no default.",
-                    "default": "oecd",
-                    "type": "string",
-                    "enum": [
-                        "oecd"
-                    ]
-                },
-                "country": {
-                    "description": "Country to get GDP for.",
-                    "default": "united_states",
-                    "type": "string",
-                    "enum": [
-                        "argentina",
-                        "asia",
-                        "australia",
-                        "austria",
-                        "belgium",
-                        "brazil",
-                        "bulgaria",
-                        "canada",
-                        "chile",
-                        "china",
-                        "colombia",
-                        "costa_rica",
-                        "croatia",
-                        "czech_republic",
-                        "denmark",
-                        "estonia",
-                        "euro_area_17",
-                        "finland",
-                        "france",
-                        "germany",
-                        "greece",
-                        "hungary",
-                        "iceland",
-                        "india",
-                        "indonesia",
-                        "ireland",
-                        "israel",
-                        "italy",
-                        "japan",
-                        "korea",
-                        "latvia",
-                        "lithuania",
-                        "luxembourg",
-                        "mexico",
-                        "netherlands",
-                        "new_zealand",
-                        "non-oecd",
-                        "norway",
-                        "oecd_total",
-                        "peru",
-                        "poland",
-                        "portugal",
-                        "romania",
-                        "russia",
-                        "slovak_republic",
-                        "slovenia",
-                        "south_africa",
-                        "spain",
-                        "sweden",
-                        "switzerland",
-                        "turkey",
-                        "united_kingdom",
-                        "united_states",
-                        "world"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1057,87 +759,7 @@
         "description": "Get Nominal GDP Data.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "units": {
-                    "description": "The unit of measurement for the data. Units to get nominal GDP in. Either usd or usd_cap indicating per capita.",
-                    "default": "usd",
-                    "type": "string",
-                    "enum": [
-                        "usd",
-                        "usd_cap"
-                    ]
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'oecd' if there is no default.",
-                    "default": "oecd",
-                    "type": "string",
-                    "enum": [
-                        "oecd"
-                    ]
-                },
-                "country": {
-                    "description": "Country to get GDP for.",
-                    "default": "united_states",
-                    "type": "string",
-                    "enum": [
-                        "australia",
-                        "austria",
-                        "belgium",
-                        "brazil",
-                        "canada",
-                        "chile",
-                        "colombia",
-                        "costa_rica",
-                        "czech_republic",
-                        "denmark",
-                        "estonia",
-                        "euro_area",
-                        "european_union",
-                        "finland",
-                        "france",
-                        "germany",
-                        "greece",
-                        "hungary",
-                        "iceland",
-                        "indonesia",
-                        "ireland",
-                        "israel",
-                        "italy",
-                        "japan",
-                        "korea",
-                        "latvia",
-                        "lithuania",
-                        "luxembourg",
-                        "mexico",
-                        "netherlands",
-                        "new_zealand",
-                        "norway",
-                        "poland",
-                        "portugal",
-                        "russia",
-                        "slovak_republic",
-                        "slovenia",
-                        "south_africa",
-                        "spain",
-                        "sweden",
-                        "switzerland",
-                        "turkey",
-                        "united_kingdom",
-                        "united_states",
-                        "all"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1148,99 +770,7 @@
         "description": "Get Real GDP Data.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "units": {
-                    "description": "The unit of measurement for the data. Either idx (indicating 2015=100), qoq (previous period) or yoy (same period, previous year).)",
-                    "default": "yoy",
-                    "type": "string",
-                    "enum": [
-                        "idx",
-                        "qoq",
-                        "yoy"
-                    ]
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'oecd' if there is no default.",
-                    "default": "oecd",
-                    "type": "string",
-                    "enum": [
-                        "oecd"
-                    ]
-                },
-                "country": {
-                    "description": "Country to get GDP for.",
-                    "default": "united_states",
-                    "type": "string",
-                    "enum": [
-                        "G20",
-                        "G7",
-                        "argentina",
-                        "australia",
-                        "austria",
-                        "belgium",
-                        "brazil",
-                        "bulgaria",
-                        "canada",
-                        "chile",
-                        "china",
-                        "colombia",
-                        "costa_rica",
-                        "croatia",
-                        "czech_republic",
-                        "denmark",
-                        "estonia",
-                        "euro_area_19",
-                        "europe",
-                        "european_union_27",
-                        "finland",
-                        "france",
-                        "germany",
-                        "greece",
-                        "hungary",
-                        "iceland",
-                        "india",
-                        "indonesia",
-                        "ireland",
-                        "israel",
-                        "italy",
-                        "japan",
-                        "korea",
-                        "latvia",
-                        "lithuania",
-                        "luxembourg",
-                        "mexico",
-                        "netherlands",
-                        "new_zealand",
-                        "norway",
-                        "oecd_total",
-                        "poland",
-                        "portugal",
-                        "romania",
-                        "russia",
-                        "saudi_arabia",
-                        "slovak_republic",
-                        "slovenia",
-                        "south_africa",
-                        "spain",
-                        "sweden",
-                        "switzerland",
-                        "turkey",
-                        "united_kingdom",
-                        "united_states",
-                        "all"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1383,58 +913,8 @@
         "description": "Get Consumer Price Index (CPI).\n\nReturns either the rescaled index value, or a rate of change (inflation).",
         "parameters": {
             "type": "object",
-            "properties": {
-                "country": {
-                    "type": "string",
-                    "description": "The country to get data. Multiple items allowed for provider(s): fred.",
-                    "default": ""
-                },
-                "units": {
-                    "description": "The unit of measurement for the data.   Options:   - `growth_previous`: Percent growth from the previous period.    If monthly data, this is month-over-month, etc   - `growth_same`: Percent growth from the same period in the previous year.    If looking at monthly data, this would be year-over-year, etc.   - `index_2015`: Rescaled index value, such that the value in 2015 is 100.",
-                    "default": "growth_same",
-                    "type": "string",
-                    "enum": [
-                        "growth_previous",
-                        "growth_same",
-                        "index_2015"
-                    ]
-                },
-                "frequency": {
-                    "description": "The frequency of the data.   Options: `monthly`, `quarter`, and `annual`.",
-                    "default": "monthly",
-                    "type": "string",
-                    "enum": [
-                        "monthly",
-                        "quarter",
-                        "annual"
-                    ]
-                },
-                "harmonized": {
-                    "type": "bool",
-                    "description": "Whether you wish to obtain harmonized data.",
-                    "default": false
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "country",
                 "provider"
             ]
         }
@@ -1444,16 +924,7 @@
         "description": "Get Market Risk Premium by country.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1464,71 +935,7 @@
         "description": "Search for FRED series or economic releases by ID or string.\n\nThis does not return the observation values, only the metadata.\nUse this function to find series IDs for `fred_series()`.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "The search word(s).",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "is_release": {
-                    "type": "bool",
-                    "description": "Is release? If True, other search filter variables are ignored. If no query text or release_id is supplied, this defaults to True.",
-                    "default": false
-                },
-                "release_id": {
-                    "type": "integer",
-                    "description": "A specific release ID to target.",
-                    "default": null
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return. (1-1000)",
-                    "default": null
-                },
-                "offset": {
-                    "type": "integer",
-                    "description": "Offset the results in conjunction with limit.",
-                    "default": 0
-                },
-                "filter_variable": {
-                    "description": "Filter by an attribute.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "frequency",
-                        "units",
-                        "seasonal_adjustment"
-                    ]
-                },
-                "filter_value": {
-                    "type": "string",
-                    "description": "String value to filter the variable by. Used in conjunction with filter_variable.",
-                    "default": null
-                },
-                "tag_names": {
-                    "type": "string",
-                    "description": "A semicolon delimited list of tag names that series match all of. Example: 'japan;imports'",
-                    "default": null
-                },
-                "exclude_tag_names": {
-                    "type": "string",
-                    "description": "A semicolon delimited list of tag names that series match none of. Example: 'imports;services'. Requires that variable tag_names also be set to limit the number of matching series.",
-                    "default": null
-                },
-                "series_id": {
-                    "type": "string",
-                    "description": "A FRED Series ID to return series group information for. This returns the required information to query for regional data. Not all series that are in FRED have geographical data. Entering a value for series_id will override all other parameters. Multiple series_ids can be separated by commas.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1729,31 +1136,7 @@
         "description": "Get Money Measures (M1/M2 and components).\n\nThe Federal Reserve publishes as part of the H.6 Release.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "adjusted": {
-                    "type": "bool",
-                    "description": "Whether to return seasonally adjusted data.",
-                    "default": true
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'federal_reserve' if there is no default.",
-                    "default": "federal_reserve",
-                    "type": "string",
-                    "enum": [
-                        "federal_reserve"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1764,117 +1147,7 @@
         "description": "Get global unemployment data.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'oecd' if there is no default.",
-                    "default": "oecd",
-                    "type": "string",
-                    "enum": [
-                        "oecd"
-                    ]
-                },
-                "country": {
-                    "description": "Country to get GDP for.",
-                    "default": "united_states",
-                    "type": "string",
-                    "enum": [
-                        "colombia",
-                        "new_zealand",
-                        "united_kingdom",
-                        "italy",
-                        "luxembourg",
-                        "euro_area19",
-                        "sweden",
-                        "oecd",
-                        "south_africa",
-                        "denmark",
-                        "canada",
-                        "switzerland",
-                        "slovakia",
-                        "hungary",
-                        "portugal",
-                        "spain",
-                        "france",
-                        "czech_republic",
-                        "costa_rica",
-                        "japan",
-                        "slovenia",
-                        "russia",
-                        "austria",
-                        "latvia",
-                        "netherlands",
-                        "israel",
-                        "iceland",
-                        "united_states",
-                        "ireland",
-                        "mexico",
-                        "germany",
-                        "greece",
-                        "turkey",
-                        "australia",
-                        "poland",
-                        "south_korea",
-                        "chile",
-                        "finland",
-                        "european_union27_2020",
-                        "norway",
-                        "lithuania",
-                        "euro_area20",
-                        "estonia",
-                        "belgium",
-                        "brazil",
-                        "indonesia",
-                        "all"
-                    ]
-                },
-                "sex": {
-                    "description": "Sex to get unemployment for.",
-                    "default": "total",
-                    "type": "string",
-                    "enum": [
-                        "total",
-                        "male",
-                        "female"
-                    ]
-                },
-                "frequency": {
-                    "description": "Frequency to get unemployment for.",
-                    "default": "monthly",
-                    "type": "string",
-                    "enum": [
-                        "monthly",
-                        "quarterly",
-                        "annual"
-                    ]
-                },
-                "age": {
-                    "description": "Age group to get unemployment for. Total indicates 15 years or over",
-                    "default": "total",
-                    "type": "string",
-                    "enum": [
-                        "total",
-                        "15-24",
-                        "15-64",
-                        "25-54",
-                        "55-64"
-                    ]
-                },
-                "seasonal_adjustment": {
-                    "type": "bool",
-                    "description": "Whether to get seasonally adjusted unemployment. Defaults to False.",
-                    "default": false
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1885,53 +1158,7 @@
         "description": "Use the composite leading indicator (CLI).\n\nIt is designed to provide early signals of turning points\nin business cycles showing fluctuation of the economic activity around its long term potential level.\n\nCLIs show short-term economic movements in qualitative rather than quantitative terms.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'oecd' if there is no default.",
-                    "default": "oecd",
-                    "type": "string",
-                    "enum": [
-                        "oecd"
-                    ]
-                },
-                "country": {
-                    "description": "Country to get GDP for.",
-                    "default": "united_states",
-                    "type": "string",
-                    "enum": [
-                        "united_states",
-                        "united_kingdom",
-                        "japan",
-                        "mexico",
-                        "indonesia",
-                        "australia",
-                        "brazil",
-                        "canada",
-                        "italy",
-                        "germany",
-                        "turkey",
-                        "france",
-                        "south_africa",
-                        "south_korea",
-                        "spain",
-                        "india",
-                        "china",
-                        "g7",
-                        "g20",
-                        "all"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -1942,89 +1169,7 @@
         "description": "Get Short-term interest rates.\n\nThey are the rates at which short-term borrowings are effected between\nfinancial institutions or the rate at which short-term government paper is issued or traded in the market.\n\nShort-term interest rates are generally averages of daily rates, measured as a percentage.\nShort-term interest rates are based on three-month money market rates where available.\nTypical standardised names are \"money market rate\" and \"treasury bill rate\".",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'oecd' if there is no default.",
-                    "default": "oecd",
-                    "type": "string",
-                    "enum": [
-                        "oecd"
-                    ]
-                },
-                "country": {
-                    "description": "Country to get GDP for.",
-                    "default": "united_states",
-                    "type": "string",
-                    "enum": [
-                        "belgium",
-                        "ireland",
-                        "mexico",
-                        "indonesia",
-                        "new_zealand",
-                        "japan",
-                        "united_kingdom",
-                        "france",
-                        "chile",
-                        "canada",
-                        "netherlands",
-                        "united_states",
-                        "south_korea",
-                        "norway",
-                        "austria",
-                        "south_africa",
-                        "denmark",
-                        "switzerland",
-                        "hungary",
-                        "luxembourg",
-                        "australia",
-                        "germany",
-                        "sweden",
-                        "iceland",
-                        "turkey",
-                        "greece",
-                        "israel",
-                        "czech_republic",
-                        "latvia",
-                        "slovenia",
-                        "poland",
-                        "estonia",
-                        "lithuania",
-                        "portugal",
-                        "costa_rica",
-                        "slovakia",
-                        "finland",
-                        "spain",
-                        "russia",
-                        "euro_area19",
-                        "colombia",
-                        "italy",
-                        "india",
-                        "china",
-                        "croatia",
-                        "all"
-                    ]
-                },
-                "frequency": {
-                    "description": "Frequency to get interest rate for for.",
-                    "default": "monthly",
-                    "type": "string",
-                    "enum": [
-                        "monthly",
-                        "quarterly",
-                        "annual"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -2035,89 +1180,7 @@
         "description": "Get Long-term interest rates that refer to government bonds maturing in ten years.\n\nRates are mainly determined by the price charged by the lender, the risk from the borrower and the\nfall in the capital value. Long-term interest rates are generally averages of daily rates,\nmeasured as a percentage. These interest rates are implied by the prices at which the government bonds are\ntraded on financial markets, not the interest rates at which the loans were issued.\nIn all cases, they refer to bonds whose capital repayment is guaranteed by governments.\nLong-term interest rates are one of the determinants of business investment.\nLow long-term interest rates encourage investment in new equipment and high interest rates discourage it.\nInvestment is, in turn, a major source of economic growth.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'oecd' if there is no default.",
-                    "default": "oecd",
-                    "type": "string",
-                    "enum": [
-                        "oecd"
-                    ]
-                },
-                "country": {
-                    "description": "Country to get GDP for.",
-                    "default": "united_states",
-                    "type": "string",
-                    "enum": [
-                        "belgium",
-                        "ireland",
-                        "mexico",
-                        "indonesia",
-                        "new_zealand",
-                        "japan",
-                        "united_kingdom",
-                        "france",
-                        "chile",
-                        "canada",
-                        "netherlands",
-                        "united_states",
-                        "south_korea",
-                        "norway",
-                        "austria",
-                        "south_africa",
-                        "denmark",
-                        "switzerland",
-                        "hungary",
-                        "luxembourg",
-                        "australia",
-                        "germany",
-                        "sweden",
-                        "iceland",
-                        "turkey",
-                        "greece",
-                        "israel",
-                        "czech_republic",
-                        "latvia",
-                        "slovenia",
-                        "poland",
-                        "estonia",
-                        "lithuania",
-                        "portugal",
-                        "costa_rica",
-                        "slovakia",
-                        "finland",
-                        "spain",
-                        "russia",
-                        "euro_area19",
-                        "colombia",
-                        "italy",
-                        "india",
-                        "china",
-                        "croatia",
-                        "all"
-                    ]
-                },
-                "frequency": {
-                    "description": "Frequency to get interest rate for for.",
-                    "default": "monthly",
-                    "type": "string",
-                    "enum": [
-                        "monthly",
-                        "quarterly",
-                        "annual"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -2128,122 +1191,8 @@
         "description": "Query the Geo Fred API for regional economic data by series group.\n\nThe series group ID is found by using `fred_search` and the `series_id` parameter.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 100000
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "is_series_group": {
-                    "type": "bool",
-                    "description": "When True, the symbol provided is for a series_group, else it is for a series ID.",
-                    "default": false
-                },
-                "region_type": {
-                    "description": "The type of regional data. Parameter is only valid when `is_series_group` is True.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "bea",
-                        "msa",
-                        "frb",
-                        "necta",
-                        "state",
-                        "country",
-                        "county",
-                        "censusregion"
-                    ]
-                },
-                "season": {
-                    "description": "The seasonal adjustments to the data. Parameter is only valid when `is_series_group` is True.",
-                    "default": "NSA",
-                    "type": "string",
-                    "enum": [
-                        "SA",
-                        "NSA",
-                        "SSA"
-                    ]
-                },
-                "units": {
-                    "type": "string",
-                    "description": "The units of the data. This should match the units returned from searching by series ID. An incorrect field will not necessarily return an error. Parameter is only valid when `is_series_group` is True.",
-                    "default": null
-                },
-                "frequency": {
-                    "description": "Frequency aggregation to convert high frequency data to lower frequency.     Parameter is only valid when `is_series_group` is True.       a = Annual       sa= Semiannual       q = Quarterly       m = Monthly       w = Weekly       d = Daily       wef = Weekly, Ending Friday       weth = Weekly, Ending Thursday       wew = Weekly, Ending Wednesday       wetu = Weekly, Ending Tuesday       wem = Weekly, Ending Monday       wesu = Weekly, Ending Sunday       wesa = Weekly, Ending Saturday       bwew = Biweekly, Ending Wednesday       bwem = Biweekly, Ending Monday",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "d",
-                        "w",
-                        "bw",
-                        "m",
-                        "q",
-                        "sa",
-                        "a",
-                        "wef",
-                        "weth",
-                        "wew",
-                        "wetu",
-                        "wem",
-                        "wesu",
-                        "wesa",
-                        "bwew",
-                        "bwem"
-                    ]
-                },
-                "aggregation_method": {
-                    "description": "A key that indicates the aggregation method used for frequency aggregation.     This parameter has no affect if the frequency parameter is not set.     Only valid when `is_series_group` is True.       avg = Average       sum = Sum       eop = End of Period",
-                    "default": "avg",
-                    "type": "string",
-                    "enum": [
-                        "avg",
-                        "sum",
-                        "eop"
-                    ]
-                },
-                "transform": {
-                    "description": "Transformation type. Only valid when `is_series_group` is True.       lin = Levels (No transformation)       chg = Change       ch1 = Change from Year Ago       pch = Percent Change       pc1 = Percent Change from Year Ago       pca = Compounded Annual Rate of Change       cch = Continuously Compounded Rate of Change       cca = Continuously Compounded Annual Rate of Change       log = Natural Log",
-                    "default": "lin",
-                    "type": "string",
-                    "enum": [
-                        "lin",
-                        "chg",
-                        "ch1",
-                        "pch",
-                        "pc1",
-                        "pca",
-                        "cch",
-                        "cca",
-                        "log"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -2253,56 +1202,7 @@
         "description": "Get historical and upcoming initial public offerings (IPOs).",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": null
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 100
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                },
-                "status": {
-                    "description": "Status of the IPO. [upcoming, priced, or withdrawn]",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "upcoming",
-                        "priced",
-                        "withdrawn"
-                    ]
-                },
-                "min_value": {
-                    "type": "integer",
-                    "description": "Return IPOs with an offer dollar amount greater than the given amount.",
-                    "default": null
-                },
-                "max_value": {
-                    "type": "integer",
-                    "description": "Return IPOs with an offer dollar amount less than the given amount.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -2313,26 +1213,7 @@
         "description": "Get historical and upcoming dividend payments. Includes dividend amount, ex-dividend and payment dates.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -2343,26 +1224,7 @@
         "description": "Get historical and upcoming stock split operations.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -2373,26 +1235,7 @@
         "description": "Get historical and upcoming company earnings releases. Includes earnings per share (EPS) and revenue data.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -2403,23 +1246,8 @@
         "description": "Get the closest peers for a given company.\n\nPeers consist of companies trading on the same exchange, operating within the same sector\nand with comparable market capitalizations.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -2610,37 +1438,8 @@
         "description": "Get historical analyst estimates for earnings and revenue.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                },
-                "period": {
-                    "description": "Time period of the data to return.",
-                    "default": "annual",
-                    "type": "string",
-                    "enum": [
-                        "quarter",
-                        "annual"
-                    ]
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -2759,51 +1558,7 @@
         "description": "Search for specific analysts and get their forecast track record.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "analyst_name": {
-                    "type": "string",
-                    "description": "Analyst names to return. Omitting will return all available analysts. Multiple items allowed for provider(s): benzinga.",
-                    "default": null
-                },
-                "firm_name": {
-                    "type": "string",
-                    "description": "Firm names to return. Omitting will return all available firms. Multiple items allowed for provider(s): benzinga.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'benzinga' if there is no default.",
-                    "default": "benzinga",
-                    "type": "string",
-                    "enum": [
-                        "benzinga"
-                    ]
-                },
-                "analyst_ids": {
-                    "type": "string",
-                    "description": "List of analyst IDs to return. Multiple items allowed for provider(s): benzinga.",
-                    "default": null
-                },
-                "firm_ids": {
-                    "type": "string",
-                    "description": "Firm IDs to return. Multiple items allowed for provider(s): benzinga.",
-                    "default": null
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "Number of results returned. Limit 1000.",
-                    "default": 100
-                },
-                "page": {
-                    "type": "integer",
-                    "description": "Page offset. For optimization, performance and technical reasons, page offsets are limited from 0 - 100000. Limit the query results by other parameters such as date.",
-                    "default": 0
-                },
-                "fields": {
-                    "type": "string",
-                    "description": "Fields to include in the response. See https://docs.benzinga.io/benzinga-apis/calendar/get-ratings to learn about the available fields. Multiple items allowed for provider(s): benzinga.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -2814,54 +1569,7 @@
         "description": "Get forward sales estimates.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): intrinio.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                },
-                "fiscal_year": {
-                    "type": "integer",
-                    "description": "The future fiscal year to retrieve estimates for. When no symbol and year is supplied the current calendar year is used.",
-                    "default": null
-                },
-                "fiscal_period": {
-                    "description": "The future fiscal period to retrieve estimates for.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "fy",
-                        "q1",
-                        "q2",
-                        "q3",
-                        "q4"
-                    ]
-                },
-                "calendar_year": {
-                    "type": "integer",
-                    "description": "The future calendar year to retrieve estimates for. When no symbol and year is supplied the current calendar year is used.",
-                    "default": null
-                },
-                "calendar_period": {
-                    "description": "The future calendar period to retrieve estimates for.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "q1",
-                        "q2",
-                        "q3",
-                        "q4"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3014,25 +1722,7 @@
         "description": "Get the top price gainers in the stock market.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "sort": {
-                    "description": "Sort order. Possible values: 'asc', 'desc'. Default: 'desc'.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3043,25 +1733,7 @@
         "description": "Get the top price losers in the stock market.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "sort": {
-                    "description": "Sort order. Possible values: 'asc', 'desc'. Default: 'desc'.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3072,25 +1744,7 @@
         "description": "Get the most actively traded stocks based on volume.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "sort": {
-                    "description": "Sort order. Possible values: 'asc', 'desc'. Default: 'desc'.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3101,25 +1755,7 @@
         "description": "Get potentially undervalued large cap stocks.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "sort": {
-                    "description": "Sort order. Possible values: 'asc', 'desc'. Default: 'desc'.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3130,25 +1766,7 @@
         "description": "Get potentially undervalued growth stocks.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "sort": {
-                    "description": "Sort order. Possible values: 'asc', 'desc'. Default: 'desc'.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3159,25 +1777,7 @@
         "description": "Get top small cap stocks based on earnings growth.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "sort": {
-                    "description": "Sort order. Possible values: 'asc', 'desc'. Default: 'desc'.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3188,25 +1788,7 @@
         "description": "Get top tech stocks based on revenue and earnings growth.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "sort": {
-                    "description": "Sort order. Possible values: 'asc', 'desc'. Default: 'desc'.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'yfinance' if there is no default.",
-                    "default": "yfinance",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3217,41 +1799,7 @@
         "description": "Get the URLs to SEC filings reported to EDGAR database, such as 10-K, 10-Q, 8-K, and more.\n\nSEC filings include Form 10-K, Form 10-Q, Form 8-K, the proxy statement, Forms 3, 4, and 5, Schedule 13, Form 114,\nForeign Investment Disclosures and others. The annual 10-K report is required to be\nfiled annually and includes the company's financial statements, management discussion and analysis,\nand audited financial statements.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "form_type": {
-                    "type": "string",
-                    "description": "Filter by form type. Visit https://www.sec.gov/forms for a list of supported form types.",
-                    "default": null
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 100
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                },
-                "is_done": {
-                    "type": "bool",
-                    "description": "Flag for whether or not the filing is done.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -3262,23 +1810,8 @@
         "description": "Get equity valuation multiples for a given company.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -3577,28 +2110,8 @@
         "description": "Get the growth of a company's balance sheet items over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 10
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -3897,43 +2410,8 @@
         "description": "Get financial statements as reported by the company.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "period": {
-                    "type": "string",
-                    "description": "Time period of the data to return.",
-                    "default": "annual"
-                },
-                "statement_type": {
-                    "type": "string",
-                    "description": "The type of financial statement - i.e, balance, income, cash.",
-                    "default": "balance"
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return. Although the response object contains multiple results, because of the variance in the fields, year-to-year and quarter-to-quarter, it is recommended to view results in small chunks.",
-                    "default": 100
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                },
-                "fiscal_year": {
-                    "type": "integer",
-                    "description": "The specific fiscal year. Reports do not go beyond 2008.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -3943,28 +2421,8 @@
         "description": "Get the growth of a company's cash flow statement items over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 10
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -4127,28 +2585,8 @@
         "description": "Get historical earnings per share data for a given company.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -4158,23 +2596,8 @@
         "description": "Get historical employee count data for a given company.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -4184,28 +2607,8 @@
         "description": "Search Intrinio data tags to search in latest or historical attributes.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Query to search for.",
-                    "default": ""
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 1000
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "query",
                 "provider"
             ]
         }
@@ -4215,29 +2618,8 @@
         "description": "Get the latest value of a data tag from Intrinio.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): intrinio.",
-                    "default": ""
-                },
-                "tag": {
-                    "type": "string",
-                    "description": "Intrinio data tag ID or code. Multiple items allowed for provider(s): intrinio.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
-                "tag",
                 "provider"
             ]
         }
@@ -4247,70 +2629,8 @@
         "description": "Get the historical values of a data tag from Intrinio.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): intrinio.",
-                    "default": ""
-                },
-                "tag": {
-                    "type": "string",
-                    "description": "Intrinio data tag ID or code. Multiple items allowed for provider(s): intrinio.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "frequency": {
-                    "description": "The frequency of the data.",
-                    "default": "yearly",
-                    "type": "string",
-                    "enum": [
-                        "daily",
-                        "weekly",
-                        "monthly",
-                        "quarterly",
-                        "yearly"
-                    ]
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 1000
-                },
-                "tag_type": {
-                    "type": "string",
-                    "description": "Filter by type, when applicable.",
-                    "default": null
-                },
-                "sort": {
-                    "description": "Sort order.",
-                    "default": "desc",
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'intrinio' if there is no default.",
-                    "default": "intrinio",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
-                "tag",
                 "provider"
             ]
         }
@@ -4609,37 +2929,8 @@
         "description": "Get the growth of a company's income statement items over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 10
-                },
-                "period": {
-                    "description": "Time period of the data to return.",
-                    "default": "annual",
-                    "type": "string",
-                    "enum": [
-                        "annual",
-                        "quarter"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -4897,54 +3188,8 @@
         "description": "Get executive management team compensation for a given company over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                },
-                "year": {
-                    "type": "integer",
-                    "description": "Year of the compensation.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
-                "provider"
-            ]
-        }
-    },
-    {
-        "name": "obb_equity_fundamental_overview_fmp",
-        "description": "Get company general business and stock data for a given company.",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
-            "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -5070,41 +3315,8 @@
         "description": "Get the revenue geographic breakdown for a given company over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "period": {
-                    "description": "Time period of the data to return.",
-                    "default": "annual",
-                    "type": "string",
-                    "enum": [
-                        "quarter",
-                        "annual"
-                    ]
-                },
-                "structure": {
-                    "description": "Structure of the returned data.",
-                    "default": "flat",
-                    "type": "string",
-                    "enum": [
-                        "hierarchical",
-                        "flat"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -5114,41 +3326,8 @@
         "description": "Get the revenue breakdown by business segment for a given company over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "period": {
-                    "description": "Time period of the data to return.",
-                    "default": "annual",
-                    "type": "string",
-                    "enum": [
-                        "quarter",
-                        "annual"
-                    ]
-                },
-                "structure": {
-                    "description": "Structure of the returned data.",
-                    "default": "flat",
-                    "type": "string",
-                    "enum": [
-                        "hierarchical",
-                        "flat"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -5706,23 +3885,8 @@
         "description": "Get historical stock splits for a given company.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -5732,29 +3896,8 @@
         "description": "Get earnings call transcripts for a given company.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "year": {
-                    "type": "integer",
-                    "description": "Year of the earnings call transcript.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
-                "year",
                 "provider"
             ]
         }
@@ -5764,28 +3907,8 @@
         "description": "Get the 1 year trailing dividend yield for a given company over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return. Default is 252, the number of trading days in a year.",
-                    "default": 252
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'tiingo' if there is no default.",
-                    "default": "tiingo",
-                    "type": "string",
-                    "enum": [
-                        "tiingo"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -5795,33 +3918,8 @@
         "description": "Get data about major holders for a given company over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "date": {
-                    "type": "string",
-                    "description": "A specific date to get data for.",
-                    "default": null
-                },
-                "page": {
-                    "type": "integer",
-                    "description": "Page number of the data to fetch.",
-                    "default": 0
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -5831,33 +3929,8 @@
         "description": "Get data about institutional ownership for a given company over time.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                },
-                "include_current_quarter": {
-                    "type": "bool",
-                    "description": "Include current quarter data.",
-                    "default": false
-                },
-                "date": {
-                    "type": "string",
-                    "description": "A specific date to get data for.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -6130,33 +4203,8 @@
         "description": "Get the form 13F.\n\nThe Securities and Exchange Commission's (SEC) Form 13F is a quarterly report\nthat is required to be filed by all institutional investment managers with at least\n$100 million in assets under management.\nManagers are required to file Form 13F within 45 days after the last day of the calendar quarter.\nMost funds wait until the end of this period in order to conceal\ntheir investment strategy from competitors and the public.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. A CIK or Symbol can be used.",
-                    "default": ""
-                },
-                "date": {
-                    "type": "string",
-                    "description": "A specific date to get data for. The date represents the end of the reporting period. All form 13F-HR filings are based on the calendar year and are reported quarterly. If a date is not supplied, the most recent filing is returned. Submissions beginning 2013-06-30 are supported.",
-                    "default": null
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return. The number of previous filings to return. The date parameter takes priority over this parameter.",
-                    "default": 1
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -6290,53 +4338,8 @@
         "description": "Get the National Best Bid and Offer for a given stock.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'polygon' if there is no default.",
-                    "default": "polygon",
-                    "type": "string",
-                    "enum": [
-                        "polygon"
-                    ]
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "The number of data entries to return. Up to ten million records will be returned. Pagination occurs in groups of 50,000. Remaining limit values will always return 50,000 more records unless it is the last page. High volume tickers will require multiple max requests for a single day's NBBO records. Expect stocks, like SPY, to approach 1GB in size, per day, as a raw CSV. Splitting large requests into chunks is recommended for full-day requests of high-volume symbols.",
-                    "default": 50000
-                },
-                "date": {
-                    "type": "string",
-                    "description": "A specific date to get data for. Use bracketed the timestamp parameters to specify exact time ranges.",
-                    "default": null
-                },
-                "timestamp_lt": {
-                    "type": "string",
-                    "description": "Query by datetime, less than. Either a date with the format 'YYYY-MM-DD' or a TZ-aware timestamp string, 'YYYY-MM-DDTH:M:S.000000000-04:00'. Include all nanoseconds and the 'T' between the day and hour.",
-                    "default": null
-                },
-                "timestamp_gt": {
-                    "type": "string",
-                    "description": "Query by datetime, greater than. Either a date with the format 'YYYY-MM-DD' or a TZ-aware timestamp string, 'YYYY-MM-DDTH:M:S.000000000-04:00'. Include all nanoseconds and the 'T' between the day and hour.",
-                    "default": null
-                },
-                "timestamp_lte": {
-                    "type": "string",
-                    "description": "Query by datetime, less than or equal to. Either a date with the format 'YYYY-MM-DD' or a TZ-aware timestamp string, 'YYYY-MM-DDTH:M:S.000000000-04:00'. Include all nanoseconds and the 'T' between the day and hour.",
-                    "default": null
-                },
-                "timestamp_gte": {
-                    "type": "string",
-                    "description": "Query by datetime, greater than or equal to. Either a date with the format 'YYYY-MM-DD' or a TZ-aware timestamp string, 'YYYY-MM-DDTH:M:S.000000000-04:00'. Include all nanoseconds and the 'T' between the day and hour.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -6704,23 +4707,8 @@
         "description": "Get price performance data for a given stock. This includes price changes for different time periods.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -6730,33 +4718,8 @@
         "description": "Get reported Fail-to-deliver (FTD) data.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "Limit the number of reports to parse, from most recent.     Approximately 24 reports per year, going back to 2009.",
-                    "default": 24
-                },
-                "skip_reports": {
-                    "type": "integer",
-                    "description": "Skip N number of reports from current. A value of 1 will skip the most recent report.",
-                    "default": 0
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -6893,176 +4856,7 @@
         "description": "Screen for companies meeting various criteria.\n\nThese criteria include market cap, price, beta, volume, and dividend yield.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                },
-                "mktcap_min": {
-                    "type": "integer",
-                    "description": "Filter by market cap greater than this value.",
-                    "default": null
-                },
-                "mktcap_max": {
-                    "type": "integer",
-                    "description": "Filter by market cap less than this value.",
-                    "default": null
-                },
-                "price_min": {
-                    "type": "float",
-                    "description": "Filter by price greater than this value.",
-                    "default": null
-                },
-                "price_max": {
-                    "type": "float",
-                    "description": "Filter by price less than this value.",
-                    "default": null
-                },
-                "beta_min": {
-                    "type": "float",
-                    "description": "Filter by a beta greater than this value.",
-                    "default": null
-                },
-                "beta_max": {
-                    "type": "float",
-                    "description": "Filter by a beta less than this value.",
-                    "default": null
-                },
-                "volume_min": {
-                    "type": "integer",
-                    "description": "Filter by volume greater than this value.",
-                    "default": null
-                },
-                "volume_max": {
-                    "type": "integer",
-                    "description": "Filter by volume less than this value.",
-                    "default": null
-                },
-                "dividend_min": {
-                    "type": "float",
-                    "description": "Filter by dividend amount greater than this value.",
-                    "default": null
-                },
-                "dividend_max": {
-                    "type": "float",
-                    "description": "Filter by dividend amount less than this value.",
-                    "default": null
-                },
-                "is_etf": {
-                    "type": "bool",
-                    "description": "If true, returns only ETFs.",
-                    "default": false
-                },
-                "is_active": {
-                    "type": "bool",
-                    "description": "If false, returns only inactive tickers.",
-                    "default": true
-                },
-                "sector": {
-                    "description": "Filter by sector.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "Consumer Cyclical",
-                        "Energy",
-                        "Technology",
-                        "Industrials",
-                        "Financial Services",
-                        "Basic Materials",
-                        "Communication Services",
-                        "Consumer Defensive",
-                        "Healthcare",
-                        "Real Estate",
-                        "Utilities",
-                        "Industrial Goods",
-                        "Financial",
-                        "Services",
-                        "Conglomerates"
-                    ]
-                },
-                "industry": {
-                    "type": "string",
-                    "description": "Filter by industry.",
-                    "default": null
-                },
-                "country": {
-                    "type": "string",
-                    "description": "Filter by country, as a two-letter country code.",
-                    "default": null
-                },
-                "exchange": {
-                    "description": "Filter by exchange.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "amex",
-                        "ams",
-                        "ase",
-                        "asx",
-                        "ath",
-                        "bme",
-                        "bru",
-                        "bud",
-                        "bue",
-                        "cai",
-                        "cnq",
-                        "cph",
-                        "dfm",
-                        "doh",
-                        "etf",
-                        "euronext",
-                        "hel",
-                        "hkse",
-                        "ice",
-                        "iob",
-                        "ist",
-                        "jkt",
-                        "jnb",
-                        "jpx",
-                        "kls",
-                        "koe",
-                        "ksc",
-                        "kuw",
-                        "lse",
-                        "mex",
-                        "mutual_fund",
-                        "nasdaq",
-                        "neo",
-                        "nse",
-                        "nyse",
-                        "nze",
-                        "osl",
-                        "otc",
-                        "pnk",
-                        "pra",
-                        "ris",
-                        "sao",
-                        "sau",
-                        "set",
-                        "sgo",
-                        "shh",
-                        "shz",
-                        "six",
-                        "sto",
-                        "tai",
-                        "tlv",
-                        "tsx",
-                        "two",
-                        "vie",
-                        "wse",
-                        "xetra"
-                    ]
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "Limit the number of results to return.",
-                    "default": 50000
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -7928,23 +5722,8 @@
         "description": "ETF Sector weighting.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. (ETF)",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -7954,23 +5733,8 @@
         "description": "ETF Country weighting.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. (ETF) Multiple items allowed for provider(s): fmp.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -8222,28 +5986,8 @@
         "description": "Use this function to get the holdings dates, if available.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. (ETF)",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                },
-                "cik": {
-                    "type": "string",
-                    "description": "The CIK of the filing entity. Overrides symbol.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -8253,23 +5997,8 @@
         "description": "Get the recent price performance of each ticker held in the ETF.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -8279,23 +6008,8 @@
         "description": "Get the exposure to ETFs for a specific stock.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. (Stock) Multiple items allowed for provider(s): fmp.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -8305,44 +6019,7 @@
         "description": "Ameribor.\n\nAmeribor (short for the American interbank offered rate) is a benchmark interest rate that reflects the true cost of\nshort-term interbank borrowing. This rate is based on transactions in overnight unsecured loans conducted on the\nAmerican Financial Exchange (AFX).",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "parameter": {
-                    "description": "Period of AMERIBOR rate.",
-                    "default": "overnight",
-                    "type": "string",
-                    "enum": [
-                        "overnight",
-                        "term_30",
-                        "term_90",
-                        "1_week_term_structure",
-                        "1_month_term_structure",
-                        "3_month_term_structure",
-                        "6_month_term_structure",
-                        "1_year_term_structure",
-                        "2_year_term_structure",
-                        "30_day_ma",
-                        "90_day_ma"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8353,40 +6030,7 @@
         "description": "Sterling Overnight Index Average.\n\nSONIA (Sterling Overnight Index Average) is an important interest rate benchmark. SONIA is based on actual\ntransactions and reflects the average of the interest rates that banks pay to borrow sterling overnight from other\nfinancial institutions and other institutional investors.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "parameter": {
-                    "description": "Period of SONIA rate.",
-                    "default": "rate",
-                    "type": "string",
-                    "enum": [
-                        "rate",
-                        "index",
-                        "10th_percentile",
-                        "25th_percentile",
-                        "75th_percentile",
-                        "90th_percentile",
-                        "total_nominal_value"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8397,26 +6041,7 @@
         "description": "Interest on Reserve Balances.\n\nGet Interest Rate on Reserve Balances data A bank rate is the interest rate a nation's central bank charges to its\ndomestic banks to borrow money. The rates central banks charge are set to stabilize the economy. In the\nUnited States, the Federal Reserve System's Board of Governors set the bank rate, also known as the discount rate.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8534,21 +6159,7 @@
         "description": "Fed Funds Rate Projections.\n\nThe projections for the federal funds rate are the value of the midpoint of the\nprojected appropriate target range for the federal funds rate or the projected\nappropriate target level for the federal funds rate at the end of the specified\ncalendar year or over the longer run.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "long_run": {
-                    "type": "bool",
-                    "description": "Flag to show long run projections",
-                    "default": false
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8559,40 +6170,7 @@
         "description": "Euro Short-Term Rate.\n\nThe euro short-term rate (\u20acSTR) reflects the wholesale euro unsecured overnight borrowing costs of banks located in\nthe euro area. The \u20acSTR is published on each TARGET2 business day based on transactions conducted and settled on\nthe previous TARGET2 business day (the reporting date \u201cT\u201d) with a maturity date of T+1 which are deemed to have been\nexecuted at arm\u2019s length and thus reflect market rates in an unbiased way.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "parameter": {
-                    "description": "Period of ESTR rate.",
-                    "default": "volume_weighted_trimmed_mean_rate",
-                    "type": "string",
-                    "enum": [
-                        "volume_weighted_trimmed_mean_rate",
-                        "number_of_transactions",
-                        "number_of_active_banks",
-                        "total_volume",
-                        "share_of_volume_of_the_5_largest_active_banks",
-                        "rate_at_75th_percentile_of_volume",
-                        "rate_at_25th_percentile_of_volume"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8603,36 +6181,7 @@
         "description": "European Central Bank Interest Rates.\n\nThe Governing Council of the ECB sets the key interest rates for the euro area:\n\n- The interest rate on the main refinancing operations (MRO), which provide\nthe bulk of liquidity to the banking system.\n- The rate on the deposit facility, which banks may use to make overnight deposits with the Eurosystem.\n- The rate on the marginal lending facility, which offers overnight credit to banks from the Eurosystem.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "interest_rate_type": {
-                    "description": "The type of interest rate.",
-                    "default": "lending",
-                    "type": "string",
-                    "enum": [
-                        "deposit",
-                        "lending",
-                        "refinancing"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8643,38 +6192,7 @@
         "description": "Discount Window Primary Credit Rate.\n\nA bank rate is the interest rate a nation's central bank charges to its domestic banks to borrow money.\nThe rates central banks charge are set to stabilize the economy.\nIn the United States, the Federal Reserve System's Board of Governors set the bank rate,\nalso known as the discount rate.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "parameter": {
-                    "description": "FRED series ID of DWPCR data.",
-                    "default": "daily_excl_weekend",
-                    "type": "string",
-                    "enum": [
-                        "daily_excl_weekend",
-                        "monthly",
-                        "weekly",
-                        "daily",
-                        "annual"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8685,35 +6203,7 @@
         "description": "Treasury Constant Maturity.\n\nGet data for 10-Year Treasury Constant Maturity Minus Selected Treasury Constant Maturity.\nConstant maturity is the theoretical value of a U.S. Treasury that is based on recent values of auctioned U.S.\nTreasuries. The value is obtained by the U.S. Treasury on a daily basis through interpolation of the Treasury\nyield curve which, in turn, is based on closing bid-yields of actively-traded Treasury securities.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "maturity": {
-                    "description": "The maturity",
-                    "default": "3m",
-                    "type": "string",
-                    "enum": [
-                        "3m",
-                        "2y"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8724,38 +6214,7 @@
         "description": "Select Treasury Constant Maturity.\n\nGet data for Selected Treasury Constant Maturity Minus Federal Funds Rate\nConstant maturity is the theoretical value of a U.S. Treasury that is based on recent values of auctioned U.S.\nTreasuries. The value is obtained by the U.S. Treasury on a daily basis through interpolation of the Treasury\nyield curve which, in turn, is based on closing bid-yields of actively-traded Treasury securities.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "maturity": {
-                    "description": "The maturity",
-                    "default": "10y",
-                    "type": "string",
-                    "enum": [
-                        "10y",
-                        "5y",
-                        "1y",
-                        "6m",
-                        "3m"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8766,35 +6225,7 @@
         "description": "Select Treasury Bill.\n\nGet Selected Treasury Bill Minus Federal Funds Rate.\nConstant maturity is the theoretical value of a U.S. Treasury that is based on recent values of\nauctioned U.S. Treasuries.\nThe value is obtained by the U.S. Treasury on a daily basis through interpolation of the Treasury\nyield curve which, in turn, is based on closing bid-yields of actively-traded Treasury securities.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "maturity": {
-                    "description": "The maturity",
-                    "default": "3m",
-                    "type": "string",
-                    "enum": [
-                        "3m",
-                        "6m"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8805,26 +6236,7 @@
         "description": "US Yield Curve. Get United States yield curve.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "date": {
-                    "type": "string",
-                    "description": "A specific date to get data for. Defaults to the most recent FRED entry.",
-                    "default": null
-                },
-                "inflation_adjusted": {
-                    "type": "bool",
-                    "description": "Get inflation adjusted rates.",
-                    "default": false
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -8926,87 +6338,7 @@
         "description": "ICE BofA US Corporate Bond Indices.\n\nThe ICE BofA US Corporate Index tracks the performance of US dollar denominated investment grade corporate debt\npublicly issued in the US domestic market. Qualifying securities must have an investment grade rating (based on an\naverage of Moody\u2019s, S&P and Fitch), at least 18 months to final maturity at the time of issuance, at least one year\nremaining term to final maturity as of the rebalance date, a fixed coupon schedule and a minimum amount\noutstanding of $250 million. The ICE BofA US Corporate Index is a component of the US Corporate Master Index.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "index_type": {
-                    "description": "The type of series.",
-                    "default": "yield",
-                    "type": "string",
-                    "enum": [
-                        "yield",
-                        "yield_to_worst",
-                        "total_return",
-                        "spread"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "category": {
-                    "description": "The type of category.",
-                    "default": "all",
-                    "type": "string",
-                    "enum": [
-                        "all",
-                        "duration",
-                        "eur",
-                        "usd"
-                    ]
-                },
-                "area": {
-                    "description": "The type of area.",
-                    "default": "us",
-                    "type": "string",
-                    "enum": [
-                        "asia",
-                        "emea",
-                        "eu",
-                        "ex_g10",
-                        "latin_america",
-                        "us"
-                    ]
-                },
-                "grade": {
-                    "description": "The type of grade.",
-                    "default": "non_sovereign",
-                    "type": "string",
-                    "enum": [
-                        "a",
-                        "aa",
-                        "aaa",
-                        "b",
-                        "bb",
-                        "bbb",
-                        "ccc",
-                        "crossover",
-                        "high_grade",
-                        "high_yield",
-                        "non_financial",
-                        "non_sovereign",
-                        "private_sector",
-                        "public_sector"
-                    ]
-                },
-                "options": {
-                    "type": "bool",
-                    "description": "Whether to include options in the results.",
-                    "default": false
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -9017,44 +6349,7 @@
         "description": "Moody Corporate Bond Index.\n\nMoody's Aaa and Baa are investment bonds that acts as an index of\nthe performance of all bonds given an Aaa or Baa rating by Moody's Investors Service respectively.\nThese corporate bonds often are used in macroeconomics as an alternative to the federal ten-year\nTreasury Bill as an indicator of the interest rate.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "index_type": {
-                    "description": "The type of series.",
-                    "default": "aaa",
-                    "type": "string",
-                    "enum": [
-                        "aaa",
-                        "baa"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "spread": {
-                    "description": "The type of spread.",
-                    "default": null,
-                    "type": "string",
-                    "enum": [
-                        "treasury",
-                        "fed_funds"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -9065,30 +6360,7 @@
         "description": "High Quality Market Corporate Bond.\n\nThe HQM yield curve represents the high quality corporate bond market, i.e.,\ncorporate bonds rated AAA, AA, or A.  The HQM curve contains two regression terms.\nThese terms are adjustment factors that blend AAA, AA, and A bonds into a single HQM yield curve\nthat is the market-weighted average (MWA) quality of high quality bonds.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "date": {
-                    "type": "string",
-                    "description": "A specific date to get data for.",
-                    "default": null
-                },
-                "yield_curve": {
-                    "description": "The yield curve type.",
-                    "default": "spot",
-                    "type": "string",
-                    "enum": [
-                        "spot",
-                        "par"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -9099,36 +6371,7 @@
         "description": "Spot Rates.\n\nThe spot rates for any maturity is the yield on a bond that provides a single payment at that maturity.\nThis is a zero coupon bond.\nBecause each spot rate pertains to a single cashflow, it is the relevant interest rate\nconcept for discounting a pension liability at the same maturity.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "maturity": {
-                    "type": "string",
-                    "description": "Maturities in years. Multiple items allowed for provider(s): fred.",
-                    "default": 10.0
-                },
-                "category": {
-                    "type": "string",
-                    "description": "Rate category. Options: spot_rate, par_yield. Multiple items allowed for provider(s): fred.",
-                    "default": "spot_rate"
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -9139,58 +6382,7 @@
         "description": "Commercial Paper.\n\nCommercial paper (CP) consists of short-term, promissory notes issued primarily by corporations.\nMaturities range up to 270 days but average about 30 days.\nMany companies use CP to raise cash needed for current transactions,\nand many find it to be a lower-cost alternative to bank loans.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "maturity": {
-                    "description": "The maturity.",
-                    "default": "30d",
-                    "type": "string",
-                    "enum": [
-                        "overnight",
-                        "7d",
-                        "15d",
-                        "30d",
-                        "60d",
-                        "90d"
-                    ]
-                },
-                "category": {
-                    "description": "The category.",
-                    "default": "financial",
-                    "type": "string",
-                    "enum": [
-                        "asset_backed",
-                        "financial",
-                        "nonfinancial"
-                    ]
-                },
-                "grade": {
-                    "description": "The grade.",
-                    "default": "aa",
-                    "type": "string",
-                    "enum": [
-                        "aa",
-                        "a2_p2"
-                    ]
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -9201,38 +6393,7 @@
         "description": "Secured Overnight Financing Rate.\n\nThe Secured Overnight Financing Rate (SOFR) is a broad measure of the cost of\nborrowing cash overnight collateralizing by Treasury securities.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fred' if there is no default.",
-                    "default": "fred",
-                    "type": "string",
-                    "enum": [
-                        "fred"
-                    ]
-                },
-                "period": {
-                    "description": "Period of SOFR rate.",
-                    "default": "overnight",
-                    "type": "string",
-                    "enum": [
-                        "overnight",
-                        "30_day",
-                        "90_day",
-                        "180_day",
-                        "index"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -9472,260 +6633,12 @@
         }
     },
     {
-        "name": "obb_index_market",
-        "description": "Get Historical Market Indices.",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp, intrinio, polygon, yfinance.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "interval": {
-                    "type": "string",
-                    "description": "Time interval of the data to return.",
-                    "default": "1d"
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp",
-                        "intrinio",
-                        "polygon",
-                        "yfinance"
-                    ]
-                }
-            },
-            "required": [
-                "symbol",
-                "provider"
-            ]
-        }
-    },
-    {
-        "name": "obb_index_market_fmp",
-        "description": "Get Historical Market Indices. Get it from provider fmp",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp, intrinio, polygon, yfinance.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "interval": {
-                    "type": "string",
-                    "description": "Time interval of the data to return.",
-                    "default": "1d"
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
-            "required": [
-                "symbol",
-                "provider"
-            ]
-        }
-    },
-    {
-        "name": "obb_index_market_intrinio",
-        "description": "Get Historical Market Indices. Get it from provider intrinio",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp, intrinio, polygon, yfinance.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "interval": {
-                    "type": "string",
-                    "description": "Time interval of the data to return.",
-                    "default": "1d"
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "intrinio"
-                    ]
-                },
-                "limit": {
-                    "name": "limit",
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 10000,
-                    "optional": true
-                }
-            },
-            "required": [
-                "symbol",
-                "provider"
-            ]
-        }
-    },
-    {
-        "name": "obb_index_market_polygon",
-        "description": "Get Historical Market Indices. Get it from provider polygon",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp, intrinio, polygon, yfinance.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "interval": {
-                    "type": "string",
-                    "description": "Time interval of the data to return.",
-                    "default": "1d"
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "polygon"
-                    ]
-                },
-                "sort": {
-                    "name": "sort",
-                    "description": "Sort order of the data. This impacts the results in combination with the 'limit' parameter. The results are always returned in ascending order by date.",
-                    "default": "asc",
-                    "optional": true,
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ]
-                },
-                "limit": {
-                    "name": "limit",
-                    "type": "integer",
-                    "description": "The number of data entries to return.",
-                    "default": 49999,
-                    "optional": true
-                }
-            },
-            "required": [
-                "symbol",
-                "provider"
-            ]
-        }
-    },
-    {
-        "name": "obb_index_market_yfinance",
-        "description": "Get Historical Market Indices. Get it from provider yfinance",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for. Multiple items allowed for provider(s): fmp, intrinio, polygon, yfinance.",
-                    "default": ""
-                },
-                "start_date": {
-                    "type": "string",
-                    "description": "Start date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "end_date": {
-                    "type": "string",
-                    "description": "End date of the data, in YYYY-MM-DD format.",
-                    "default": null
-                },
-                "interval": {
-                    "type": "string",
-                    "description": "Time interval of the data to return.",
-                    "default": "1d"
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "yfinance"
-                    ]
-                }
-            },
-            "required": [
-                "symbol",
-                "provider"
-            ]
-        }
-    },
-    {
         "name": "obb_index_constituents_fmp",
         "description": "Get Index Constituents.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'fmp' if there is no default.",
-                    "default": "fmp",
-                    "type": "string",
-                    "enum": [
-                        "fmp"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -10501,23 +7414,8 @@
         "description": "Map a ticker symbol to a CIK number.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "symbol": {
-                    "type": "string",
-                    "description": "Symbol to get data for.",
-                    "default": ""
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "symbol",
                 "provider"
             ]
         }
@@ -10527,26 +7425,7 @@
         "description": "Search SEC-regulated institutions by name and return a list of results with CIK numbers.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Search query.",
-                    "default": ""
-                },
-                "use_cache": {
-                    "type": "bool",
-                    "description": "Whether or not to use cache. If True, cache will store for seven days.",
-                    "default": true
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -10557,31 +7436,7 @@
         "description": "Use tool for navigating the directory of SEC XML schema files by year.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Search query.",
-                    "default": ""
-                },
-                "use_cache": {
-                    "type": "bool",
-                    "description": "Whether or not to use cache. If True, cache will store for seven days.",
-                    "default": true
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                },
-                "url": {
-                    "type": "string",
-                    "description": "Enter an optional URL path to fetch the next level.",
-                    "default": null
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -10592,28 +7447,8 @@
         "description": "Map a CIK number to a ticker symbol, leading 0s can be omitted or included.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Search query.",
-                    "default": ""
-                },
-                "use_cache": {
-                    "type": "bool",
-                    "description": "Whether or not to use cache. If True, cache will store for seven days.",
-                    "default": true
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
-                "query",
                 "provider"
             ]
         }
@@ -10623,16 +7458,7 @@
         "description": "Get the RSS feed that provides links to litigation releases concerning civil lawsuits brought by the Commission in federal court.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
@@ -10643,26 +7469,7 @@
         "description": "Search for Industry Titles, Reporting Office, and SIC Codes. An empty query string returns all results.",
         "parameters": {
             "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Search query.",
-                    "default": ""
-                },
-                "use_cache": {
-                    "type": "bool",
-                    "description": "Whether or not to use cache. If True, cache will store for seven days.",
-                    "default": true
-                },
-                "provider": {
-                    "description": "The provider to use for the query, by default None. If None, the provider specified in defaults is selected or 'sec' if there is no default.",
-                    "default": "sec",
-                    "type": "string",
-                    "enum": [
-                        "sec"
-                    ]
-                }
-            },
+            "properties": {},
             "required": [
                 "provider"
             ]
