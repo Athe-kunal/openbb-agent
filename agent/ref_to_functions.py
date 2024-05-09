@@ -42,7 +42,6 @@ def get_curr_func(data,paths,ignore_non_standard:bool=False,params_dict={}):
     # curr_func['examples'] = data["paths"][paths]['examples']
     curr_func['parameters'] = {"type":"object","properties":{},"required":[]}
     required_params = []
-    # print(paths)
     # Providers
     for params in params_dict:
     # params can be standard or other options
@@ -59,8 +58,14 @@ def get_curr_func(data,paths,ignore_non_standard:bool=False,params_dict={}):
     curr_func['parameters']['required'] = required_params + ['provider']
     return curr_func
 
-if __name__ == '__main__':
-    with open("reference.json","r") as file:
+def build_and_save_functions(path_ref:str):
+    """Build the OpenBB functions
+
+    Args:
+        path_ref (str): Path to reference.json file
+    """
+    
+    with open(path_ref,"r") as file:
         data = json.load(file)
     openbb_functions_enum = []
     funcs = 0
