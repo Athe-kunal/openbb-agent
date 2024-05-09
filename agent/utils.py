@@ -99,3 +99,31 @@ def build_function_calling_json():
         # Write the JSON string to the file
         file.write(json_string)
 
+def generate_pairs(list1,list2):
+    pairs = []
+    for l1 in list1:
+        for l2 in list2:
+            curr_trail = l1
+            curr_trail+=f"-->{l2}"
+            pairs.append(curr_trail)
+    return [pairs]
+
+def generate_pairs_recursive(trail_list):
+    if len(trail_list) ==1:
+        return trail_list[0]
+    curr_pairs = generate_pairs(trail_list[-2],trail_list[-1])
+    modified_trail_list = trail_list[:-2] + curr_pairs
+    return generate_pairs_recursive(modified_trail_list)
+
+def get_trail_list_pairs(trail_list_pairs):
+    if len(trail_list_pairs) == 1:
+        trail_where_clause = {
+                    "trail": {
+                        "$eq": trail_list_pairs[0]
+                    }
+                }
+    elif len(trail_list_pairs)>1:
+        trail_where_clause = {
+            "$or": [{"trail":{"$eq":t}} for t in trail_list_pairs]
+        }
+    return trail_where_clause
