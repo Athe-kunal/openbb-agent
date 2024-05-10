@@ -5,12 +5,18 @@ import chromadb
 import chromadb.utils.embedding_functions as embedding_functions
 import os
 from chromadb.utils.batch_utils import create_batches
+import yaml
+from dotenv import load_dotenv,find_dotenv
 
-from dotenv import load_dotenv
+with open("config.yaml") as stream:
+    try:
+        config_params = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
 def build_graph():
-    with open("openbb_functions_enum.json", "r") as f:
+    with open(config_params['FUNCTION_CALLING_DATASET']['FUNCTION_SAVE_DEST'], "r") as f:
         openbb_functions = json.load(f)
-    with open("reference.json", "r") as f:
+    with open(config_params['FUNCTION_CALLING_DATASET']['REFERENCE_JSON_FILE'], "r") as f:
         data = json.load(f)
     openbb_functions_name_dict = {k['name']:k for k in openbb_functions}
     routers_names = [r.split("/")[1] for r in data['routers']]
@@ -67,7 +73,7 @@ def build_graph():
                     prev_node = rps
         return G
     router_names_graph = {k:get_graph(k) for k in routers_names}
-    return router_names_graph
+    return router_names_graph,routers_names
 
 def build_docs_metadata(router_names_graph):
     embed_docs = []
@@ -102,16 +108,15 @@ def build_docs_metadata(router_names_graph):
     metadata = embed_metadata + non_embed_metadata
     return docs, metadata
 
-def build_database(docs,metadata,path="OpenBB",collection_name:str="obb"):
+def build_database(docs,metadata,api_key):
+    database_path = config_params['VECTORDB']['BASE_DATABASE_PATH']
+    collection_name = config_params['VECTORDB']['COLLECTION_NAME']
     load_dotenv(override=True)
     emb_fn = embedding_functions.OpenAIEmbeddingFunction(
-                    api_key=os.environ['OPENAI_API_KEY'],
-                    model_name="text-embedding-3-small")
+                    api_key=api_key,
+                    model_name=config_params['VECTORDB']['EMBEDDING_MODEL_NAME'])
 
-    client = chromadb.PersistentClient(path=path)
-    if client.get_collection(name=collection_name):
-        client.delete_collection(name=collection_name)
-
+    client = chromadb.PersistentClient(path=database_path)
     openbb_collection = client.create_collection(name=collection_name,embedding_function=emb_fn)
 
     openbb_ids = [f"id{i}" for i in range(len(docs))]
@@ -122,12 +127,13 @@ def build_database(docs,metadata,path="OpenBB",collection_name:str="obb"):
                     metadatas=batch[2])
     return openbb_collection
 
-def load_database(path="OpenBB",collection_name:str="obb"):
-    load_dotenv(override=True)
+def load_database(api_key):
+    database_path = config_params['VECTORDB']['BASE_DATABASE_PATH']
+    collection_name = config_params['VECTORDB']['COLLECTION_NAME']
     emb_fn = embedding_functions.OpenAIEmbeddingFunction(
-                    api_key=os.environ['OPENAI_API_KEY'],
-                    model_name="text-embedding-3-small")
-    client = chromadb.PersistentClient(path=path)
+                    api_key=api_key,
+                    model_name=config_params['VECTORDB']['EMBEDDING_MODEL_NAME'])
+    client = chromadb.PersistentClient(path=database_path)
     openbb_collection = client.get_collection(name=collection_name,embedding_function=emb_fn)
     return openbb_collection
 

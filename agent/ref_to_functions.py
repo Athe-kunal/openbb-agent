@@ -3,6 +3,13 @@ import json
 import re
 import json
 from copy import deepcopy
+import yaml
+
+with open("config.yaml") as stream:
+    try:
+        config_params = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
 
 def process_params(params_desc):
             
@@ -58,14 +65,14 @@ def get_curr_func(data,paths,ignore_non_standard:bool=False,params_dict={}):
     curr_func['parameters']['required'] = required_params + ['provider']
     return curr_func
 
-def build_and_save_functions(path_ref:str):
+def build_and_save_functions():
     """Build the OpenBB functions
 
     Args:
         path_ref (str): Path to reference.json file
     """
-    
-    with open(path_ref,"r") as file:
+    function_calling_params = config_params['FUNCTION_CALLING_DATASET']
+    with open(function_calling_params['REFERENCE_JSON_FILE'],"r") as file:
         data = json.load(file)
     openbb_functions_enum = []
     funcs = 0
@@ -100,9 +107,7 @@ def build_and_save_functions(path_ref:str):
     json_string = json.dumps(openbb_functions_enum)
 
     # Specify the file path where you want to save the JSON data
-    file_path = "openbb_functions_enum.json"
-
     # Open the file in write mode
-    with open(file_path, "w") as file:
+    with open(function_calling_params['FUNCTION_SAVE_DEST'], "w") as file:
         # Write the JSON string to the file
         file.write(json_string)

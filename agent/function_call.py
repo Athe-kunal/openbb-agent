@@ -20,3 +20,14 @@ def run_function_calling(fcs,req_provider,question:str):
     runnable = prompt | model
     resp = runnable.invoke({"input":question})
     return resp
+
+def format_function(function_response):
+    obb_func = function_response.additional_kwargs['function_call']
+    obb_func_name = obb_func['name']
+    obb_func_name = ".".join(obb_func_name.split("_",2)) + "("
+    args_dict = ast.literal_eval(obb_func['arguments'])
+    for arg,val in args_dict.items():
+        obb_func_name+=f"{arg}={val},"
+    obb_func_name = obb_func_name[:-1] + ")"
+    final_func = "from openbb import obb\n" + obb_func_name
+    return final_func
