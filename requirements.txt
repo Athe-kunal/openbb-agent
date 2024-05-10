@@ -1,0 +1,7 @@
+chromadb==0.4.24
+dspy_ai==2.4.5
+langchain==0.1.19
+langchain_community==0.0.38
+networkx==3.3
+python-dotenv==1.0.1
+PyYAML==6.0.1
