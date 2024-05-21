@@ -94,7 +94,7 @@ def build_graph():
                             )
                             G.add_edge(rps, provider_func_name)
                     else:
-                        trail += f"-->{rps}"
+                        
                         for obb_funcs in openbb_functions_name_dict:
                             if base_func_name in obb_funcs:
                                 provider_func = openbb_functions_name_dict[obb_funcs]
@@ -116,6 +116,7 @@ def build_graph():
                                     )
                                     G.add_edge(prev_node, rps)
                                 provider = obb_funcs.rpartition("_")[-1]
+                                trail += f"-->{rps}"
                                 G.add_nodes_from(
                                     [
                                         (
@@ -131,6 +132,7 @@ def build_graph():
                                 )
                                 G.add_edge(rps, obb_funcs)
                                 break
+                        
                 else:
                     if not G.has_node(rps):
                         G.add_nodes_from(

@@ -46,7 +46,7 @@ def process_params(params_desc):
         elif "str" in params_desc["type"]:
             params_desc["type"] = "string"
         elif "bool" in params_desc["type"]:
-            params_desc["type"] = "boolean"
+            params_desc.update({"type": "boolean", "enum": ["True","False"]})
     return params_desc
 
 
@@ -94,7 +94,7 @@ def build_and_save_functions():
         params_dict = data["paths"][paths]["parameters"]
         function_options = list(params_dict.keys())
         if len(function_options) == 2 and function_options[0] == "standard":
-            curr_func = get_curr_func(data, paths, params_dict)
+            curr_func = get_curr_func(data, paths, params_dict=params_dict)
             curr_func["name"] += f"_{function_options[1]}"
             openbb_functions_enum.append(curr_func)
             funcs += len(function_options)

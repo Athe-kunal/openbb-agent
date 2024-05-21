@@ -55,7 +55,7 @@ class OpenBBAgentChroma(dspy.Module):
         first_level_answer = self.firstSecondLevel(
             query=query, keys_values=self.first_level
         ).output
-        print(f"First level answer: {first_level_answer}")
+        print(f"\033[92mFirst level answer: {first_level_answer}\033[0m")
         if ";" in first_level_answer:
             # ['crypto','index']
             trail_list = [[fla.strip() for fla in first_level_answer.split(";")]]
@@ -66,7 +66,7 @@ class OpenBBAgentChroma(dspy.Module):
         while True:
             # if curr_level>3: break
             trail_list_pairs = generate_pairs_recursive(trail_list)
-            print(f"Current Trail: {trail_list_pairs} and level: {curr_level}")
+            print(f"\033[93mCurrent Trail: {trail_list_pairs} and level: {curr_level}\033[0m")
 
             trail_where_clause = get_trail_list_pairs(trail_list_pairs)
             subsequent_level = self.collection.query(
@@ -99,7 +99,7 @@ class OpenBBAgentChroma(dspy.Module):
                             ]
                         }
                     )
-                    function_calls_list.append(function_call["metadatas"])
+                    function_calls_list.append(function_call)
                     return function_calls_list
                 else:
                     trail_list.append(
@@ -142,13 +142,13 @@ class OpenBBAgentChroma(dspy.Module):
                     )
                     subsequent_level_str += f"{subsequent_level_metadata['node_name']}: {subsequent_level_data}\n\n"
                 print(
-                    f"Subsequent level {curr_level} string to LLM: {subsequent_level_str}"
+                    f"\033[91mSubsequent level {curr_level} string to LLM: {subsequent_level_str}\033[0m"
                 )
                 if subsequent_level_str != "":
                     subsequent_level_answer = self.firstSecondLevel(
                         query=query, keys_values=subsequent_level_str
                     )
-                    print("LLM Answer: ", subsequent_level_answer)
+                    print(f"\033[94mLLM Answer: {subsequent_level_answer}\033[0m", )
                     splitted_subsequent_level_answer = (
                         subsequent_level_answer.output.split(";")
                     )
@@ -236,7 +236,7 @@ class OpenBBAgentBM25(dspy.Module):
         first_level_answer = self.firstSecondLevel(
             query=query, keys_values=self.first_level
         ).output
-        print(f"First level answer: {first_level_answer}")
+        print(f"\033[92mFirst level answer: {first_level_answer}\033[0m")
         if ";" in first_level_answer:
             # ['crypto','index']
             trail_list = [[fla.strip() for fla in first_level_answer.split(";")]]
@@ -247,7 +247,7 @@ class OpenBBAgentBM25(dspy.Module):
         while True:
             # if curr_level>3: break
             trail_list_pairs = generate_pairs_recursive(trail_list)
-            print(f"Current Trail: {trail_list_pairs} and level: {curr_level}")
+            print(f"\033[93Current Trail: {trail_list_pairs} and level: {curr_level}\033[0m")
 
             trail_where_clause = get_trail_list_pairs(trail_list_pairs)
             bm25_docs = self.BM25RetrieverLangchain(
@@ -319,7 +319,7 @@ class OpenBBAgentBM25(dspy.Module):
                     subsequent_level_data = subsequent_level_metadata["description"]
                     subsequent_level_str += f"{subsequent_level_metadata['node_name']}: {subsequent_level_data}\n\n"
                     print(
-                        f"Subsequent level {curr_level} string to LLM: {subsequent_level_str}"
+                        f"\033[93mSubsequent level {curr_level} string to LLM: {subsequent_level_str}\033[0m"
                     )
                 if subsequent_level_str != "":
                     subsequent_level_answer = self.firstSecondLevel(
@@ -328,7 +328,7 @@ class OpenBBAgentBM25(dspy.Module):
                     splitted_subsequent_level_answer = (
                         subsequent_level_answer.output.split(";")
                     )
-                    print(f"LLM Answer: {subsequent_level_answer}")
+                    print(f"\033[94mLLM Answer: {subsequent_level_answer}\033[0m")
                     if curr_trail_list == []:
                         curr_trail_list.append(
                             [sl.strip() for sl in splitted_subsequent_level_answer]
