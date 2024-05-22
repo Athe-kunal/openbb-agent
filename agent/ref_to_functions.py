@@ -45,6 +45,8 @@ def process_params(params_desc):
             params_desc["type"] = "string"
         elif "str" in params_desc["type"]:
             params_desc["type"] = "string"
+        elif "float" in params_desc["type"]:
+            params_desc["type"] = "number"
         elif "bool" in params_desc["type"]:
             params_desc.update({"type": "boolean", "enum": ["True","False"]})
     return params_desc
