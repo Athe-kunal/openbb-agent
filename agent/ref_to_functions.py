@@ -4,52 +4,12 @@ import re
 import json
 from copy import deepcopy
 import yaml
-
+from agent.utils import process_params
 with open("config.yaml") as stream:
     try:
         config_params = yaml.safe_load(stream)
     except yaml.YAMLError as exc:
         print(exc)
-
-
-def process_params(params_desc):
-
-    if "type" in params_desc:
-        if "None" in params_desc["type"] and "Literal" in params_desc["type"]:
-            result = re.findall(r"Literal\[(.*?)\]", params_desc["type"])[0].split(", ")
-            result = [
-                value.strip('"') if value.strip() != "None" else None
-                for value in result
-            ]
-            result = [value.replace("'", "") for value in result if value is not None]
-            del params_desc["type"]
-            # for res in result:
-            # if res in function_options:
-            #         params_desc['optional'] = False
-            #         break
-            params_desc.update({"type": "string", "enum": result})
-        elif "None" not in params_desc["type"] and "Literal" in params_desc["type"]:
-            result = re.findall(r"Literal\[(.*?)\]", params_desc["type"])[0].split(", ")
-            result = [value.replace("'", "") for value in result]
-            # for res in result:
-            #     if res in function_options:
-            #         params_desc['optional'] = False
-            #         break
-            del params_desc["type"]
-            params_desc.update({"type": "string", "enum": result})
-        elif "int" in params_desc["type"]:
-            params_desc["type"] = "integer"
-        elif (
-            "Union" in params_desc["type"] or "List" in params_desc["type"]
-        ) and "str" in params_desc["type"]:
-            params_desc["type"] = "string"
-        elif "str" in params_desc["type"]:
-            params_desc["type"] = "string"
-        elif "float" in params_desc["type"]:
-            params_desc["type"] = "number"
-        elif "bool" in params_desc["type"]:
-            params_desc.update({"type": "boolean", "enum": ["True","False"]})
-    return params_desc
 
 
 def get_curr_func(data, paths, ignore_non_standard: bool = False, params_dict={}):

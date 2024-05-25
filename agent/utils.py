@@ -2,12 +2,11 @@ import json
 from copy import deepcopy
 import re
 
-
 def process_params(params_desc):
-
+    params_desc_type = params_desc["type"]
     if "type" in params_desc:
-        if "None" in params_desc["type"] and "Literal" in params_desc["type"]:
-            result = re.findall(r"Literal\[(.*?)\]", params_desc["type"])[0].split(", ")
+        if "None" in params_desc_type and "Literal" in params_desc_type:
+            result = re.findall(r"Literal\[(.*?)\]", params_desc_type)[0].split(", ")
             result = [
                 value.strip('"') if value.strip() != "None" else None
                 for value in result
@@ -19,7 +18,7 @@ def process_params(params_desc):
             #         params_desc['optional'] = False
             #         break
             params_desc.update({"type": "string", "enum": result})
-        elif "None" not in params_desc["type"] and "Literal" in params_desc["type"]:
+        elif "None" not in params_desc_type and "Literal" in params_desc_type:
             result = re.findall(r"Literal\[(.*?)\]", params_desc["type"])[0].split(", ")
             result = [value.replace("'", "") for value in result]
             # for res in result:
@@ -28,16 +27,19 @@ def process_params(params_desc):
             #         break
             del params_desc["type"]
             params_desc.update({"type": "string", "enum": result})
-        elif "int" in params_desc["type"]:
+        
+        elif "int" in params_desc_type:
             params_desc["type"] = "integer"
+        elif "str" in params_desc_type:
+            params_desc["type"] = "string"
+        elif "float" in params_desc_type:
+            params_desc["type"] = "number"
+        elif "callable" in params_desc_type or "object" in params_desc_type:
+            params_desc["type"] = "object"
+        elif "Union" in params_desc_type or "List" in params_desc_type:
+            params_desc["type"] = "array"
         elif "bool" in params_desc["type"]:
-            params_desc["type"] = "boolean"
-        elif (
-            "Union" in params_desc["type"] or "List" in params_desc["type"]
-        ) and "str" in params_desc["type"]:
-            params_desc["type"] = "string"
-        elif "str" in params_desc["type"]:
-            params_desc["type"] = "string"
+            params_desc.update({"type": "boolean", "enum": ["True","False"]})
     return params_desc
 
 

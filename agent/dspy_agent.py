@@ -18,8 +18,8 @@ function_calling_llm = dspy.OpenAI(model="gpt-3.5-turbo-1106", max_tokens=1024)
 class FirstSecondLevel(dspy.Signature):
     """You are given a list of keys and values separated by semicolon.
     Based on the query, you have to output the key that is most relevant to the question.
-    Be precise and output only the relevant key or keys.
-    Don't include any other information
+    Be precise and output only the relevant key or keys that you are provided. Don't output any other key.
+    Don't include any other information.
     """
 
     query = dspy.InputField(prefix="Query which you need to classify: ", format=str)
@@ -136,7 +136,7 @@ class OpenBBAgentChroma(dspy.Module):
                                 subsequent_level_metadata["node_name"]
                             )
                     subsequent_level_data = (
-                        subsequent_level_metadata["description"]
+                        subsequent_level_metadata["child_text"]
                         .replace("\n\n", "")
                         .replace("\n", "")
                     )
@@ -188,7 +188,7 @@ class OpenBBAgentBM25(dspy.Module):
         self.first_level = ""
         for first_level_metadata in get_first_level["metadatas"]:
 
-            self.first_level += f"{first_level_metadata['node_name']}: {first_level_metadata['description']}\n"
+            self.first_level += f"{first_level_metadata['node_name']}: {first_level_metadata['child_text']}\n"
         self.firstSecondLevel = dspy.ChainOfThought(FirstSecondLevel)
 
     def __call__(self, *args, **kwargs):
@@ -222,7 +222,7 @@ class OpenBBAgentBM25(dspy.Module):
                 return [Document(page_content="")]
             for data in vectordb_docs["metadatas"]:
                 langchain_docs.append(
-                    Document(page_content=data["description"], metadata=data)
+                    Document(page_content=data["child_text"], metadata=data)
                 )
         # k_value = max(1,len(vectordb_docs['metadatas'])//2)
         bm25_retriever = BM25Retriever.from_documents(
@@ -316,7 +316,7 @@ class OpenBBAgentBM25(dspy.Module):
                             curr_trail_list[-1].append(
                                 subsequent_level_metadata["node_name"]
                             )
-                    subsequent_level_data = subsequent_level_metadata["description"]
+                    subsequent_level_data = subsequent_level_metadata["child_text"]
                     subsequent_level_str += f"{subsequent_level_metadata['node_name']}: {subsequent_level_data}\n\n"
                     print(
                         f"\033[93mSubsequent level {curr_level} string to LLM: {subsequent_level_str}\033[0m"

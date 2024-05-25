@@ -26,15 +26,15 @@ def build_graph():
         data = json.load(f)
     openbb_functions_name_dict = {k["name"]: k for k in openbb_functions}
     routers_names = [r.split("/")[1] for r in data["routers"]]
-    all_functions = list(openbb_functions_name_dict.keys())
+    # all_functions = list(openbb_functions_name_dict.keys())
 
     def get_graph(router_name: str):
         # print(router_name)
         desc = data["routers"]["/" + router_name]
 
-        func_name = f"obb_{router_name}"
+        # func_name = f"obb_{router_name}"
         path_name = "/" + router_name
-        req_func = [rf for rf in all_functions if rf.startswith(func_name)]
+        # req_func = [rf for rf in all_functions if rf.startswith(func_name)]
         req_data = [d for d in data["paths"] if d.startswith(path_name)]
         G = nx.DiGraph()
 
@@ -162,10 +162,27 @@ def build_docs_metadata(router_names_graph):
     embed_metadata = []
     non_embed_docs = []
     non_embed_metadata = []
-    for router_name, router_graph in router_names_graph.items():
+    
+    for _, graph in router_names_graph.items():
+        for node,attr in graph.nodes(data=True):
+            if attr['type'].startswith('level'):
+                curr_level_text_list = []
+                for _,a in graph.nodes(data=True):
+                    if 'trail' in a and a['type']!="provider_function":
+                        if node in a['trail']:
+                            if a['description'] in curr_level_text_list: continue
+                            else: curr_level_text_list.append(a['description'])
+                if curr_level_text_list == []:
+                    curr_level_text = attr['description']
+                else:
+                    curr_level_text = " ".join(curr_level_text_list)
+                attr.update({"child_text":curr_level_text})
+                nx.set_node_attributes(graph,attr,name=node)
+    
+    for _, router_graph in router_names_graph.items():
         for node, attributes in router_graph.nodes(data=True):
             if attributes["type"].startswith("level"):
-                embed_docs.append(attributes["description"])
+                embed_docs.append(attributes["child_text"])
                 attributes.update({"node_name": node})
                 for key, value in attributes.items():
                     if isinstance(value, dict):
