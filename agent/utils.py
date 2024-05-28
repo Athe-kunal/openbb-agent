@@ -141,3 +141,21 @@ def get_trail_list_pairs(trail_list_pairs):
     elif len(trail_list_pairs) > 1:
         trail_where_clause = {"$or": [{"trail": {"$eq": t}} for t in trail_list_pairs]}
     return trail_where_clause
+
+def split_description(text_list,MAX_WORDS:int=500):
+        split_s = []
+        running_num_words = 0
+        curr_func_string = ""
+        for txt in text_list:
+            num_words = len(txt.split(" "))
+            running_num_words += num_words
+            if running_num_words > MAX_WORDS:
+                running_num_words = num_words
+                split_s.append(curr_func_string)
+                curr_func_string = txt
+            else:
+                curr_func_string += txt + " "
+        if split_s == []:
+            split_s.append(curr_func_string)
+        split_s = [s for s in split_s if s!=""]
+        return split_s

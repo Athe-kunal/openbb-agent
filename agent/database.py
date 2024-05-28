@@ -7,6 +7,7 @@ import os
 from chromadb.utils.batch_utils import create_batches
 import yaml
 from dotenv import load_dotenv, find_dotenv
+from agent.utils import split_description
 
 with open("config.yaml") as stream:
     try:
@@ -157,13 +158,14 @@ def build_graph():
     return router_names_graph, routers_names
 
 
-def build_docs_metadata(router_names_graph):
+def build_docs_metadata(router_names_graph,MAX_WORDS:int=500):
     embed_docs = []
     embed_metadata = []
     non_embed_docs = []
     non_embed_metadata = []
     
     for _, graph in router_names_graph.items():
+        # Parent embedding docs adding child texts
         for node,attr in graph.nodes(data=True):
             if attr['type'].startswith('level'):
                 curr_level_text_list = []
@@ -173,23 +175,27 @@ def build_docs_metadata(router_names_graph):
                             if a['description'] in curr_level_text_list: continue
                             else: curr_level_text_list.append(a['description'])
                 if curr_level_text_list == []:
-                    curr_level_text = attr['description']
-                else:
-                    curr_level_text = " ".join(curr_level_text_list)
-                attr.update({"child_text":curr_level_text})
+                    curr_level_text_list = [attr['description']]
+                # else:
+                    # curr_level_text = " ".join(curr_level_text_list)
+                attr.update({"child_text":curr_level_text_list})
                 nx.set_node_attributes(graph,attr,name=node)
     
     for _, router_graph in router_names_graph.items():
+        # Sub level embeddings and provider functions
         for node, attributes in router_graph.nodes(data=True):
             if attributes["type"].startswith("level"):
-                embed_docs.append(attributes["child_text"])
                 attributes.update({"node_name": node})
+                split_child_text = split_description(attributes["child_text"],MAX_WORDS)
+                del attributes["child_text"]
                 for key, value in attributes.items():
-                    if isinstance(value, dict):
+                    if not isinstance(value, str):
                         attributes[key] = str(value)
                     else:
                         pass
-                embed_metadata.append(attributes)
+                for sct in split_child_text:
+                    embed_docs.append(sct)
+                    embed_metadata.append(attributes)
             else:
                 if "description" in attributes:
                     non_embed_docs.append(attributes["description"])
@@ -197,7 +203,7 @@ def build_docs_metadata(router_names_graph):
                     non_embed_docs.append("empty")
                 attributes.update({"node_name": node})
                 for key, value in attributes.items():
-                    if isinstance(value, dict):
+                    if not isinstance(value, str):
                         attributes[key] = str(value)
                     else:
                         pass

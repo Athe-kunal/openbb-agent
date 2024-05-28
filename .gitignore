@@ -1,5 +1,5 @@
 .env
 *.log
-OpenBB
+OpenBB*
 OpenBBdb
 __pycache__
