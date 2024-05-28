@@ -1,0 +1,244 @@
+QUESTION,PATHS,OUTPUT-FUNCTION
+Give me the historical price data for Bitcoin cryptocurrency from yahoo finance,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='BTC-USD', start_date='2024-01-01', end_date='2024-12-31', provider='yfinance')"
+Give me the historical price data for Ethereum cryptocurrency from fmp,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='ETH-USD', start_date='2024-01-01', end_date='2024-12-31', provider='fmp')"
+Give me the minute level price data for Bitcoin from January 2024 to April 2024,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='BTC-USD', interval=""1m"",  start_date='2024-01-01', end_date='2024-04-31', provider='yfinance')"
+Give me the quarter level price data for Solana from 2021 till now,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='SOL-USD', interval=""1Q"",  start_date='2021-01-01', end_date='2024-04-31', provider='yfinance')"
+I want the data hourly price data for Solana for the current year from polygon,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='SOL-USD', interval=""1h"",  start_date='2024-01-01', end_date='2024-12-31', provider='polygon')"
+I want the daily price data for Ethereum and Bitcoin for the current year from tiingo provider and POLONIEX exchange,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='ETHUSD,BTCUSD', interval=""1d"",  start_date='2024-01-01', end_date='2024-12-31', provider='tiingo',exchanges=['POLONIEX'])"
+"I want the dataframe for the daily price data Ethereum, Solana, Bitcoin from yahoo finance","/crypto/price/historical
+","obb.crypto.price.historical(symbol='ETHUSD,BTCUSD,SOLUSD', interval=""1d"",  start_date='2024-01-01', end_date='2024-12-31', provider='yfinance').to_dataframe()"
+I want the minute level data for Ethereum from yahoo finance in dictionary format,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='ETHUSD', interval=""1m"",  start_date='2024-01-01', end_date='2024-12-31', provider='yfinance').to_dict()"
+I want the minute level data in 2023 for Solana from fmp in numpy array,"/crypto/price/historical
+","obb.crypto.price.historical(symbol='SOLUSD', interval=""1m"",  start_date='2023-01-01', end_date='2023-12-31', provider='fmp').to_numpy()"
+I want the cryptocurrency pair for Bitcoin,"/crypto/search
+","obb.crypto.search(query='BTCUSD',provider='fmp')"
+"I want the dataframe for the minute level price data Ethereum, Solana, Bitcoin from yahoo finance","/crypto/price/historical
+","obb.crypto.price.historical(symbol=['ETHUSD,BTCUSD,SOLUSD'], interval=""1m"",  start_date='2024-01-01', end_date='2024-12-31', provider='yfinance').to_dataframe()"
+Give me the currency historical price data for Euro in terms of USD for the year 2023,/currency/price/historical,"obb.currency.price.historical(symbol='EURUSD', start_date='2023-01-01',end_date='2023-12-31',provider='yfinance')"
+Give me the currency historical price data for Japanese yen in terms of USD for the current year from polygon at 15 minute interval,/currency/price/historical,"obb.currency.price.historical(symbol='JPYUSD', start_date='2024-01-01',end_date='2024-12-31',provider='polygon',interval='15m')"
+Search for 'EURUSD' currency pair using 'intrinio' as provider.,"/currency/search","obb.currency.search(provider='intrinio')"
+Search for actively traded currency pairs on the queried date using 'polygon' as provider.,"/currency/search","obb.currency.search(provider='polygon', date=2024-01-02, active=True)
+"
+Search for terms  using 'polygon' as provider.,"/currency/search","obb.currency.search(provider='polygon', search='Euro zone')
+"
+Search for 'EURUSD' currency pair using 'intrinio' as provider.,"/currency/search","obb.currency.search(provider='intrinio', symbol=EURUSD)"
+"Get exchange rates from USD and XAU to EUR, JPY, and GBP using 'fmp' as provider.",/currency/snapshots,"obb.currency.snapshots(provider='fmp', base='USD,XAU', counter_currencies='EUR,JPY,GBP', quote_type='indirect')"
+Get the options  chain end-of-day-data for 2024-04-16 for Apple Company from intrino provider,"/derivatives/options/chains","obb.derivatives.options.chains(symbol='AAPL', date=2024-04-16, provider='intrinio')
+"
+Get the options chain for GOOGL for the year 2024,"/derivatives/options/chains","obb.derivatives.options.chains(symbol='GOOGL',provider='intrino')"
+Get the bullish sentiment with trade type sweep option chains data for AAPL for the year 2022,/derivatives/options/unusual,"obb.derivatives.options.unusual(symbol='AAPL', provider='intrinio',start_date='2022-01-01',end_date='2022-12-31',trade_type='sweep',sentiment='bullish')"
+Get the bearish sentiment with trade type large foption chains realtime data for MSFT for the current year ,/derivatives/options/unusual,"obb.derivatives.options.unusual(symbol='AAPL', provider='intrinio',start_date='2024-01-01',end_date='2024-12-31',trade_type='large',sentiment='bearish',source='realtime')"
+I want historical future prices for ES and NQ for expiration in 2025,/derivatives/futures/historical,"obb.derivatives.futures.historical(symbol='ES,NQ', provider='yfinance', expiration='2025-12')
+"
+I want historical future 30 minutes level prices for ES and NQ ,/derivatives/futures/historical,"obb.derivatives.futures.historical(symbol='ES', provider='yfinance', interval='30m')
+"
+I want the current futures term structure for NG for 14 April 2024 ,/derivatives/futures/curve,"obb.derivatives.futures.curve(symbol='NG', provider='yfinance', date='2024-04-14')"
+Give me the forecasted nominal gdp data for bulgaria,"/economy/gdp/forecast","obb.economy.gdp.forecast(period='annual', type='nominal', provider='oecd',country='bulgaria')
+"
+Give me the forecasted real quarterly gdp data for Israel,"/economy/gdp/forecast","obb.economy.gdp.forecast(period='quarter', type='real', provider='oecd',country='Israel')"
+Give me the nominal GDP data for India capped to USD,/economy/gdp/nominal,"obb.economy.gdp.nominal(units='usd_cap', provider='oecd',country='india')"
+Give me the nominal GDP data for Estonia in units of USD,/economy/gdp/nominal,"obb.economy.gdp.nominal(units='usd', provider='oecd',country='estonia')"
+Give me the real GDP data for Belgiumyear over year for the year 2023,/economy/gdp/real,"obb.economy.gdp.real(provider='oecd',country='belgium',units='yoy',start_date='2023-01-01',end_date='2023-12-31')"
+I want the economy calendar for the year 2023 from fmp provider,/economy/calendar,"obb.economy.calendar(provider='fmp', start_date='2023-01-01', end_date='2023-12-31')"
+"I want to get the consumer price index or CPI for japan, chine and turkey","/economy/cpi","obb.economy.cpi(country='japan,china,turkey', provider='fred')"
+I want the CPI of United states and United kingdom compared to the previous year,"/economy/cpi","obb.economy.cpi(country='united_states,united_kingdom', units='growth_previous', provider='fred')"
+I want the quarterly CPI of US for the year 2023,"/economy/cpi","obb.economy.cpi(country='united_states', provider='fred',frequency='quarter',start_date='2023-01-01',end_date='2023-12-31')
+"
+I want to get the growth in CPI for Japan,"/economy/cpi","obb.economy.cpi(country='japan,united_kingdom', units='growth_same', provider='fred')
+"
+I want the market risk premium by country,/economy/risk_premium,obb.economy.risk_premium(provider='fmp')
+I want to get the FRED series or economic releases,/economy/fred_search,obb.economy.fred_search(provider='fred')
+I want the FRED series data for the symbol NFCI and STLFSI4,/economy/fred_series,"obb.economy.fred_series(symbol='NFCI', provider='fred')
+"
+I want the FRED series data for CBBTCUSD with average aggregation with percentage change from year ago ,/economy/fred_series,"obb.economy.fred_series(symbol='CBBTCUSD', transform=pc1, provider='fred',aggregation_method=pc1)
+"
+I want the money measures (M1/M2 components) without adjustment,/economy/money_measures,"obb.economy.money_measures(adjusted=False, provider='federal_reserve')"
+I want the monthly unemployment data for Male in Colombia ,/economy/unemployment,"obb.economy.unemployment(country='columbia', frequency='monthly', provider='oecd',sex='male',age='total')"
+I want the quarterly unemployment data for female who are between 15-24 of age in Australia with seasonal adjustment,/economy/unemployment,"obb.economy.unemployment(country='australia', frequency='quarterly', provider='oecd',sex='female',age='15-24',seasonal_adjustment=true)"
+I want the composite leading indicator (CLI) from oecd,/economy/composite_leading_indicator,"obb.economy.composite_leading_indicator(country=all, provider='oecd')"
+I want the composite leading indicator (CLI) for US,/economy/composite_leading_indicator,"obb.economy.composite_leading_indicator(country='united_states', provider='oecd')"
+I want the short term interest rates from January to April 2024,/economy/short_term_interest_rate,"obb.economy.short_term_interest_rate(provider='oecd',start_date='2024-01-01',end_date='2023-04-31')"
+I want the monthly short term interest rates for New Zealand,/economy/short_term_interest_rate,"obb.economy.short_term_interest_rate(provider='oecd',frequency='monthly',country='new_zealand')"
+I want the long term interest rates from January to April 2024 for all countries,/economy/long_term_interest_rate,"obb.economy.long_term_interest_rate(provider='oecd',start_date='2024-01-01',end_date='2023-04-31')"
+I want the quarterly long term interest rates for Mexico,/economy/long_term_interest_rate,"obb.economy.long_term_interest_rate(provider='oecd',frequency='quarterly',country='mexico')"
+I want the FRED regional data for NYICLAIMS for the year 2021 and limit the results to 10 ,/economy/fred_regional,"obb.economy.fred_regional(symbol='NYICLAIMS', start_date='2021-01-01', end_date='2021-12-31', limit=10, provider='fred')"
+I want to find the upcoming IPOs with minimum value of 1000000.,/equity/calendar/ipo,"obb.equity.calendar.ipo(provider='intrinio',status='upcoming',min_value=1000000)"
+I want to find the upcoming dividend payments,/equity/calendar/dividend,obb.equity.calendar.dividend(provider='fmp')
+I want to find all the stock splits for the year 2023,/equity/calendar/splits,"obb.equity.calendar.splits(provider='fmp',start_date='2023-01-01',end_date='2023-12-31')"
+I want the closest peer for Microsoft,/equity/compare/peers,"obb.equity.compare.peers(symbol='MSFT', provider='fmp')"
+I want the estimates of the target price for the current year,/equity/estimates/price_target,obb.equity.estimates.price_target(provider='benzinga')
+I want the estimates of the target price for the current year with grade,/equity/estimates/price_target,"obb.equity.estimates.price_target(provider='fmp',with_grade=true)"
+I want historical equity estimates of Apple and Google,/equity/estimates/historical,"obb.equity.estimates.historical(symbol=['AAPL','GOOGL'], provider='fmp')"
+I want historical quarterly equity estimates of Amazon ,/equity/estimates/historical,"obb.equity.estimates.historical(symbol='AMZN', provider='fmp',period='quarter')"
+I want the consensus price target and recommendation for Nvidia,/equity/estimates/consensus,"obb.equity.estimates.consensus(symbol='NVDA', provider='fmp')"
+I want the consensus price target and recommendation for Apple and Microsoft,/equity/estimates/consensus,"obb.equity.estimates.consensus(symbol='AAPL,MSFT', provider='yfinance')"
+I want the equity estimates from Wedbsh firm,/equity/estimates/analyst_search,"obb.equity.estimates.analyst_search(firm_name='Wedbush', provider='benzinga')"
+I want the forward sales estimates for Apple for the fiscal period q1,/equity/estimates/forward_sales,"obb.equity.estimates.forward_sales(symbol='AAPL', provider='intrinio',fiscal_period='q1')"
+I want the forward earnings per share (EPS) of Apple for the fiscal period q2,/equity/estimates/forward_eps,"obb.equity.estimates.forward_eps(symbol='AAPL', provider='intrinio',fiscal_period='q2')"
+I want the top price gainers sorted by descending order,/equity/discovery/gainers,"obb.equity.discovery.gainers(provider='yfinance',sort='desc')"
+I want the top price loser sorted by ascending order,/equity/discovery/losers,"obb.equity.discovery.losers(sort='asc', provider='yfinance')"
+I want undervalued large cap stocks,/equity/discovery/undervalued_large_caps,obb.equity.discovery.undervalued_large_caps(provider='yfinance')
+I want undervalued growth stocks from yahoo finance sorted by ascending order,/equity/discovery/undervalued_growth,"obb.equity.discovery.undervalued_growth(provider='yfinance',sort='asc')"
+I want top small cap stocks based on earnings growth from yahoo finance sorted by ascending order,/equity/discovery/aggressive_small_caps,"obb.equity.discovery.aggressive_small_caps(sort='desc', provider='yfinance')"
+I want top tech stocks based on revenye and earnings growth sorted by descending order,/equity/discovery/growth_tech,"obb.equity.discovery.growth_tech(sort='desc', provider='yfinance')"
+I want a 10-K report from fmp,/equity/discovery/filings,"obb.equity.discovery.filings(provider='fmp',form_type='10K')"
+I want the equity valuation multiples for Apple (AAPL),/equity/fundamental/multiples,"obb.equity.fundamental.multiples(symbol='AAPL', provider='fmp')"
+I want last 5 annual balance sheets of Microsoft (MSFT) with filing date less than equal to 2024 April,/equity/fundamental/balance,"obb.equity.fundamental.balance(symbol='MSFT', period='annual', limit=5, provider='intrinio',filing_date_lt='2024-04-01')"
+I want the growth in the last 5 balance sheet of Google (GOOGL) ,/equity/fundamental/balance_growth,"obb.equity.fundamental.balance_growth(symbol='GOOGL', provider='fmp',limit=5)"
+I want the last 10 annual cashflow statement for Apple for the fiscal year 2023 from fmp provider,/equity/fundamental/cash,"obb.equity.fundamental.cash(symbol='AAPL', provider='fmp',limit=10,fiscal_year='2023')"
+I want the last 3 annual cashflow statement for AAPL for the fiscal year 04/2023 to 04/2024 from polygon provider and include the source ,/equity/fundamental/cash,"obb.equity.fundamental.cash(symbol='AAPL', provider='polygon',limit=3,filing_date_gte='2023-04-01',filing_date_lte='2024-04-31',include_source=True)"
+I want the last 5 annual cashflow statement for MSFT sorted by period_of_report_date in descending order,/equity/fundamental/cash,"obb.equity.fundamental.cash(symbol='MSFT', provider='polygon',limit=5,order='desc',sort='period_of_report_date')"
+I want the last annual cashflow statement for AAPL from intrino provider,/equity/fundamental/cash,"obb.equity.fundamental.cash(symbol='AAPL', period='annual', limit=5, provider='intrinio')"
+I want the last 10 financial statements of statement_type balance for NVDA for the fiscal year 2024,/equity/fundamental/reported_financials,"obb.equity.fundamental.reported_financials(symbol='NVDA', period='annual',statement_type='balance', provider='intrinio',fiscal_year='2024')"
+I want the last 10 growth of NKE cash flow statement from fmp,/equity/fundamental/cash_growth,"obb.equity.fundamental.cash_growth(symbol='NKE', limit=10, provider='fmp')"
+I want the last 5 dividends by AMZN from 01/2024 to 04/2024,/equity/fundamental/dividends,"obb.equity.fundamental.dividends(symbol='AMZN', provider='intrinio',limit=5,start_date='2024-01-01',end_date='2024-04-31')"
+I want the last 5 historical Earnings Per Share or EPS for DIS,/equity/fundamental/historical_eps,"obb.equity.fundamental.historical_eps(symbol='DIS', provider='fmp',limit=5)"
+I want the employee count of GOOGL,/equity/fundamental/employee_count,"obb.equity.fundamental.employee_count(symbol='GOOGL', provider='fmp')"
+I want the last 3 EBITDA data from the provider intrino ,/equity/fundamental/search_attributes,"obb.equity.fundamental.search_attributes(query='ebitda', provider='intrinio',limit=3)"
+I want the current CEO of Disney (DIS),/equity/fundamental/latest_attributes,"obb.equity.fundamental.latest_attributes(symbol='DIS', tag='ceo', provider='intrinio')"
+I want the daily historical EBITDA of AAPL from intrino provider from 01/2024 to 04/2024,/equity/fundamental/historical_attributes,"obb.equity.fundamental.historical_attributes(symbol='AAPL', tag='ebitda', provider='intrinio',frequency='daily',start_date='2024-01-01',end_date='2024-04-31')"
+I want last 5 annual income statements of Microsoft (MSFT) with filing date less than equal to 2024 April and greater than January 2024 from polygon provider,/equity/fundamental/income,"obb.equity.fundamental.income(symbol='MSFT', period='annual', limit=5, provider='polygon',filing_date_lt='2024-04-01')"
+I want the annual income statement of DIS for the fiscal year 2024 from intrino,/equity/fundamental/income,"obb.equity.fundamental.income(symbol='MSFT',period='annual',provider='intrino',fiscal_year='2024')"
+I want the annual income statement of NVDA from yahoo finance,/equity/fundamental/income,"obb.equity.fundamental.income(symbol='NVDA',provider='yfinance')"
+I want the last 5 annual income growth of DIS from fmp provider,/equity/fundamental/income_growth,"obb.equity.fundamental.income_growth(symbol='DIS', limit=5, period='annual', provider='fmp')"
+I want last 10 annual fundamental metrics of AAPL from intrino provider,/equity/fundamental/metrics,"obb.equity.fundamental.metrics(symbol='AAPL', period='annual', limit=10, provider='intrinio')"
+I want the executive management team data for GOOGL,/equity/fundamental/management,"obb.equity.fundamental.management(symbol='GOOGL', provider='fmp')"
+I want the executive management team compensation for DIS and GOOGL,/equity/fundamental/management_compensation,"obb.equity.fundamental.management_compensation(symbol=['DIS','GOOGL'], provider='fmp')"
+I want the executive management team compensation data for AMZN and MSFT,/equity/fundamental/management_compensation,"obb.equity.fundamental.management_compensation(symbol='AMZN,MSFT', provider='fmp')"
+I want the last 12 annual fundamental ratios of AAPL from intrino provider for the fiscal year 2024,/equity/fundamental/ratios,"obb.equity.fundamental.ratios(symbol='AAPL', period='annual', limit=12, provider='intrinio',fiscal_year='2024')"
+I want the last 2 annual fundamental ratios of AMZN from fmp provider ,/equity/fundamental/ratios,"obb.equity.fundamental.ratios(symbol='AMZN', period='annual', limit=2, provider='fmp')"
+I want the revenue greographic breakdown for MSFT in flat structure,/equity/fundamental/revenue_per_geography,"obb.equity.fundamental.revenue_per_geography(symbol='MSFT', period='annual', structure='flat', provider='fmp')"
+I want the revenue greographic breakdown for AMZN in hierarchical structure,/equity/fundamental/revenue_per_geography,"obb.equity.fundamental.revenue_per_geography(symbol='AMZN', period='annual', structure='hierarchical', provider='fmp')"
+I want the last 2 10-K URLs to the SEC filings of NVDA from fmp provider,/equity/fundamental/filings,"obb.equity.fundamental.filings(symbols='NVDA',provider='fmp',limit=2,form_type='10-K')"
+I want the last 5 10-Q URLs to the SEC filings of AAPL from intrino provider from 01/2022 to 04/2024,/equity/fundamental/filings,"obb.equity.fundamental.filings(symbols='NVDA',provider='intrino',limit=5,form_type='10-Q',start_date='2022-01-01',end_date='2024-04-31')"
+I want the 10-K URL of MSFT with cik number 1237890 from sec provider,/equity/fundamental/filings,"obb.equity.fundamental.filings(symbols='NVDA',provider='sec',cik=1237890 ,form_type='10-K')"
+I want the historical stock splits of AAPL from fmp provider,/equity/fundamental/historical_splits,"obb.equity.fundamental.historical_splits(symbol='AAPL', provider='fmp')"
+I want the earnings call transcripts of MSFT for the year 2023,/equity/fundamental/transcript,"obb.equity.fundamental.transcript(symbol='MSFT', year=2023, provider='fmp')"
+I want the data about top major share holders of DIS from fmp provider,/equity/ownership/major_holders,"obb.equity.ownership.major_holders(symbol='DIS', page=0, provider='fmp')"
+I want the institutional investors in NVDA including the current quarter,/equity/ownership/institutional,"obb.equity.ownership.institutional(symbol='AAPL', provider='fmp',include_current_quarter=true)"
+I want the institutional investors in MSFT including the current quarter for the date 1st April 2024,/equity/ownership/institutional,"obb.equity.ownership.institutional(symbol='AAPL', provider='fmp',include_current_quarter=true,date='2024-04-01')"
+I want the data about the last 5 trading data by META management team and board of directors from intrino provider,/equity/ownership/insider_trading,"obb.equity.ownership.insider_trading(symbol='META', limit=5, provider='intrinio')"
+I want the data about last 500 insider trading data by MSFT management team and board from provider fmp ,/equity/ownership/insider_trading,"obb.equity.ownership.insider_trading(symbol='MSFT', limit=5, provider='fmp')"
+I want the dividend ownership type insider trading of AAPL from 01/2024 to 04/2024 from intrino provider sorted by filing date,/equity/ownership/insider_trading,"obb.equity.ownership.insider_trading(symbol='AAPL', provider='intrino',ownership_type='D',start_date='2024-01-01',end_date='2024-04-31',sort_by='filing_date')"
+I want the last 10 gift transaction type insider trading of GOOGL from fmp provider,/equity/ownership/insider_trading,"obb.equity.ownership.insider_trading(symbol='GOOGL', limit=5, provider='fmp',transaction_type='gift')"
+I want the float of DIS from fmp provider,/equity/ownership/share_statistics,"obb.equity.ownership.share_statistics(symbol='DIS', provider='fmp')"
+I want the float of GS from yfinance provider,/equity/ownership/share_statistics,"obb.equity.ownership.share_statistics(symbol='GS', provider='yfinance')"
+I want the float of TSLA from intrino provider,/equity/ownership/share_statistics,"obb.equity.ownership.share_statistics(symbol='TSLA', provider='intrino')"
+I want the last 2 13F form of TSLA from sec provider,/equity/ownership/form_13f,"obb.equity.ownership.form_13f(symbol='TSLA', provider='sec'.limit=2)"
+I want the CIK of Michael Burry's Scion Asset Management 13F filings,/regulators/sec/institutions_search,"obb.regulators.sec.institutions_search(""Scion Asset Management"").results[0].cik"
+I want the last 3 13F forms of the CIK 128909 and convert it into dataframe,/equity/ownership/form_13f,"obb.equity.ownership.form_13f(128909, limit=3).to_df()"
+I want the 13F form of BRK-A as of 01/2024,/equity/ownership/form_13f,"obb.equity.ownership.form_13f(symbol='BRK-A', date='2024-04-01', provider='sec')"
+I want the latest quote of AAPL from fmp provider,/equity/price/quote,"obb.equity.price.quote(symbol='AAPL', provider='fmp')"
+I want the latest quote of TSLA from yahoo finance provider,/equity/price/quote,"obb.equity.price.quote(symbol='TSLA', provider='yfinance')"
+I want the latest quote of MSFT from iex source from intrino provider,/equity/price/quote,"obb.equity.price.quote(symbol='MSFT', provider='intrino',source='iex')"
+I want the last 5 national best bid and offer for AAPL from 01/2023 to 12/2023 from polygon provider,/equity/price/nbbo,"obb.equity.price.nbbo(symbol='AAPL', provider='polygon',timestamp_gte='2023-01-01',timestamp_lte='2023-12-31',limit=5)"
+I want the 1 day interval historical price of GS from fmp provider,/equity/price/historical,"obb.equity.price.historical(symbol='GS', provider='fmp',interval='1d')"
+I want the 1 day interval historical price of DIS from intrino provider,/equity/price/historical,"obb.equity.price.historical(symbol='DIS', interval='1d', provider='intrinio')"
+I want the unadjusted histocial price data of GOOGL including the extended hours from polygon provider,/equity/price/historical,"obb.equity.price.historical(symbol='GOOGL', interval='1d', provider='polygon',adjustment='unadjusted', extended_hours=true)"
+I want the historical price of GS including the stocks splits and dividends including the extended hours from yfinance provider,/equity/price/historical,"obb.equity.price.historical(symbol='GS', interval='1d', provider='yfinance',adjustment='splits_and_dividends', extended_hours=true)"
+I want the 1 day interval historical price of TSLA from tiingo provider,/equity/price/historical,"obb.equity.price.historical(symbol='GS', provider='tiingo',interval='1d')"
+I want the price performance data for TSLA and AAPL from fmp provider,/equity/price/performance,"obb.equity.price.performance(symbol=['AAPL','TSLA'], provider='fmp')"
+I want the last 5 fail to deliver data of AAPL by skipping the recent report,/equity/shorts/fails_to_deliver,"obb.equity.shorts.fails_to_deliver(symbol='AAPL', provider='sec',limit=5,skip_reports=1)"
+I want the symbol and CIK of the company Tesla from intrino provider,/equity/search,"obb.equity.search(query='Tesla',provider='intrinio')"
+I want to search the equity VTSAX mutual fund from sec provider,/equity/search,"obb.equity.search(query='VTSAX',provider='sec',is_fund=true)"
+"I want the equity screener of companies that have minimum market of 1000,000,000 with minimum price of 100.0",/equity/screener,"obb.equity.screener(provider='fmp',mktcap_min=1000000000,price_min=100)
+"
+"I want the equity screener of companies that have minimum market of 1000,000 with minimum beta of 1.1 and minimum volume of 1000000",/equity/screener,"obb.equity.screener(provider='fmp',mktcap_min=1000000,beta_min=1.1,volume_min=1000000)
+"
+I want equity screener of companies that are in Energy sector in US with minimum dividend of 2,/equity/screener,"obb.equity.screener(provider='fmp',sector='Energy',country='US',dividend_min=2.0)"
+I want information regarding AAPL from fmp provider,/equity/profile,"obb.equity.profile(symbol='AAPL', provider='fmp')"
+I want information regarding MSFT from fmp provider,/equity/profile,"obb.equity.profile(symbol='MSFT', provider='yfinance')"
+I want the market snapshot from intrino provider for the date 2024-01-12,/equity/market_snapshots,"obb.equity.market_snapshots(provider='intrino',date='2024-01-12')"
+I want the market snapshot from for the market ams from fmp provider,/equity/market_snapshots,"obb.equity.market_snapshots(provider='fmp',market='ams')"
+I want the market snapshot from polygon provider,/equity/market_snapshots,obb.equity.market_snapshots(provider='polygon')
+I want active ETFs from NYSE exchange from fmp provider,/etf/search,"obb.etf.search(provider='fmp',exchange='NYSE',is_active=true)"
+I want commerical estate ETFs from arcx exchange from intrino provider,/etf/search,"obb.etf.search(query='commercial real estate', provider='intrino',exchange='arcx')"
+"I want the historical market price of ETFs SPY, IWM, QQQ, DJIA from yahoo finance",/etf/historical,"obb.etf.historical(symbol='SPY,IWM,QQQ,DJIA', provider='yfinance')"
+"I want historical daily realtime market prices of ETFs SPY, DJIA from intrino provider",/etf/historical,"obb.etf.historical(symbol='SPY,DJIA', provider='intrino',source='realtime')"
+I want the historical market prices of ETF QQQ from 01/2024 to 05/2024 from fmp provider,/etf/historical,"obb.etf.historical(symbol='QQQ', provider='fmp',start_date='2024-01-01',end_date='2024-05-31')"
+I want the historical unadjusted market prices of ETF VTI including the extended hours from polygon provider,/etf/historical,"obb.etf.historical(symbol='VTI',adjustment='unadjusted',extended_hours=true,provider='polygon')"
+I want the historical prices of ETFs EEM and AGG adjusted for both split and dividends from yahoo finance,/etf/historical,"obb.etf.historical(symbol='EEM,AGG',adjustment='splits_and_dividends',extended_hours=false,provider='yfinance')"
+"I want the information about the ETFs SPY, IWM, QQQ, DJIA from provider fmp",/etf/info,"obb.etf.info(symbol='SPY,IWM,QQQ,DJIA', provider='fmp')"
+"I want the information about the ETFs SPY, IWM, QQQ, DJIA from provider polygon",/etf/info,"obb.etf.info(symbol='SPY,IWM,QQQ,DJIA', provider='polygon')"
+I want the country wise weighting of the ETF VT from fmp provider,/etf/countries,"obb.etf.countries(symbol='VT', provider='fmp')"
+I want the weighting by sectors of the ETF SPY from fmp provider,/etf/sectors,"obb.etf.sectors(symbol='SPY', provider='fmp')"
+"I want the country weightings of the ETFs SPY,QQQ,IWM from fmp provider",/etf/countries,"obb.etf.countries(symbol=['SPY','QQQ','IWM'], provider='fmp')"
+"I want the price performance about the ETFs SPY, IWM, QQQ, DJIA from provider fmp",/etf/price_performance,"obb.etf.price_performance(symbol='SPY,QQQ,IWM,DJIA', provider='fmp')"
+"I want the calendar return type price performance of the ETFs SPY,QQQ adjusted by splits and dividends from intrino provider",/etf/price_performance,"obb.etf.price_performance(symbol='SPY,QQQ', return_type='calendar',adjustment='splits_and_dividends',provider='intrino')"
+I want the holdings of ETF XLK from fmp provider,/etf/holdings,"obb.etf.holdings(symbol='XLK', provider='fmp')"
+I want the holdings of SPY on the date 2022-03-31 from fmp provider,/etf/holdings,"obb.etf.holdings(symbol='SPY', date=2022-03-31, provider='fmp')"
+I want the holdings of QQQ on the date 2023-10-31 from sec provider,/etf/holdings,"obb.etf.holdings(symbol='QQQ', date=2023-10-31, provider='sec')"
+I want the holdings of SPY on the date 2022-03-31 from intrino provider,/etf/holdings,"obb.etf.holdings(symbol='SPY', date=2022-03-31, provider='intrino')"
+I want the holdings of the ETF with CIK 1289094 on the date 2024-01-31 from fmp provider,/etf/holdings,"obb.etf.holdings(symbol='SPY',cik='1289094' date=2024-01-31, provider='fmp')"
+I want the holdings date of ETF XLK from fmp provider,/etf/holdings_date,"obb.etf.holdings_date(symbol='XLK', provider='fmp')"
+I want the holdings performance the ETFs SPY and QQQ from fmp provider,/etf/holdings_performance,"obb.etf.holdings_date(symbol='SPY,QQQ', provider='fmp')
+"
+"I want the holdings performance the ETFs SPY, QQQ,XLK and IWM from fmp provider",/etf/holdings_performance,"obb.etf.holdings_date(symbol=['SPY','QQQ','IWM','XLK'], provider='fmp')"
+I want the exposure MSFT and AAPL for the ETFs from fmp provider,/etf/equity_exposure,"obb.etf.equity_exposure(symbol='MSFT,AAPL', provider='fmp')"
+I want the exposure GS and TSLA for the ETFs from fmp provider,/etf/equity_exposure,"obb.etf.equity_exposure(symbol=['GS','TSLA'], provider='fmp')"
+I want the fixed income ameribor rate from provider fred,/fixedincome/rate/ameribor,obb.fixedincome.rate.ameribor(provider='fred')
+I want the overnight ameribor rate from fred provider,/fixedincome/rate/ameribor,"obb.fixedincome.rate.ameribor(provider='fred',parameter='overnight')"
+I want the 1 week term structure ameribor rate from 2023-01-1 to 2023-08-30 ,/fixedincome/rate/ameribor,"obb.fixedincome.rate.ameribor(provider='fred',parameter='1_week_term_structure',start_date='2023-01-01',end_date='2023-08-30')"
+I want the 10th percentile sterling overnight index average (SONIA) from provider fred,/fixedincome/rate/sonia,"obb.fixedincome.rate.sonia(parameter='10th_percentile', provider='fred')"
+I want the total nominal valued SONIA rate from 2023-01-1 to 2023-08-30 ,/fixedincome/rate/sonia,"obb.fixedincome.rate.sonia(parameter='total_nominal_value', provider='fred',start_date='2023-01-01',end_date='2023-08-30')"
+I want the interest on reserve balances (IORB) rate from provider fred,/fixedincome/rate/iorb,"obb.fixedincome.rate.iorb(provider='fred')"
+I want the IORB rate from 2023-01-1 to 2023-08-30 ,/fixedincome/rate/iorb,"obb.fixedincome.rate.iorb(provider='fred',start_date='2023-01-01',end_date='2023-08-30')"
+I want the monthly fed funds rate from 2022-1-1 to 2023-12-31 from fred provider,/fixedincome/rate/effr,"obb.fixedincome.rate.effr(parameter='monthly', provider='fred',start_date='2022-01-01',end_date='2023-12-31')"
+I want the federal funds rate from federal reserve provider,/fixedincome/rate/effr,obb.fixedincome.rate.effr(provider='federal_reserve')
+I want the euro short term rate based on the number of transactions from fred provider,/fixedincome/rate/estr,"obb.fixedincome.rate.estr(parameter='number_of_transactions', provider='fred')"
+I want the fed funds rate forecast for the long run,/fixedincome/rate/effr_forecast,"obb.fixedincome.rate.effr_forecast(long_run=True, provider='fred')"
+I want the fed funds rate projects in the short run from fred provider,/fixedincome/rate/effr_forecast,"obb.fixedincome.rate.effr_forecast(long_run=False, provider='fred')"
+I want the euro short term rate from 2023-01-01 to 2023-12-31 based on number of active banks from fred provider,/fixedincome/rate/estr,"obb.fixedincome.rate.estr(parameter='number_of_active_banks', provider='fred',start_date='2023-01-01',end_date='2023-12-31)"
+I want the European Central Bank Interest Rates based on the refinancing interest rate type,/fixedincome/rate/ecb,"obb.fixedincome.rate.ecb(interest_rate_type='refinancing', provider='fred')"
+I want the ECB interest rate from 2023-01-01 to 2023-12-31 based on number of active banks from fred provider,/fixedincome/rate/ecb,"obb.fixedincome.rate.ecb(interest_rate_type='lending', provider='fred',start_date='2023-01-01',end_date='2023-12-31)"
+I want the discount window primary credit rate from 2023-02-1 to 2023-05-01 from fred provider,/fixedincome/rate/dpcredit,"obb.fixedincome.rate.dpcredit(start_date='2023-02-01', end_date='2023-05-01', provider='fred')"
+I want the weekly discount window credit rate from fred provider,/fixedincome/rate/dpcredit,"obb.fixedincome.rate.dpcredit(provider='fred',parameter='weekly')"
+I want the treasury constant maturity rate with 2 year maturity from fred provider ,/fixedincome/spreads/tcm,"obb.fixedincome.spreads.tcm(maturity='2y', provider='fred')"
+I want the treasury constant maturity rate with 3 months maturity from 2023-02-1 to 2023-05-01 from fred provider ,/fixedincome/spreads/tcm,"obb.fixedincome.spreads.tcm(start_date='2023-02-01', end_date='2023-05-01',maturity='3m', provider='fred')"
+I want the treasury constant maturity minus the federal funds rate bearing maturity of 10 years from fred provider,/fixedincome/spreads/tcm_effr,"obb.fixedincome.spreads.tcm_effr(maturity='10y', provider='fred')"
+I want the treasury constant maturity minus the federal funds rate bearing maturity of 3 months from 2023-02-1 to 2023-05-01 from fred provider,/fixedincome/spreads/tcm_effr,"obb.fixedincome.spreads.tcm_effr(maturity='3m', provider='fred',start_date='2023-02-01', end_date='2023-05-01)"
+I wanted treasury bill rate for 6 months maturity from fred provider,/fixedincome/spreads/treasury_effr,"obb.fixedincome.spreads.treasury_effr(maturity='6m', provider='fred')"
+I want US Yield curve adjusted by inflation for 2023-07-08 from fred provider,/fixedincome/government/us_yield_curve,"obb.fixedincome.government.us_yield_curve(inflation_adjusted=True, provider='fred',date='2023-07-08')"
+I want government treasury rates from fred provider,/fixedincome/government/treasury_rates,obb.fixedincome.government.treasury_rates(provider='fred')
+I want government treasury rates from 2022-06-02 to 2024-03-10 from fmp provider,/fixedincome/government/treasury_rates,"obb.fixedincome.government.treasury_rates(provider='fmp',start_date='2022-06-02',end_date='2024-03-10')"
+I want the Bofa US corporate bond indices with index type yield to worst from fred provider,/fixedincome/corporate/ice_bofa,"obb.fixedincome.corporate.ice_bofa(index_type='yield_to_worst', provider='fred')"
+I want AAA Bofa US corporate bonds from area asia including the options ,/fixedincome/corporate/ice_bofa,"obb.fixedincome.corporate.ice_bofa(index_type='yield', provider='fred',area='asia',grade='aaa',options=True)"
+I want crossover ICE Bofa US corporate bonds in USD category ,/fixedincome/corporate/ice_bofa,"obb.fixedincome.corporate.ice_bofa(index_type='yield', provider='fred',category='usd',grade='crossover',options=False)"
+I want Moody corporate Bond Index with BAA index type from fred provider,/fixedincome/corporate/moody,"obb.fixedincome.corporate.moody(index_type='baa', provider='fred')"
+I want Moody corporate Bond Index with AAA index type and treasury spread from 2023-06-02 to 2024-03-12 from fred provider,/fixedincome/corporate/moody,"obb.fixedincome.corporate.moody(index_type='aaa', provider='fred',spread='treasury',start_date='2023-06-02',end_date='2024-03-12')"
+I want High quality market corporate bond with par yield curve from fred provider,/fixedincome/corporate/hqm,"obb.fixedincome.corporate.hqm(yield_curve='par', provider='fred')"
+I want HQM corporate bond for the date 2023-08-01 ,/fixedincome/corporate/hqm,"obb.fixedincome.corporate.hqm(date='2023-08-01', provider='fred')"
+"I want spot rates with maturity 10, 20, 30 and 50 years from fred provider",/fixedincome/corporate/spot_rates,"obb.fixedincome.corporate.spot_rates(maturity='10,20,30,50', provider='fred')"
+"I want spot rates with par yield category and maturity 10, 20, 30 and 50 years from fred provider",/fixedincome/corporate/spot_rates,"obb.fixedincome.corporate.spot_rates(maturity='10,20,30,50', provider='fred',category='par_yield')"
+I want the commercial paper with overnight maturity from fred provider,/fixedincome/corporate/commercial_paper,"obb.fixedincome.corporate.commercial_paper(maturity='overnight', provider='fred')"
+I want the asset backed category commerical papers with maturity of 15 days from fred provider,/fixedincome/corporate/commercial_paper,"obb.fixedincome.corporate.commercial_paper(maturity='15d', provider='fred',category='asset_backed')"
+I want the nonfinancial commercial papers from 2023-06-02 to 2024-03-12 from fred provider,/fixedincome/corporate/commercial_paper,"obb.fixedincome.corporate.commercial_paper(start_date='2023-06-02',end_date='2024-03-12',provider='fred',category='nonfinancial')"
+I want AA grade commerical papers with 90 days maturity ,/fixedincome/corporate/commercial_paper,"obb.fixedincome.corporate.commercial_paper(provider='fred',grade='aa')"
+I want secure overnight financing rate (SOFR) from 2023-08-09 to 2024-02-01 ,/fixedincome/sofr,"obb.fixedincome.sofr(provider='fred',start_date='2023-08-09',end_date='2024-02-01')"
+I want SOFR with a period of 180 days from fred provider,/fixedincome/sofr,"obb.fixedincome.sofr(provider='fred',period='180_day')"
+I want historical price of the index ^GSPC from fmp provider,/index/price/historical,"obb.index.price.historical(symbol='^GSPC', provider='fmp')"
+I want the last 5000 daily historical price of SPX from intrino,/index/price/historical,"obb.index.price.historical(symbol='SPX', provider='intrino',limit=5000,interval='1d')"
+I want the historical price of ^DJI from 2021-03-10 to 2023-04-04 from polygon provider ,/index/price/historical,"obb.index.price.historical(symbol='^DJI', start_date='2021-03-10',end_date='2023-04-04',provider='polygon',interval='1d')"
+I want historical price of the index ^N225 from yahoo finance provider,/index/price/historical,"obb.index.price.historical(symbol='^N225', provider='yfinance')"
+I want the index constituents for dowjones from fmp provider,/index/constituents,"obb.index.constituents(symbol='dowjones', provider='fmp')"
+I want the available indices from fmp provider,/index/available,obb.index.available(provider='fmp')
+I want global news data for financial topics from benzinga provider,/news/world,"obb.news.world(topics='finance', provider='benzinga')"
+I want the last 100 global news and their full articles from benzinga provider,/news/world,"obb.news.world(display='full',provider='benzinga')"
+I want global news data from the source bloomberg from the tiingo provider,/news/world,"obb.news.world(provider='tiingo', source=bloomberg)"
+"I want the news related to AAPL, GOOGL, MSFT and TSLA from benzinga provider",/news/company,"obb.news.company(symbol='AAPL,GOOGL,MSFT ',provider='benzinga')"
+I want the news related to AAPL from 2024-02-01 to 2024-02-07 from intrino provider,/news/company,"obb.news.company(symbol='AAPL', start_date='2024-02-01', end_date='2024-02-07', provider='intrinio')"
+I want the headlines of news related to AAPL from benzinga provider,/news/company,"obb.news.company(symbol='AAPL', display='headline', provider='benzinga')"
+I want news related to GS and DIS from fmp provider,/news/company,"obb.news.company(symbol='GS,DIS', provider='fmp')"
+I want the news related to NVDA with ISIN number US0378331005 from benzinga provider,/news/company,"obb.news.company(symbol='NVDA', isin='US0378331005', provider='benzinga')"
+I want the CIK of MSFT from sec provider,/regulators/sec/cik_map,"obb.regulators.sec.cik_map(symbol='MSFT', provider='sec')"
+I want information regarding blackstone real estate from sec provider,/regulators/sec/institutions_search,"obb.regulators.sec.institutions_search(query='blackstone real estate', provider='sec')"
+I want the ticker symbol of the CIK 0000789019 from sec provider,/regulators/sec/symbol_map,"obb.regulators.sec.symbol_map(query='0000789019', provider='sec')"
+I want litigation releases from sec provider,/regulators/sec/rss_litigation,obb.regulators.sec.rss_litigation(provider='sec')
+I want to do SIC search of real estate investment trusts from sec provider,/regulators/sec/sic_search,"obb.regulators.sec.sic_search(query='real estate investment trusts', provider='sec')"

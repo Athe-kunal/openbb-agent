@@ -11,15 +11,15 @@ load_dotenv(override=True)
 emb_fn = embedding_functions.OpenAIEmbeddingFunction(
     api_key=os.environ["OPENAI_API_KEY"], model_name="text-embedding-3-small"
 )
-first_level_llm = dspy.OpenAI(model="gpt-3.5-turbo-1106", max_tokens=1024)
-function_calling_llm = dspy.OpenAI(model="gpt-3.5-turbo-1106", max_tokens=1024)
+first_level_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024)
+function_calling_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024)
 
 
 class FirstSecondLevel(dspy.Signature):
     """You are given a list of keys and values separated by semicolon.
     Based on the query, you have to output the key that is most relevant to the question.
-    Be precise and output only the relevant key or keys that you are provided. Don't output any other key.
-    Don't include any other information.
+    Be precise and output only the relevant key or keys.
+    Don't include any other information and DON'T answer None or N/A
     """
 
     query = dspy.InputField(prefix="Query which you need to classify: ", format=str)
@@ -58,7 +58,7 @@ class OpenBBAgentChroma(dspy.Module):
         print(f"\033[92mFirst level answer: {first_level_answer}\033[0m")
         if ";" in first_level_answer:
             # ['crypto','index']
-            trail_list = [[fla.strip() for fla in first_level_answer.split(";")]]
+            trail_list = [[fla.strip() for fla in first_level_answer.split(";") if fla!=""]]
 
         else:
             trail_list = [[first_level_answer]]
@@ -152,6 +152,7 @@ class OpenBBAgentChroma(dspy.Module):
                     splitted_subsequent_level_answer = (
                         subsequent_level_answer.output.split(";")
                     )
+                    splitted_subsequent_level_answer = [sla for sla in splitted_subsequent_level_answer if sla!=""]
                     if curr_trail_list == []:
                         curr_trail_list.append(
                             [sl.strip() for sl in splitted_subsequent_level_answer]
