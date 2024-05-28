@@ -169,8 +169,8 @@ def build_docs_metadata(router_names_graph,MAX_WORDS:int=500):
         for node,attr in graph.nodes(data=True):
             if attr['type'].startswith('level'):
                 curr_level_text_list = []
-                for _,a in graph.nodes(data=True):
-                    if 'trail' in a and a['type']!="provider_function":
+                for n,a in graph.nodes(data=True):
+                    if 'trail' in a and a['type']!="provider_function" and n!=node:
                         if node in a['trail']:
                             if a['description'] in curr_level_text_list: continue
                             else: curr_level_text_list.append(a['description'])
@@ -189,7 +189,7 @@ def build_docs_metadata(router_names_graph,MAX_WORDS:int=500):
                 split_child_text = split_description(attributes["child_text"],MAX_WORDS)
                 del attributes["child_text"]
                 for key, value in attributes.items():
-                    if not isinstance(value, str):
+                    if isinstance(value, dict):
                         attributes[key] = str(value)
                     else:
                         pass
@@ -203,7 +203,7 @@ def build_docs_metadata(router_names_graph,MAX_WORDS:int=500):
                     non_embed_docs.append("empty")
                 attributes.update({"node_name": node})
                 for key, value in attributes.items():
-                    if not isinstance(value, str):
+                    if isinstance(value, dict):
                         attributes[key] = str(value)
                     else:
                         pass

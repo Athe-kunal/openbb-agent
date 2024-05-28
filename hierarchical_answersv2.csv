@@ -1,0 +1,41 @@
+QUESTION,TIME,ANSWER,LLM_ANSWER,COMPLETION_TOKENS,PROMPT_TOKENS,TOTAL_TOKENS
+Give me the historical price data for Bitcoin cryptocurrency from yahoo finance,0.42107605934143066,obb_crypto_price_historical,obb_crypto_price_historical,56,658,714
+Give me the historical price data for Ethereum cryptocurrency from fmp,0.28331828117370605,obb_crypto_price_historical,obb_crypto_price_historical,66,668,734
+Give me the minute level price data for Bitcoin from January 2024 to April 2024,0.2163097858428955,obb_crypto_price_historical,obb_crypto_price_historical,74,678,752
+Give me the quarter level price data for Solana from 2021 till now,2.14548659324646,obb_crypto_price_historical,obb_crypto_price_historical,72,626,698
+I want the data hourly price data for Solana for the current year from polygon,2.702056646347046,obb_crypto_price_historical,obb_crypto_price_historical,82,634,716
+I want the daily price data for Ethereum and Bitcoin for the current year from tiingo provider and POLONIEX exchange,2.251577854156494,obb_crypto_price_historical,obb_crypto_price_historical,96,704,800
+"I want the dataframe for the daily price data Ethereum, Solana, Bitcoin from yahoo finance",2.096391439437866,obb_crypto_price_historical,obb_crypto_price_historical,50,540,590
+I want the minute level data for Ethereum from yahoo finance in dictionary format,2.2424139976501465,obb_crypto_price_historical,obb_crypto_price_historical,70,526,596
+I want the minute level data in 2023 for Solana from fmp in numpy array,4.176307678222656,obb_crypto_price_historical,obb_equity_price_performance,147,1074,1221
+I want the cryptocurrency pair for Bitcoin,2.455451726913452,obb_crypto_search,obb_crypto_search,44,694,738
+"I want the dataframe for the minute level price data Ethereum, Solana, Bitcoin from yahoo finance",2.216686487197876,obb_crypto_price_historical,obb_crypto_price_historical,90,540,630
+Give me the currency historical price data for Euro in terms of USD for the year 2023,1.533329725265503,obb_currency_price_historical,obb_currency_snapshots,49,404,453
+Give me the currency historical price data for Japanese yen in terms of USD for the current year from polygon at 15 minute interval,1.82102632522583,obb_currency_price_historical,obb_currency_snapshots,26,350,376
+Search for 'EURUSD' currency pair using 'intrinio' as provider.,1.4272372722625732,obb_currency_search,obb_currency_snapshots,62,438,500
+Search for actively traded currency pairs on the queried date using 'polygon' as provider.,1.680790901184082,obb_currency_search,obb_currency_snapshots,57,410,467
+Search for terms  using 'polygon' as provider.,2.449143409729004,obb_currency_search,obb_crypto_search,96,548,644
+Search for 'EURUSD' currency pair using 'intrinio' as provider.,0.1958599090576172,obb_currency_search,obb_currency_snapshots,62,438,500
+"Get exchange rates from USD and XAU to EUR, JPY, and GBP using 'fmp' as provider.",1.394057273864746,obb_currency_snapshots,obb_currency_snapshots,43,394,437
+Get the options  chain end-of-day-data for 2024-04-16 for Apple Company from intrino provider,3.578810930252075,obb_derivatives_options_chains,obb_derivatives_options_chains,141,873,1014
+Get the options chain for GOOGL for the year 2024,3.6718289852142334,obb_derivatives_options_chains,obb_derivatives_options_chains,144,765,909
+Get the bullish sentiment with trade type sweep option chains data for AAPL for the year 2022,4.455210447311401,obb_derivatives_options_unusual,obb_derivatives_options_unusual,171,795,966
+Get the bearish sentiment with trade type large foption chains realtime data for MSFT for the current year ,5.114675998687744,obb_derivatives_options_unusual,obb_derivatives_options_chains,186,852,1038
+I want historical future prices for ES and NQ for expiration in 2025,6.215602159500122,obb_derivatives_futures_historical,obb_derivatives_futures_historical,123,1002,1125
+I want historical future 30 minutes level prices for ES and NQ ,3.531052827835083,obb_derivatives_futures_historical,obb_derivatives_futures_historical,87,987,1074
+I want the current futures term structure for NG for 14 April 2024 ,3.916188955307007,obb_derivatives_futures_curve,obb_derivatives_futures_curve,168,972,1140
+Give me the forecasted nominal gdp data for bulgaria,0,obb_economy_gdp_forecast,,0,0,0
+Give me the forecasted real quarterly gdp data for Israel,0,obb_economy_gdp_forecast,,0,0,0
+Give me the nominal GDP data for India capped to USD,0,obb_economy_gdp_nominal,,0,0,0
+Give me the nominal GDP data for Estonia in units of USD,0,obb_economy_gdp_nominal,,0,0,0
+Give me the real GDP data for Belgiumyear over year for the year 2023,0,obb_economy_gdp_real,,0,0,0
+I want the economy calendar for the year 2023 from fmp provider,2.115107297897339,obb_economy_calendar,obb_economy_calendar,72,726,798
+"I want to get the consumer price index or CPI for japan, chine and turkey",0,obb_economy_cpi,,0,0,0
+I want the CPI of United states and United kingdom compared to the previous year,0,obb_economy_cpi,,0,0,0
+I want the quarterly CPI of US for the year 2023,0,obb_economy_cpi,,0,0,0
+Give me the forecasted nominal gdp data for bulgaria,0,obb_economy_gdp_forecast,,0,0,0
+Give me the forecasted nominal gdp data for bulgaria,3.8479974269866943,obb_economy_gdp_forecast,obb_economy_gdp_forecast,117,912,1029
+Give me the forecasted real quarterly gdp data for Israel,0,obb_economy_gdp_forecast,,0,0,0
+Give me the nominal GDP data for India capped to USD,0,obb_economy_gdp_nominal,,0,0,0
+Give me the forecasted real quarterly gdp data for Israel,0,obb_economy_gdp_forecast,,0,0,0
+Give me the nominal GDP data for India capped to USD,0,obb_economy_gdp_nominal,,0,0,0

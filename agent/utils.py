@@ -147,6 +147,8 @@ def split_description(text_list,MAX_WORDS:int=500):
         running_num_words = 0
         curr_func_string = ""
         for txt in text_list:
+            txt = txt.replace("\n"," ")
+            txt = txt.replace("\n\n"," ")
             num_words = len(txt.split(" "))
             running_num_words += num_words
             if running_num_words > MAX_WORDS:
