@@ -86,6 +86,6 @@ for row in testing_df.iterrows():
     curr_df = pd.DataFrame(df_dict)
     curr_df.to_csv(f"hierarchical_answersv2.csv", mode='a',index=False,header=False)
     pbar.update(1)
-    if done_idxs%2 == 0:
-        print(f"Sleeping for 60 seconds")
-        time.sleep(60)
+    # if done_idxs%2 == 0:
+    #     print(f"Sleeping for 60 seconds")
+    #     time.sleep(60)

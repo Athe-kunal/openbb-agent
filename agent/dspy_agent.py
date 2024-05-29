@@ -15,14 +15,14 @@ function_calling_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024)
 
 
 class FirstSecondLevel(dspy.Signature):
-    """You are given a list of keys and values separated by semicolon in the format keys: value.
-    Based on the query, you have to output the key that is most relevant to the question.
-    Be precise and output only the relevant key or keys and don't output their values.
+    """You are given a list of keys and their corresponding description separated by semicolon in the format keys: description.
+    Based on the query, you have to classify the question to one of the key or keys that is relevant to the question.
+    Be precise and output only the relevant key or keys and don't output their descriptions.
     Don't include any other information and DON'T answer None or N/A
     """
 
     query = dspy.InputField(prefix="Query which you need to classify: ", format=str)
-    keys_values = dspy.InputField(prefix="Keys and Values: ", format=str)
+    keys_values = dspy.InputField(prefix="Keys and Descriptions: ", format=str)
     output = dspy.OutputField(
         prefix="Relevant Key(s): ", format=str, desc="relevant keys separated by ;"
     )
