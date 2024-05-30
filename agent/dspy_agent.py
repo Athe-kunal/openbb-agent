@@ -11,8 +11,7 @@ load_dotenv(override=True)
 emb_fn = embedding_functions.OpenAIEmbeddingFunction(
     api_key=os.environ["OPENAI_API_KEY"], model_name="text-embedding-3-small"
 )
-function_calling_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024)
-
+function_calling_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024,temperature=0.0)
 
 class FirstSecondLevel(dspy.Signature):
     """You are given a list of keys and their corresponding description separated by semicolon in the format keys: description.
@@ -199,13 +198,12 @@ class OpenBBAgentBM25(dspy.Module):
         """Init function for OpenBB agent"""
         super(OpenBBAgentBM25, self).__init__()
         self.collection = collection
-        get_first_level = self.collection.get(where={"type": "level_1"})
-        self.first_level = ""
-        for first_level_docs,first_level_metadata in zip(get_first_level['documents'],get_first_level["metadatas"]):
-
-            self.first_level += f"{first_level_metadata['node_name']}: {first_level_docs}\n"
+        self.first_level_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024)
+        dspy.settings.configure(lm=self.first_level_llm)
         self.firstSecondLevel = dspy.ChainOfThought(FirstSecondLevel)
-
+        self.first_level = self.collection.get(
+            where={"type":{"$eq":"level_1"}}
+        )
     def __call__(self, *args, **kwargs):
         return super().__call__(*args, **kwargs)
 
@@ -247,7 +245,9 @@ class OpenBBAgentBM25(dspy.Module):
         return bm25_docs
 
     def forward(self, query: str):
+        prompts = []
         function_calls_list = []
+
         first_level_answer = self.firstSecondLevel(
             query=query, keys_values=self.first_level
         ).output
