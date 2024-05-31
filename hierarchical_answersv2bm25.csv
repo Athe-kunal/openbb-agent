@@ -1,0 +1,220 @@
+QUESTION,TIME,ANSWER,LLM_ANSWER,COMPLETION_TOKENS,PROMPT_TOKENS,TOTAL_TOKENS
+Give me the historical price data for Bitcoin cryptocurrency from yahoo finance,2.0314414501190186,obb_crypto_price_historical,obb_currency_price_historical,92,1438,1530
+Give me the historical price data for Ethereum cryptocurrency from fmp,1.6598870754241943,obb_crypto_price_historical,obb_currency_price_historical,96,1438,1534
+Give me the minute level price data for Bitcoin from January 2024 to April 2024,0,obb_crypto_price_historical,,0,0,0
+Give me the quarter level price data for Solana from 2021 till now,3.1803483963012695,obb_crypto_price_historical,obb_equity_price_performance,168,1779,1947
+I want the data hourly price data for Solana for the current year from polygon,2.3449440002441406,obb_crypto_price_historical,obb_currency_price_historical,74,1380,1454
+I want the daily price data for Ethereum and Bitcoin for the current year from tiingo provider and POLONIEX exchange,0,obb_crypto_price_historical,,0,0,0
+"I want the dataframe for the daily price data Ethereum, Solana, Bitcoin from yahoo finance",2.9057137966156006,obb_crypto_price_historical,obb_equity_price_quote,162,2103,2265
+I want the minute level data for Ethereum from yahoo finance in dictionary format,0.019013166427612305,obb_crypto_price_historical,obb_equity_price_quote,90,2148,2238
+I want the minute level data in 2023 for Solana from fmp in numpy array,0,obb_crypto_price_historical,,0,0,0
+I want the cryptocurrency pair for Bitcoin,0.672675609588623,obb_crypto_search,obb_crypto_search,42,1224,1266
+"I want the dataframe for the minute level price data Ethereum, Solana, Bitcoin from yahoo finance",2.6453700065612793,obb_crypto_price_historical,obb_equity_price_quote,123,2106,2229
+Give me the currency historical price data for Euro in terms of USD for the year 2023,1.8456318378448486,obb_currency_price_historical,obb_economy_money_measures_federal,66,1192,1258
+Give me the currency historical price data for Japanese yen in terms of USD for the current year from polygon at 15 minute interval,3.291303873062134,obb_currency_price_historical,obb_equity_price_quote,120,1851,1971
+Search for 'EURUSD' currency pair using 'intrinio' as provider.,3.0387063026428223,obb_currency_search,,144,1209,1353
+Search for actively traded currency pairs on the queried date using 'polygon' as provider.,3.134429693222046,obb_currency_search,,120,1818,1938
+Search for terms  using 'polygon' as provider.,2.7931129932403564,obb_currency_search,obb_equity_ownership_institutional,114,1191,1305
+Search for 'EURUSD' currency pair using 'intrinio' as provider.,0.017771005630493164,obb_currency_search,,144,1209,1353
+"Get exchange rates from USD and XAU to EUR, JPY, and GBP using 'fmp' as provider.",1.0935273170471191,obb_currency_snapshots,obb_currency_snapshots,96,1236,1332
+Get the options  chain end-of-day-data for 2024-04-16 for Apple Company from intrino provider,4.887648582458496,obb_derivatives_options_chains,obb_equity_price_quote,243,1803,2046
+Get the options chain for GOOGL for the year 2024,2.004687547683716,obb_derivatives_options_chains,obb_equity_search,84,1182,1266
+Get the bullish sentiment with trade type sweep option chains data for AAPL for the year 2022,0,obb_derivatives_options_unusual,,0,0,0
+Get the bearish sentiment with trade type large foption chains realtime data for MSFT for the current year ,0,obb_derivatives_options_unusual,,0,0,0
+I want historical future prices for ES and NQ for expiration in 2025,2.647223711013794,obb_derivatives_futures_historical,obb_equity_price_performance,132,2049,2181
+I want historical future 30 minutes level prices for ES and NQ ,3.0813424587249756,obb_derivatives_futures_historical,obb_equity_price_quote,141,1692,1833
+I want the current futures term structure for NG for 14 April 2024 ,3.9869940280914307,obb_derivatives_futures_curve,,96,1779,1875
+Give me the forecasted nominal gdp data for bulgaria,3.2664217948913574,obb_economy_gdp_forecast,obb_economy_gdp_forecast,147,2160,2307
+Give me the forecasted real quarterly gdp data for Israel,3.4780077934265137,obb_economy_gdp_forecast,obb_economy_gdp_forecast,111,1644,1755
+Give me the nominal GDP data for India capped to USD,3.8474645614624023,obb_economy_gdp_nominal,obb_economy_gdp_nominal,153,1839,1992
+Give me the nominal GDP data for Estonia in units of USD,2.7040982246398926,obb_economy_gdp_nominal,obb_economy_gdp_nominal,150,2022,2172
+Give me the real GDP data for Belgiumyear over year for the year 2023,4.284944295883179,obb_economy_gdp_real,obb_economy_gdp_real,126,1782,1908
+I want the economy calendar for the year 2023 from fmp provider,3.276353359222412,obb_economy_calendar,obb_economy_gdp_forecast,168,1776,1944
+"I want to get the consumer price index or CPI for japan, chine and turkey",1.736358880996704,obb_economy_cpi,obb_economy_cpi,78,990,1068
+I want the CPI of United states and United kingdom compared to the previous year,3.4706404209136963,obb_economy_cpi,obb_economy_gdp_real,168,2166,2334
+I want the quarterly CPI of US for the year 2023,2.3998961448669434,obb_economy_cpi,obb_economy_fred_series,110,1180,1290
+I want to get the growth in CPI for Japan,0,obb_economy_cpi,,0,0,0
+I want the market risk premium by country,3.586320400238037,obb_economy_risk_premium,obb_economy_risk_premium,130,1392,1522
+I want to get the FRED series or economic releases,2.9625132083892822,obb_economy_fred_search,obb_economy_fred_series,78,1428,1506
+I want the FRED series data for the symbol NFCI and STLFSI4,1.7332777976989746,obb_economy_fred_series,obb_equity_search,82,1422,1504
+I want the FRED series data for CBBTCUSD with average aggregation with percentage change from year ago ,2.1467063426971436,obb_economy_fred_series,obb_economy_fred_series,102,1428,1530
+I want the money measures (M1/M2 components) without adjustment,2.437499761581421,obb_economy_money_measures,obb_economy_money_measures_federal,78,1078,1156
+I want the monthly unemployment data for Male in Colombia ,2.0492992401123047,obb_economy_unemployment,obb_economy_unemployment,96,1458,1554
+I want the quarterly unemployment data for female who are between 15-24 of age in Australia with seasonal adjustment,0,obb_economy_unemployment,,0,0,0
+I want the composite leading indicator (CLI) from oecd,0,obb_economy_composite_leading_indicator,,0,0,0
+I want the composite leading indicator (CLI) for US,1.9737696647644043,obb_economy_composite_leading_indicator,obb_economy_cpi,110,862,972
+I want the short term interest rates from January to April 2024,3.569524049758911,obb_economy_short_term_interest_rate,obb_fixedincome_rate_estr,117,1773,1890
+I want the monthly short term interest rates for New Zealand,2.8479578495025635,obb_economy_short_term_interest_rate,obb_fixedincome_government_us_yield_curve,99,1494,1593
+I want the long term interest rates from January to April 2024 for all countries,3.195584774017334,obb_economy_long_term_interest_rate,"obb_fixedincome_government_treasury_rates_federal, obb_fixedincome_government_treasury_rates",144,1782,1926
+I want the quarterly long term interest rates for Mexico,2.9502272605895996,obb_economy_long_term_interest_rate,"obb_fixedincome_government_treasury_rates_federal, obb_fixedincome_government_treasury_rates",150,1857,2007
+I want the FRED regional data for NYICLAIMS for the year 2021 and limit the results to 10 ,2.24660587310791,obb_economy_fred_regional,obb_economy_fred_series,114,1206,1320
+I want to find the upcoming IPOs with minimum value of 1000000.,3.2619431018829346,obb_equity_calendar_ipo,obb_equity_fundamental_search_attributes,147,1734,1881
+I want to find the upcoming dividend payments,2.967477798461914,obb_equity_calendar_dividend,obb_equity_fundamental_cash,156,2007,2163
+I want to find all the stock splits for the year 2023,0,obb_equity_calendar_splits,,0,0,0
+I want the closest peer for Microsoft,2.901155948638916,obb_equity_compare_peers,,150,2004,2154
+I want the estimates of the target price for the current year,2.547635793685913,obb_equity_estimates_price_target,obb_equity_fundamental_multiples,114,2145,2259
+I want the estimates of the target price for the current year with grade,3.073610782623291,obb_equity_estimates_price_target,obb_equity_fundamental_multiples,138,2151,2289
+I want historical equity estimates of Apple and Google,3.071582555770874,obb_equity_estimates_historical,obb_equity_price_performance,108,1635,1743
+I want historical quarterly equity estimates of Amazon ,2.7507307529449463,obb_equity_estimates_historical,obb_equity_fundamental_multiples,150,1632,1782
+I want the consensus price target and recommendation for Nvidia,2.9652915000915527,obb_equity_estimates_consensus,obb_equity_price_performance,99,2013,2112
+I want the consensus price target and recommendation for Apple and Microsoft,2.9814412593841553,obb_equity_estimates_consensus,obb_equity_search,111,2157,2268
+I want the equity estimates from Wedbsh firm,3.2500674724578857,obb_equity_estimates_analyst_search,obb_equity_fundamental_multiples,99,1638,1737
+I want the forward sales estimates for Apple for the fiscal period q1,2.988839626312256,obb_equity_estimates_forward_sales,obb_equity_fundamental_revenue_per_segment,141,1650,1791
+I want the forward earnings per share (EPS) of Apple for the fiscal period q2,3.45456600189209,obb_equity_estimates_forward_eps,obb_equity_fundamental_multiples,162,1656,1818
+I want the top price gainers sorted by descending order,0,obb_equity_discovery_gainers,,0,0,0
+I want the top price loser sorted by ascending order,1.9521243572235107,obb_equity_discovery_losers,obb_currency_price_historical,62,1406,1468
+I want undervalued large cap stocks,2.6453487873077393,obb_equity_discovery_undervalued_large_caps,obb_equity_fundamental_income_growth,87,1911,1998
+I want undervalued growth stocks from yahoo finance sorted by ascending order,4.60211706161499,obb_equity_discovery_undervalued_growth,obb_fixedincome_corporate_hqm,267,2121,2388
+I want top small cap stocks based on earnings growth from yahoo finance sorted by ascending order,4.099477529525757,obb_equity_discovery_aggressive_small_caps,,138,2130,2268
+I want top tech stocks based on revenye and earnings growth sorted by descending order,1.9393250942230225,obb_equity_discovery_growth_tech,obb_economy_fred_series,100,1386,1486
+I want a 10-K report from fmp,2.248194932937622,obb_equity_discovery_filings,obb_equity_shorts_fails_to_deliver,122,1144,1266
+I want the equity valuation multiples for Apple (AAPL),2.644765853881836,obb_equity_fundamental_multiples,obb_equity_fundamental_income,99,1413,1512
+I want last 5 annual balance sheets of Microsoft (MSFT) with filing date less than equal to 2024 April,4.920511722564697,obb_equity_fundamental_balance,,204,1806,2010
+I want the growth in the last 5 balance sheet of Google (GOOGL) ,3.478449821472168,obb_equity_fundamental_balance_growth,obb_equity_fundamental_income_growth,171,1797,1968
+I want the last 10 annual cashflow statement for Apple for the fiscal year 2023 from fmp provider,3.3042683601379395,obb_equity_fundamental_cash,,174,1800,1974
+I want the last 3 annual cashflow statement for AAPL for the fiscal year 04/2023 to 04/2024 from polygon provider and include the source ,3.9510791301727295,obb_equity_fundamental_cash,obb_equity_fundamental_income_growth,141,1836,1977
+I want the last 5 annual cashflow statement for MSFT sorted by period_of_report_date in descending order,2.955756425857544,obb_equity_fundamental_cash,obb_equity_fundamental_balance,153,2154,2307
+I want the last annual cashflow statement for AAPL from intrino provider,4.481035470962524,obb_equity_fundamental_cash,obb_equity_fundamental_cash_growth,147,2028,2175
+I want the last 10 financial statements of statement_type balance for NVDA for the fiscal year 2024,2.793327808380127,obb_equity_fundamental_reported_financials,obb_equity_fundamental_balance,174,1797,1971
+I want the last 10 growth of NKE cash flow statement from fmp,3.36517071723938,obb_equity_fundamental_cash_growth,obb_equity_fundamental_income_growth,144,2046,2190
+I want the last 5 dividends by AMZN from 01/2024 to 04/2024,3.8867087364196777,obb_equity_fundamental_dividends,obb_equity_fundamental_cash,156,1890,2046
+I want the last 5 historical Earnings Per Share or EPS for DIS,2.857086181640625,obb_equity_fundamental_historical_eps,obb_equity_fundamental_income,156,2304,2460
+I want the employee count of GOOGL,3.553828001022339,obb_equity_fundamental_employee_count,obb_equity_fundamental_management,96,2010,2106
+I want the last 3 EBITDA data from the provider intrino ,3.9222052097320557,obb_equity_fundamental_search_attributes,obb_equity_fundamental_balance,153,2103,2256
+I want the current CEO of Disney (DIS),0,obb_equity_fundamental_latest_attributes,,0,0,0
+I want the daily historical EBITDA of AAPL from intrino provider from 01/2024 to 04/2024,3.9924168586730957,obb_equity_fundamental_historical_attributes,obb_equity_fundamental_cash,198,1812,2010
+I want last 5 annual income statements of Microsoft (MSFT) with filing date less than equal to 2024 April and greater than January 2024 from polygon provider,3.692023277282715,obb_equity_fundamental_income,obb_equity_fundamental_income_growth,162,1836,1998
+I want the annual income statement of DIS for the fiscal year 2024 from intrino,3.4255616664886475,obb_equity_fundamental_income,obb_equity_fundamental_balance,186,1785,1971
+I want the annual income statement of NVDA from yahoo finance,1.991225242614746,obb_equity_fundamental_income,obb_equity_search,102,1402,1504
+I want the last 5 annual income growth of DIS from fmp provider,2.953843832015991,obb_equity_fundamental_income_growth,obb_equity_fundamental_cash_growth,144,2304,2448
+I want last 10 annual fundamental metrics of AAPL from intrino provider,3.2700917720794678,obb_equity_fundamental_metrics,obb_equity_fundamental_revenue_per_geography,156,2043,2199
+I want the executive management team data for GOOGL,0,obb_equity_fundamental_management,,0,0,0
+I want the executive management team compensation for DIS and GOOGL,3.5931267738342285,obb_equity_fundamental_management_compensation,,165,1566,1731
+I want the executive management team compensation data for AMZN and MSFT,1.886378288269043,obb_equity_fundamental_management_compensation,obb_equity_compare_peers,94,1002,1096
+I want the last 12 annual fundamental ratios of AAPL from intrino provider for the fiscal year 2024,3.2128701210021973,obb_equity_fundamental_ratios,obb_equity_fundamental_income,156,1800,1956
+I want the last 2 annual fundamental ratios of AMZN from fmp provider ,2.6690826416015625,obb_equity_fundamental_ratios,obb_equity_search,102,974,1076
+I want the revenue greographic breakdown for MSFT in flat structure,2.467282772064209,obb_equity_fundamental_revenue_per_geography,obb_equity_fundamental_revenue_per_geography,84,2148,2232
+I want the revenue greographic breakdown for AMZN in hierarchical structure,2.6010680198669434,obb_equity_fundamental_revenue_per_geography,obb_equity_fundamental_revenue_per_geography,99,1500,1599
+I want the last 2 10-K URLs to the SEC filings of NVDA from fmp provider,2.7822582721710205,obb_equity_fundamental_filings,,192,1794,1986
+I want the last 5 10-Q URLs to the SEC filings of AAPL from intrino provider from 01/2022 to 04/2024,3.3391048908233643,obb_equity_fundamental_filings,obb_equity_search,134,1282,1416
+I want the 10-K URL of MSFT with cik number 1237890 from sec provider,2.695067882537842,obb_equity_fundamental_filings,obb_equity_search,96,1258,1354
+I want the historical stock splits of AAPL from fmp provider,0,obb_equity_fundamental_historical_splits,,0,0,0
+I want the earnings call transcripts of MSFT for the year 2023,2.6570236682891846,obb_equity_fundamental_transcript,obb_equity_search,144,1184,1328
+I want the data about top major share holders of DIS from fmp provider,2.549936056137085,obb_equity_ownership_major_holders,,102,1821,1923
+I want the institutional investors in NVDA including the current quarter,2.0421125888824463,obb_equity_ownership_institutional,obb_equity_search,86,1096,1182
+I want the institutional investors in MSFT including the current quarter for the date 1st April 2024,2.539043664932251,obb_equity_ownership_institutional,obb_equity_search,214,1198,1412
+I want the data about the last 5 trading data by META management team and board of directors from intrino provider,3.812410831451416,obb_equity_ownership_insider_trading,,204,2283,2487
+I want the data about last 500 insider trading data by MSFT management team and board from provider fmp ,3.2639706134796143,obb_equity_ownership_insider_trading,obb_equity_fundamental_search_attributes,186,1848,2034
+I want the dividend ownership type insider trading of AAPL from 01/2024 to 04/2024 from intrino provider sorted by filing date,0,obb_equity_ownership_insider_trading,,0,0,0
+I want the last 10 gift transaction type insider trading of GOOGL from fmp provider,13.308133840560913,obb_equity_ownership_insider_trading,obb_equity_fundamental_management,171,2055,2226
+I want the float of DIS from fmp provider,2.0399532318115234,obb_equity_ownership_share_statistics,obb_equity_search,130,1488,1618
+I want the float of GS from yfinance provider,2.1420793533325195,obb_equity_ownership_share_statistics,obb_equity_search,98,1342,1440
+I want the float of TSLA from intrino provider,2.151503324508667,obb_equity_ownership_share_statistics,obb_equity_search,80,1346,1426
+I want the last 2 13F form of TSLA from sec provider,2.136138677597046,obb_equity_ownership_form_13f,obb_equity_search,130,1188,1318
+I want the CIK of Michael Burry's Scion Asset Management 13F filings,2.0691332817077637,obb_regulators_sec_institutions_search,obb_equity_search,78,1134,1212
+I want the last 3 13F forms of the CIK 128909 and convert it into dataframe,1.9543201923370361,obb_equity_ownership_form_13f,obb_equity_search,62,1260,1322
+I want the 13F form of BRK-A as of 01/2024,0,obb_equity_ownership_form_13f,,0,0,0
+I want the latest quote of AAPL from fmp provider,3.1667041778564453,obb_equity_price_quote,obb_equity_price_quote,87,1644,1731
+I want the latest quote of TSLA from yahoo finance provider,2.6282894611358643,obb_equity_price_quote,obb_equity_price_quote,93,1647,1740
+I want the latest quote of MSFT from iex source from intrino provider,4.934890270233154,obb_equity_price_quote,obb_equity_price_quote,162,1875,2037
+I want the last 5 national best bid and offer for AAPL from 01/2023 to 12/2023 from polygon provider,3.4556033611297607,obb_equity_price_nbbo,obb_equity_search,118,1212,1330
+I want the 1 day interval historical price of GS from fmp provider,2.635324478149414,obb_equity_price_historical,obb_equity_price_performance,147,1662,1809
+I want the 1 day interval historical price of DIS from intrino provider,0,obb_equity_price_historical,,0,0,0
+I want the unadjusted histocial price data of GOOGL including the extended hours from polygon provider,2.8599302768707275,obb_equity_price_historical,,135,1764,1899
+I want the historical price of GS including the stocks splits and dividends including the extended hours from yfinance provider,4.600009918212891,obb_equity_price_historical,obb_currency_snapshots,116,1152,1268
+I want the 1 day interval historical price of TSLA from tiingo provider,1.9395990371704102,obb_equity_price_historical,obb_equity_search,112,1112,1224
+I want the price performance data for TSLA and AAPL from fmp provider,2.7038745880126953,obb_equity_price_performance,obb_equity_price_performance,111,2172,2283
+I want the last 5 fail to deliver data of AAPL by skipping the recent report,2.072244167327881,obb_equity_shorts_fails_to_deliver,obb_equity_shorts_fails_to_deliver,106,1542,1648
+I want the symbol and CIK of the company Tesla from intrino provider,0,obb_equity_search,,0,0,0
+I want to search the equity VTSAX mutual fund from sec provider,3.0340282917022705,obb_equity_search,obb_equity_search,114,1246,1360
+"I want the equity screener of companies that have minimum market of 1000,000,000 with minimum price of 100.0",5.087225675582886,obb_equity_screener,obb_equity_discovery_undervalued_large_caps,123,1770,1893
+"I want the equity screener of companies that have minimum market of 1000,000 with minimum beta of 1.1 and minimum volume of 1000000",2.594315767288208,obb_equity_screener,obb_equity_discovery_filings,126,1788,1914
+I want equity screener of companies that are in Energy sector in US with minimum dividend of 2,3.1855380535125732,obb_equity_screener,obb_equity_discovery_undervalued_growth,132,1881,2013
+I want information regarding AAPL from fmp provider,2.2960638999938965,obb_equity_profile,obb_equity_search,120,1488,1608
+I want information regarding MSFT from fmp provider,2.1897177696228027,obb_equity_profile,obb_equity_search,132,1398,1530
+I want the market snapshot from intrino provider for the date 2024-01-12,3.2780344486236572,obb_equity_market_snapshots,obb_equity_price_nbbo,189,1788,1977
+I want the market snapshot from for the market ams from fmp provider,3.0767436027526855,obb_equity_market_snapshots,"obb_fixedincome_government_treasury_rates_federal, obb_fixedincome_government_treasury_rates",195,2223,2418
+I want the market snapshot from polygon provider,0,obb_equity_market_snapshots,,0,0,0
+I want active ETFs from NYSE exchange from fmp provider,0,obb_etf_search,,0,0,0
+I want commerical estate ETFs from arcx exchange from intrino provider,0,obb_etf_search,,0,0,0
+"I want the historical market price of ETFs SPY, IWM, QQQ, DJIA from yahoo finance",2.3508169651031494,obb_etf_historical,obb_equity_price_quote,90,1677,1767
+"I want historical daily realtime market prices of ETFs SPY, DJIA from intrino provider",2.754227876663208,obb_etf_historical,obb_equity_price_quote,159,1833,1992
+I want the historical market prices of ETF QQQ from 01/2024 to 05/2024 from fmp provider,2.6687350273132324,obb_etf_historical,obb_equity_price_quote,165,1902,2067
+I want the historical unadjusted market prices of ETF VTI including the extended hours from polygon provider,2.976066827774048,obb_etf_historical,obb_equity_price_performance,168,1761,1929
+I want the historical prices of ETFs EEM and AGG adjusted for both split and dividends from yahoo finance,3.5299577713012695,obb_etf_historical,obb_equity_fundamental_multiples,135,1842,1977
+"I want the information about the ETFs SPY, IWM, QQQ, DJIA from provider fmp",3.514389753341675,obb_etf_info,obb_equity_fundamental_search_attributes,201,1677,1878
+"I want the information about the ETFs SPY, IWM, QQQ, DJIA from provider polygon",2.669139862060547,obb_etf_info,obb_equity_search,132,1116,1248
+I want the country wise weighting of the ETF VT from fmp provider,2.234459400177002,obb_etf_countries,obb_etf_countries,94,1302,1396
+I want the weighting by sectors of the ETF SPY from fmp provider,4.914114952087402,obb_etf_sectors,obb_equity_discovery_filings,165,2139,2304
+"I want the country weightings of the ETFs SPY,QQQ,IWM from fmp provider",3.3706984519958496,obb_etf_countries,obb_equity_fundamental_search_attributes,204,1671,1875
+"I want the price performance about the ETFs SPY, IWM, QQQ, DJIA from provider fmp",3.605480194091797,obb_etf_price_performance,obb_equity_price_performance,225,1680,1905
+"I want the calendar return type price performance of the ETFs SPY,QQQ adjusted by splits and dividends from intrino provider",3.7586522102355957,obb_etf_price_performance,obb_equity_fundamental_multiples,189,1686,1875
+I want the holdings of ETF XLK from fmp provider,1.9578421115875244,obb_etf_holdings,obb_index_constituents,106,1042,1148
+I want the holdings of SPY on the date 2022-03-31 from fmp provider,3.9711644649505615,obb_etf_holdings,obb_equity_fundamental_search_attributes,153,1794,1947
+I want the holdings of QQQ on the date 2023-10-31 from sec provider,3.477174997329712,obb_etf_holdings,obb_equity_fundamental_multiples,204,1755,1959
+I want the holdings of SPY on the date 2022-03-31 from intrino provider,2.449910879135132,obb_etf_holdings,obb_equity_search,142,1196,1338
+I want the holdings of the ETF with CIK 1289094 on the date 2024-01-31 from fmp provider,2.4437930583953857,obb_etf_holdings,obb_equity_search,140,1210,1350
+I want the holdings date of ETF XLK from fmp provider,2.767977237701416,obb_etf_holdings_date,obb_index_constituents,102,1044,1146
+I want the holdings performance the ETFs SPY and QQQ from fmp provider,4.542790651321411,obb_etf_holdings_performance,obb_equity_price_performance,210,1659,1869
+"I want the holdings performance the ETFs SPY, QQQ,XLK and IWM from fmp provider",2.8213369846343994,obb_etf_holdings_performance,obb_equity_price_performance,117,1674,1791
+I want the exposure MSFT and AAPL for the ETFs from fmp provider,2.356409788131714,obb_etf_equity_exposure,obb_index_constituents,124,1086,1210
+I want the exposure GS and TSLA for the ETFs from fmp provider,2.138413667678833,obb_etf_equity_exposure,obb_index_constituents,110,1052,1162
+I want the fixed income ameribor rate from provider fred,2.920560598373413,obb_fixedincome_rate_ameribor,obb_fixedincome_rate_ameribor,111,1569,1680
+I want the overnight ameribor rate from fred provider,1.7007834911346436,obb_fixedincome_rate_ameribor,obb_economy_short_term_interest_rate,84,1418,1502
+I want the 1 week term structure ameribor rate from 2023-01-1 to 2023-08-30 ,3.538677215576172,obb_fixedincome_rate_ameribor,obb_fixedincome_rate_ameribor,204,1815,2019
+I want the 10th percentile sterling overnight index average (SONIA) from provider fred,4.986776113510132,obb_fixedincome_rate_sonia,,129,1785,1914
+I want the total nominal valued SONIA rate from 2023-01-1 to 2023-08-30 ,4.543856620788574,obb_fixedincome_rate_sonia,,174,1806,1980
+I want the interest on reserve balances (IORB) rate from provider fred,0,obb_fixedincome_rate_iorb,,0,0,0
+I want the IORB rate from 2023-01-1 to 2023-08-30 ,3.366032361984253,obb_fixedincome_rate_iorb,obb_fixedincome_rate_ameribor,252,1797,2049
+I want the monthly fed funds rate from 2022-1-1 to 2023-12-31 from fred provider,3.464094877243042,obb_fixedincome_rate_effr,obb_fixedincome_rate_dpcredit,213,1809,2022
+I want the federal funds rate from federal reserve provider,3.00063157081604,obb_fixedincome_rate_effr,"obb_fixedincome_rate_effr_federal, obb_fixedincome_rate_effr",171,2139,2310
+I want the euro short term rate based on the number of transactions from fred provider,2.7272446155548096,obb_fixedincome_rate_estr,obb_fixedincome_sofr,88,1494,1582
+I want the fed funds rate forecast for the long run,2.090306282043457,obb_fixedincome_rate_effr_forecast,obb_economy_short_term_interest_rate,102,1428,1530
+I want the fed funds rate projects in the short run from fred provider,3.119751453399658,obb_fixedincome_rate_effr_forecast,obb_fixedincome_rate_effr_forecast,138,1818,1956
+I want the euro short term rate from 2023-01-01 to 2023-12-31 based on number of active banks from fred provider,4.064434289932251,obb_fixedincome_rate_estr,obb_fixedincome_rate_estr,129,1827,1956
+I want the European Central Bank Interest Rates based on the refinancing interest rate type,5.869323253631592,obb_fixedincome_rate_ecb,"obb_fixedincome_rate_effr_federal, obb_fixedincome_rate_effr",177,2148,2325
+I want the ECB interest rate from 2023-01-01 to 2023-12-31 based on number of active banks from fred provider,4.4989378452301025,obb_fixedincome_rate_ecb,obb_fixedincome_rate_ecb,147,1824,1971
+I want the discount window primary credit rate from 2023-02-1 to 2023-05-01 from fred provider,3.0700998306274414,obb_fixedincome_rate_dpcredit,obb_fixedincome_rate_iorb,135,1812,1947
+I want the weekly discount window credit rate from fred provider,2.1369998455047607,obb_fixedincome_rate_dpcredit,obb_economy_long_term_interest_rate,144,1422,1566
+I want the treasury constant maturity rate with 2 year maturity from fred provider ,2.975551128387451,obb_fixedincome_spreads_tcm,"obb_fixedincome_government_treasury_rates_federal, obb_fixedincome_government_treasury_rates",120,1989,2109
+I want the treasury constant maturity rate with 3 months maturity from 2023-02-1 to 2023-05-01 from fred provider ,4.623926162719727,obb_fixedincome_spreads_tcm,obb_fixedincome_spreads_tcm,225,1824,2049
+I want the treasury constant maturity minus the federal funds rate bearing maturity of 10 years from fred provider,3.551647186279297,obb_fixedincome_spreads_tcm_effr,obb_fixedincome_spreads_tcm,174,2058,2232
+I want the treasury constant maturity minus the federal funds rate bearing maturity of 3 months from 2023-02-1 to 2023-05-01 from fred provider,3.2775628566741943,obb_fixedincome_spreads_tcm_effr,obb_fixedincome_spreads_tcm_effr,150,1839,1989
+I wanted treasury bill rate for 6 months maturity from fred provider,2.139779567718506,obb_fixedincome_spreads_treasury_effr,obb_economy_fred_series,114,1314,1428
+I want US Yield curve adjusted by inflation for 2023-07-08 from fred provider,3.49625825881958,obb_fixedincome_government_us_yield_curve,obb_fixedincome_government_us_yield_curve,177,1839,2016
+I want government treasury rates from fred provider,1.815600872039795,obb_fixedincome_government_treasury_rates,obb_economy_fred_series,86,1412,1498
+I want government treasury rates from 2022-06-02 to 2024-03-10 from fmp provider,2.7618982791900635,obb_fixedincome_government_treasury_rates,"obb_fixedincome_government_treasury_rates_federal, obb_fixedincome_government_treasury_rates",177,1806,1983
+I want the Bofa US corporate bond indices with index type yield to worst from fred provider,0,obb_fixedincome_corporate_ice_bofa,,0,0,0
+I want AAA Bofa US corporate bonds from area asia including the options ,3.5855085849761963,obb_fixedincome_corporate_ice_bofa,,171,2247,2418
+I want crossover ICE Bofa US corporate bonds in USD category ,3.2061824798583984,obb_fixedincome_corporate_ice_bofa,obb_fixedincome_rate_effr_forecast,129,2070,2199
+I want Moody corporate Bond Index with BAA index type from fred provider,3.229667901992798,obb_fixedincome_corporate_moody,obb_fixedincome_corporate_moody,156,1620,1776
+I want Moody corporate Bond Index with AAA index type and treasury spread from 2023-06-02 to 2024-03-12 from fred provider,4.534785270690918,obb_fixedincome_corporate_moody,obb_fixedincome_corporate_moody,138,1827,1965
+I want High quality market corporate bond with par yield curve from fred provider,3.7548727989196777,obb_fixedincome_corporate_hqm,"obb_fixedincome_rate_effr_federal, obb_fixedincome_rate_effr",201,1650,1851
+I want HQM corporate bond for the date 2023-08-01 ,0,obb_fixedincome_corporate_hqm,,0,0,0
+"I want spot rates with maturity 10, 20, 30 and 50 years from fred provider",3.6862502098083496,obb_fixedincome_corporate_spot_rates,obb_fixedincome_spreads_tcm,153,1845,1998
+"I want spot rates with par yield category and maturity 10, 20, 30 and 50 years from fred provider",4.8034350872039795,obb_fixedincome_corporate_spot_rates,obb_fixedincome_spreads_tcm,171,1857,2028
+I want the commercial paper with overnight maturity from fred provider,3.6775057315826416,obb_fixedincome_corporate_commercial_paper,obb_fixedincome_sofr,108,1344,1452
+I want the asset backed category commerical papers with maturity of 15 days from fred provider,3.896780252456665,obb_fixedincome_corporate_commercial_paper,obb_fixedincome_rate_estr,156,1767,1923
+I want the nonfinancial commercial papers from 2023-06-02 to 2024-03-12 from fred provider,2.9673643112182617,obb_fixedincome_corporate_commercial_paper,obb_fixedincome_corporate_commercial_paper,129,1809,1938
+I want AA grade commerical papers with 90 days maturity ,5.209668159484863,obb_fixedincome_corporate_commercial_paper,obb_fixedincome_rate_iorb,123,1725,1848
+I want secure overnight financing rate (SOFR) from 2023-08-09 to 2024-02-01 ,2.9676966667175293,obb_fixedincome_sofr,obb_fixedincome_rate_ameribor,138,1809,1947
+I want SOFR with a period of 180 days from fred provider,4.503984212875366,obb_fixedincome_sofr,"obb_fixedincome_rate_effr_federal, obb_fixedincome_rate_effr",273,2040,2313
+I want historical price of the index ^GSPC from fmp provider,2.032597780227661,obb_index_price_historical,obb_index_price_historical,100,1070,1170
+I want the last 5000 daily historical price of SPX from intrino,3.0611751079559326,obb_index_price_historical,,171,1830,2001
+I want the historical price of ^DJI from 2021-03-10 to 2023-04-04 from polygon provider ,2.9773945808410645,obb_index_price_historical,obb_equity_price_performance,174,1773,1947
+I want historical price of the index ^N225 from yahoo finance provider,0,obb_index_price_historical,,0,0,0
+I want the index constituents for dowjones from fmp provider,1.9422023296356201,obb_index_constituents,obb_equity_search,104,1162,1266
+I want the available indices from fmp provider,3.158613681793213,obb_index_available,,153,2010,2163
+I want global news data for financial topics from benzinga provider,3.8036727905273438,obb_news_world,obb_equity_discovery_filings,204,1500,1704
+I want the last 100 global news and their full articles from benzinga provider,0,obb_news_world,,0,0,0
+I want global news data from the source bloomberg from the tiingo provider,3.7332684993743896,obb_news_world,,207,2124,2331
+"I want the news related to AAPL, GOOGL, MSFT and TSLA from benzinga provider",2.0445573329925537,obb_news_company,obb_equity_search,100,1022,1122
+I want the news related to AAPL from 2024-02-01 to 2024-02-07 from intrino provider,2.458469867706299,obb_news_company,obb_equity_search,86,1210,1296
+I want the headlines of news related to AAPL from benzinga provider,1.9926488399505615,obb_news_company,obb_equity_search,88,1004,1092
+I want news related to GS and DIS from fmp provider,2.400297164916992,obb_news_company,obb_equity_search,122,1420,1542
+I want the news related to NVDA with ISIN number US0378331005 from benzinga provider,2.222006320953369,obb_news_company,obb_equity_search,104,1232,1336
+I want the CIK of MSFT from sec provider,2.1707544326782227,obb_regulators_sec_cik_map,obb_equity_search,118,1302,1420
+I want information regarding blackstone real estate from sec provider,3.8634889125823975,obb_regulators_sec_institutions_search,obb_economy_gdp_real,195,2226,2421
+I want the ticker symbol of the CIK 0000789019 from sec provider,3.089947462081909,obb_regulators_sec_symbol_map,obb_regulators_sec_symbol_map,162,1833,1995
+I want litigation releases from sec provider,2.2500200271606445,obb_regulators_sec_rss_litigation,obb_equity_search,106,1336,1442
+I want to do SIC search of real estate investment trusts from sec provider,1.925790548324585,obb_regulators_sec_sic_search,obb_equity_search,106,1352,1458

@@ -38,7 +38,7 @@ class OpenBBAgentChroma(dspy.Module):
 
     def __init__(self, collection):
         """Init function for OpenBB agent"""
-        super(OpenBBAgentChroma, self).__init__()
+        super().__init__()
         self.collection = collection
         self.first_level_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024)
         dspy.settings.configure(lm=self.first_level_llm)
@@ -219,8 +219,9 @@ class OpenBBAgentBM25(dspy.Module):
         self.first_level_llm = dspy.OpenAI(model="gpt-3.5-turbo-0125", max_tokens=1024)
         dspy.settings.configure(lm=self.first_level_llm)
         self.firstSecondLevel = dspy.ChainOfThought(FirstSecondLevel)
-        self.first_level = self.collection.get(where={"type": {"$eq": "level_1"}})
-
+        first_level_docs = self.collection.get(where={"type": {"$eq": "level_1"}})
+        self.first_level_langchain_docs = [Document(page_content=doc,metadata=meta) for doc,meta in zip(first_level_docs['documents'], first_level_docs['metadatas'])]
+        
     def __call__(self, *args, **kwargs):
         return super().__call__(*args, **kwargs)
 
@@ -265,10 +266,21 @@ class OpenBBAgentBM25(dspy.Module):
         prompts = []
         function_calls_list = []
 
+        # First level similarity match
+        bm25_retriever = BM25Retriever.from_documents(
+            self.first_level_langchain_docs, k=5, preprocess_func=(lambda x: x.lower())
+        )
+        first_level_bm25_docs = bm25_retriever.invoke(query.lower())
+        first_level_str = ""
+        for first_level in first_level_bm25_docs:
+            first_level_str += f"{first_level.metadata['node_name']}: {first_level.page_content}\n\n"
+        
+        print(f"\033[93mFirst level str: {first_level_str}\033[0m")
         first_level_answer = self.firstSecondLevel(
-            query=query, keys_values=self.first_level
+            query=query, keys_values=first_level_str
         ).output
         print(f"\033[92mFirst level answer: {first_level_answer}\033[0m")
+        prompts.append(self.first_level_llm.history)
         if ";" in first_level_answer:
             # ['crypto','index']
             trail_list = [[fla.strip() for fla in first_level_answer.split(";")]]
@@ -295,7 +307,7 @@ class OpenBBAgentBM25(dspy.Module):
                 if curr_level > 3:
                     if len(function_calls_list) == 0:
                         function_calls_list.append(doc_metadata)
-                    return function_calls_list
+                    return function_calls_list,prompts
                 if doc_metadata == {}:
                     break
                 curr_trail = f"{doc_metadata['trail']}-->{doc_metadata['node_name']}"
@@ -311,7 +323,7 @@ class OpenBBAgentBM25(dspy.Module):
                         }
                     )
                     function_calls_list.append(function_call["metadatas"])
-                    return function_calls_list
+                    return function_calls_list,prompts
                 else:
                     trail_list.append([doc_metadata["node_name"]])
                     curr_level += 1
@@ -359,6 +371,7 @@ class OpenBBAgentBM25(dspy.Module):
                     subsequent_level_answer = self.firstSecondLevel(
                         query=query, keys_values=subsequent_level_str
                     )
+                    prompts.append(self.first_level_llm.history)
                     splitted_subsequent_level_answer = (
                         subsequent_level_answer.output.split(";")
                     )
@@ -385,4 +398,4 @@ class OpenBBAgentBM25(dspy.Module):
                 curr_level += 1
             else:
                 break
-        return function_calls_list
+        return function_calls_list,prompts

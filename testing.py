@@ -25,20 +25,20 @@ columns = [
     "PROMPT_TOKENS",
     "TOTAL_TOKENS",
 ]
-if not os.path.exists(f"hierarchical_answersv2turbo.csv"):
+if not os.path.exists(f"hierarchical_answersv2bm25.csv"):
     df = pd.DataFrame(columns=columns, index=None)
-    df.to_csv(f"hierarchical_answersv2turbo.csv", index=False, header=True)
+    df.to_csv(f"hierarchical_answersv2bm25.csv", index=False, header=True)
 else:
-    df = pd.read_csv(f"hierarchical_answersv2turbo.csv", index_col=False)
+    df = pd.read_csv(f"hierarchical_answersv2bm25.csv", index_col=False)
 
 pbar = tqdm(total=len(testing_df), desc="Hierarchical Answers LLM")
-if not os.path.exists(f"donev2turbo.txt"):
-    os.mknod(f"donev2turbo.txt")
+if not os.path.exists(f"donev2bm25.txt"):
+    os.mknod(f"donev2bm25.txt")
 done_idxs = 0
 for row in testing_df.iterrows():
-    obb_chroma = OpenBBAgentChroma(openbb_collection)
-    if not is_file_empty(f"donev2turbo.txt"):
-        with open(f"donev2turbo.txt", "r") as f:
+    obb_chroma = OpenBBAgentBM25(openbb_collection)
+    if not is_file_empty(f"donev2bm25.txt"):
+        with open(f"donev2bm25.txt", "r") as f:
             done_pids = [int(x) for x in f.read().splitlines()]
         # print(done_pids)
         if done_idxs in done_pids:
@@ -59,11 +59,12 @@ for row in testing_df.iterrows():
         time_taken = end - start
 
         llm_answers = []
-        for fn in functions[0]["metadatas"]:
+        # for fn in functions[0]["metadatas"]:
+        for fn in functions[0]:
             llm_answers.append(fn["node_name"].rpartition("_")[0])
         llm_answers = list(set(llm_answers))
         llm_answer = ", ".join(llm_answers)
-        with open(f"donev2turbo.txt", "a") as f:
+        with open(f"donev2bm25.txt", "a") as f:
             f.write(f"{done_idxs}\n")
         completion_tokens = 0
         prompt_tokens = 0
@@ -95,7 +96,7 @@ for row in testing_df.iterrows():
     print(df_dict)
     curr_df = pd.DataFrame(df_dict)
     curr_df.to_csv(
-        f"hierarchical_answersv2turbo.csv", mode="a", index=False, header=False
+        f"hierarchical_answersv2bm25.csv", mode="a", index=False, header=False
     )
     pbar.update(1)
     # if done_idxs%2 == 0:
