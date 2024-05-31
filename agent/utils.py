@@ -2,6 +2,7 @@ import json
 from copy import deepcopy
 import re
 
+
 def process_params(params_desc):
     params_desc_type = params_desc["type"]
     if "type" in params_desc:
@@ -27,7 +28,7 @@ def process_params(params_desc):
             #         break
             del params_desc["type"]
             params_desc.update({"type": "string", "enum": result})
-        
+
         elif "int" in params_desc_type:
             params_desc["type"] = "integer"
         elif "str" in params_desc_type:
@@ -39,7 +40,7 @@ def process_params(params_desc):
         elif "Union" in params_desc_type or "List" in params_desc_type:
             params_desc["type"] = "array"
         elif "bool" in params_desc["type"]:
-            params_desc.update({"type": "boolean", "enum": ["True","False"]})
+            params_desc.update({"type": "boolean", "enum": ["True", "False"]})
     return params_desc
 
 
@@ -142,22 +143,23 @@ def get_trail_list_pairs(trail_list_pairs):
         trail_where_clause = {"$or": [{"trail": {"$eq": t}} for t in trail_list_pairs]}
     return trail_where_clause
 
-def split_description(text_list,MAX_WORDS:int=500):
-        split_s = []
-        running_num_words = 0
-        curr_func_string = ""
-        for txt in text_list:
-            txt = txt.replace("\n"," ")
-            txt = txt.replace("\n\n"," ")
-            num_words = len(txt.split(" "))
-            running_num_words += num_words
-            if running_num_words > MAX_WORDS:
-                running_num_words = num_words
-                split_s.append(curr_func_string)
-                curr_func_string = txt
-            else:
-                curr_func_string += txt + " "
-        if split_s == [''] or split_s==[]:
+
+def split_description(text_list, MAX_WORDS: int = 500):
+    split_s = []
+    running_num_words = 0
+    curr_func_string = ""
+    for txt in text_list:
+        txt = txt.replace("\n", " ")
+        txt = txt.replace("\n\n", " ")
+        num_words = len(txt.split(" "))
+        running_num_words += num_words
+        if running_num_words > MAX_WORDS:
+            running_num_words = num_words
             split_s.append(curr_func_string)
-        split_s = [s for s in split_s if s!=""]
-        return split_s
+            curr_func_string = txt
+        else:
+            curr_func_string += txt + " "
+    if split_s == [""] or split_s == []:
+        split_s.append(curr_func_string)
+    split_s = [s for s in split_s if s != ""]
+    return split_s

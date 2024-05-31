@@ -95,7 +95,7 @@ def build_graph():
                             )
                             G.add_edge(rps, provider_func_name)
                     else:
-                        
+
                         for obb_funcs in openbb_functions_name_dict:
                             if base_func_name in obb_funcs:
                                 provider_func = openbb_functions_name_dict[obb_funcs]
@@ -133,7 +133,7 @@ def build_graph():
                                 )
                                 G.add_edge(rps, obb_funcs)
                                 break
-                        
+
                 else:
                     if not G.has_node(rps):
                         G.add_nodes_from(
@@ -158,35 +158,39 @@ def build_graph():
     return router_names_graph, routers_names
 
 
-def build_docs_metadata(router_names_graph,MAX_WORDS:int=500):
+def build_docs_metadata(router_names_graph, MAX_WORDS: int = 500):
     embed_docs = []
     embed_metadata = []
     non_embed_docs = []
     non_embed_metadata = []
-    
+
     for _, graph in router_names_graph.items():
         # Parent embedding docs adding child texts
-        for node,attr in graph.nodes(data=True):
-            if attr['type'].startswith('level'):
+        for node, attr in graph.nodes(data=True):
+            if attr["type"].startswith("level"):
                 curr_level_text_list = []
-                for n,a in graph.nodes(data=True):
-                    if 'trail' in a and a['type']!="provider_function" and n!=node:
-                        if node in a['trail']:
-                            if a['description'] in curr_level_text_list: continue
-                            else: curr_level_text_list.append(a['description'])
+                for n, a in graph.nodes(data=True):
+                    if "trail" in a and a["type"] != "provider_function" and n != node:
+                        if node in a["trail"]:
+                            if a["description"] in curr_level_text_list:
+                                continue
+                            else:
+                                curr_level_text_list.append(a["description"])
                 if curr_level_text_list == []:
-                    curr_level_text_list = [attr['description']]
+                    curr_level_text_list = [attr["description"]]
                 # else:
-                    # curr_level_text = " ".join(curr_level_text_list)
-                attr.update({"child_text":curr_level_text_list})
-                nx.set_node_attributes(graph,attr,name=node)
-    
+                # curr_level_text = " ".join(curr_level_text_list)
+                attr.update({"child_text": curr_level_text_list})
+                nx.set_node_attributes(graph, attr, name=node)
+
     for _, router_graph in router_names_graph.items():
         # Sub level embeddings and provider functions
         for node, attributes in router_graph.nodes(data=True):
             if attributes["type"].startswith("level"):
                 attributes.update({"node_name": node})
-                split_child_text = split_description(attributes["child_text"],MAX_WORDS)
+                split_child_text = split_description(
+                    attributes["child_text"], MAX_WORDS
+                )
                 del attributes["child_text"]
                 for key, value in attributes.items():
                     if isinstance(value, dict):

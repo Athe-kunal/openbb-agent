@@ -5,6 +5,7 @@ import json
 from copy import deepcopy
 import yaml
 from agent.utils import process_params
+
 with open("config.yaml") as stream:
     try:
         config_params = yaml.safe_load(stream)
