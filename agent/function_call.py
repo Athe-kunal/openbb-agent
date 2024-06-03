@@ -10,6 +10,7 @@ def run_function_calling(fcs, req_provider, question: str):
                 if meta["provider_source"] == req_provider:
                     function_call = ast.literal_eval(meta["function_call"])
                     function_call["name"] = function_call["name"].rpartition("_")[0]
+                    function_call['name'] = "_".join(function_call["name"].split("-"))
                     break
     prompt = ChatPromptTemplate.from_messages([("human", "{input}")])
 
