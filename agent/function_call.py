@@ -24,7 +24,7 @@ def run_function_calling(fcs, req_provider, question: str):
 def format_function(function_response):
     obb_func = function_response.additional_kwargs["function_call"]
     obb_func_name = obb_func["name"]
-    obb_func_name = ".".join(obb_func_name.split("#")) + "("
+    obb_func_name = ".".join(obb_func_name.split("-")) + "("
     args_dict = ast.literal_eval(obb_func["arguments"])
     for arg, val in args_dict.items():
         obb_func_name += f"{arg}={val},"

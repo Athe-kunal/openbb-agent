@@ -46,7 +46,7 @@ def build_graph():
             prev_node = router_name
             router_path_split = rd.split("/")[2:]
             trail = f"{router_name}"
-            base_func_name = f"obb_{router_name}_" + "_".join(router_path_split)
+            base_func_name = f"obb-{router_name}-" + "-".join(router_path_split)
             for idx, rps in enumerate(router_path_split):
                 if idx == len(router_path_split) - 1:
                     # It has multiple providers

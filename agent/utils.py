@@ -47,7 +47,7 @@ def process_params(params_desc):
 def get_curr_func(data, paths, params_dict, ignore_non_standard: bool = False):
     curr_func = {}
     func_name = paths.split("/")[1:]
-    func_name = "obb_" + "_".join(func_name)
+    func_name = "obb-" + "-".join(func_name)
     curr_func["name"] = func_name
     curr_func["description"] = data["paths"][paths]["description"]
     # curr_func['examples'] = data["paths"][paths]['examples']
