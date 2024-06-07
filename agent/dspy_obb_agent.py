@@ -90,7 +90,7 @@ class DSPYOpenBBAgent(dspy.Module):
 
                 obb_func = format_function(resp)
                 code_block = CodeBlock(language="python", code=obb_func)
-                
+                print(code_block)
                 try:
                     
                     out = self.notebook_executor.execute_code_blocks([code_block])
