@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 import ast
 from langchain.prompts import ChatPromptTemplate
 from IPython import get_ipython
+from IPython.utils.capture import capture_output
 
 class NotebookExecutor(CodeExecutor):
 
@@ -20,22 +21,28 @@ class NotebookExecutor(CodeExecutor):
     def execute_code_blocks(self, code_blocks: List[CodeBlock]) -> CodeResult:
         log = ""
         for code_block in code_blocks:
-            result = self._ipython.run_cell("%%capture --no-display cap\n" + code_block.code)
+            result = self._ipython.run_cell("%%capture --no-display cap\n" + code_block.code,store_history=False)
+            # result = self._ipython.run_cell(code_block.code,store_history=False)
             log += self._ipython.ev("cap.stdout")
             log += self._ipython.ev("cap.stderr")
+            # log += captured.stdout + captured.stderr
+            # if cap.stdout:
+            #     print(captured.stdout, end="")
+            # if captured.stderr:
+            #     log+=captured.stdout
             if result.result is not None:
                 log += str(result.result)
             exitcode = 0 if result.success else 1
             if result.error_before_exec is not None:
-                log += f"\n{result.error_before_exec}"
+                log += f"Error before execution: {result.error_before_exec}\n"
                 exitcode = 1
             if result.error_in_exec is not None:
-                log += f"\n{result.error_in_exec}"
+                log += f"Error during execution: {result.error_in_exec}\n"
                 exitcode = 1
             if exitcode != 0:
                 break
         return CodeResult(exit_code=exitcode, output=log)
-    
+            
 def format_function(function_response):
     obb_func = function_response.additional_kwargs["function_call"]
     obb_func_name = obb_func["name"]
@@ -77,6 +84,7 @@ class DSPYOpenBBAgent(dspy.Module):
                             break
             max_tries = 0
             system_message = "You can write functions from the given tool. Double check your response with correct parameter names and values. Also, check for any invalid parameter values"
+            # For each provider, try for 3 times
             while True:
                 if max_tries>3: 
                     print(f"\033[31mCouldn't resolve the error {e} with the code {code_block.code}\033[0m")
@@ -90,19 +98,21 @@ class DSPYOpenBBAgent(dspy.Module):
 
                 obb_func = format_function(resp)
                 code_block = CodeBlock(language="python", code=obb_func)
-                print(code_block)
-                try:
-                    
-                    out = self.notebook_executor.execute_code_blocks([code_block])
-                    print(out)
-                    return
-                except Exception as e:
+                print(code_block)                  
+                out = self.notebook_executor.execute_code_blocks([code_block])
+                print(out)
+
+                error_msg = out.output
+                if error_msg == '':
+                    return code_block,out
+                
+                if error_msg.startswith("Error before execution: "):
+                    e = error_msg.split("Error before execution: ")[1]
+                elif error_msg.startswith("Error during execution: "):
+                    e = error_msg.split("Error during execution: ")[1]
+                    # The API is not working
                     if "Unexpected error" in e:
-                        print(f"Failed with provider {vp}")
                         break
-                    else:
-                        
-                        system_message = f"Resolve the following error {e} by writing the function from the given tool. Double check your response so that you are resolving the error"
-                        max_tries += 1
-                finally:
-                    return 
+                system_message = f"Resolve the following error {e} by writing the function from the given tool. Double check your response so that you are resolving the error"
+                max_tries += 1
+               
