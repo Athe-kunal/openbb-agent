@@ -5,3 +5,4 @@ langchain_community==0.0.38
 networkx==3.3
 python-dotenv==1.0.1
 PyYAML==6.0.1
+openbb==4.2.2

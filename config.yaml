@@ -3,6 +3,6 @@ FUNCTION_CALLING_DATASET:
   FUNCTION_SAVE_DEST: "data/openbb_functions.json"
 
 VECTORDB:
-  BASE_DATABASE_PATH: "data/OpenBBv2"
-  COLLECTION_NAME: "obb_docsv2"
+  BASE_DATABASE_PATH: "data/OpenBBv3"
+  COLLECTION_NAME: "obb_docsv3"
   EMBEDDING_MODEL_NAME: "text-embedding-3-small"
