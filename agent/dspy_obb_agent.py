@@ -47,7 +47,8 @@ def format_function(function_response):
     obb_func = function_response.additional_kwargs["function_call"]
     obb_func_name = obb_func["name"]
     obb_func_name = ".".join(obb_func_name.split("-")) + "("
-    args_dict = ast.literal_eval(obb_func["arguments"])
+    func_args = obb_func['arguments'].replace('null','None')
+    args_dict = ast.literal_eval(func_args)
     for arg, val in args_dict.items():
         if isinstance(val,str):
             val = f"'{val}'"
