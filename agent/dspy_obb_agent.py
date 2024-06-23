@@ -6,6 +6,11 @@ import ast
 from langchain.prompts import ChatPromptTemplate
 from IPython import get_ipython
 from IPython.utils.capture import capture_output
+import logging
+
+PYTHON_CODE = "from openbb import obb\n"+\
+                "df={obb_func_name}\n" + \
+                "print(df.tail(100).to_markdown(index=False))" 
 
 class NotebookExecutor(CodeExecutor):
 
@@ -22,6 +27,7 @@ class NotebookExecutor(CodeExecutor):
         log = ""
         for code_block in code_blocks:
             result = self._ipython.run_cell("%%capture --no-display cap\n" + code_block.code,store_history=False)
+            # result = self._ipython.run_cell(code_block.code,store_history=False)
             # result = self._ipython.run_cell(code_block.code,store_history=False)
             log += self._ipython.ev("cap.stdout")
             log += self._ipython.ev("cap.stderr")
@@ -54,7 +60,7 @@ def format_function(function_response):
             val = f"'{val}'"
         obb_func_name += f"{arg}={val},"
     obb_func_name = obb_func_name[:-1] + ")"
-    final_func = "from openbb import obb\n" + obb_func_name
+    final_func = PYTHON_CODE.format(obb_func_name=obb_func_name)
     return final_func
 
 class DSPYOpenBBAgent(dspy.Module):
@@ -62,11 +68,12 @@ class DSPYOpenBBAgent(dspy.Module):
         self.obb_hierarchical_agent = obb_hierarchical_agent
         self.notebook_executor = NotebookExecutor()
         self.langchain_model = ChatOpenAI(temperature=0,model="gpt-3.5-turbo")
-        
-    def __call__(self, question, provider_list:List[str]=[],**kwargs):
+        self.logger = logging.getLogger(__name__)
+        logging.basicConfig(filename="conversation.log",filemode="a",level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',force=True)
+    def __call__(self, question:str, provider_list:List[str]=[],**kwargs):
         return super().__call__(question, provider_list,**kwargs)
     
-    def forward(self,question,provider_list:List[str]=[]):
+    def forward(self,question:str,provider_list:List[str]=[]):
         funcs,_ = self.obb_hierarchical_agent(question)
         print(funcs)
         provider_sources = [fn['provider_source'] for fn in funcs[0]['metadatas']]
@@ -84,8 +91,10 @@ class DSPYOpenBBAgent(dspy.Module):
                             function_call["name"] = function_call["name"].rpartition("_")[0]
                             break
             max_tries = 0
-            system_message = "You can write functions from the given tool. Double check your response with correct parameter names and values. Also, check for any invalid parameter values"
-            # For each provider, try for 3 times
+            system_message = "You can write functions from the given tool. Double check your response with correct parameter names and values.\nAlso, check for any invalid parameter values"
+            # For each provider, try for 3 times to fix the error
+            e = ""
+            code_block = CodeBlock(code="",language="python")
             while True:
                 if max_tries>3: 
                     print(f"\033[31mCouldn't resolve the error {e} with the code {code_block.code}\033[0m")
@@ -100,20 +109,22 @@ class DSPYOpenBBAgent(dspy.Module):
                 obb_func = format_function(resp)
                 code_block = CodeBlock(language="python", code=obb_func)
                 print(code_block)                  
-                out = self.notebook_executor.execute_code_blocks([code_block])
-                print(out)
+                notebook_output = self.notebook_executor.execute_code_blocks([code_block])
+                print(notebook_output)
 
-                error_msg = out.output
-                if error_msg == '':
-                    return code_block,out
-                
+                error_msg = notebook_output.output
+                if error_msg != '':
+                    self.logger.info(f"{question}\nCode:\n{code_block.code}\n{notebook_output.output}")
+                    return notebook_output.output
+                # API error message
                 if error_msg.startswith("Error before execution: "):
                     e = error_msg.split("Error before execution: ")[1]
+                # Run time error message
                 elif error_msg.startswith("Error during execution: "):
                     e = error_msg.split("Error during execution: ")[1]
                     # The API is not working
                     if "Unexpected error" in e:
                         break
-                system_message = f"Resolve the following error {e} by writing the function from the given tool. Double check your response so that you are resolving the error"
+                system_message = f"Resolve the following error {e} by writing the function from the given tool and modify the current code {code_block.code}. Double check your response so that you are resolving the error"
                 max_tries += 1
                
