@@ -1,53 +1,16 @@
 import dspy
-from autogen.coding import CodeBlock, CodeExecutor, CodeExtractor, CodeResult, MarkdownCodeExtractor
 from typing import List
 from langchain_openai import ChatOpenAI
 import ast
 from langchain.prompts import ChatPromptTemplate
-from IPython import get_ipython
-from IPython.utils.capture import capture_output
 import logging
+from agent.notebook_executor import NotebookExecutor
+from autogen.coding import CodeBlock
 
 PYTHON_CODE = "from openbb import obb\n"+\
                 "df={obb_func_name}\n" + \
                 "print(df.tail(100).to_markdown(index=False))" 
 
-class NotebookExecutor(CodeExecutor):
-
-    @property
-    def code_extractor(self) -> CodeExtractor:
-        # Extact code from markdown blocks.
-        return MarkdownCodeExtractor()
-
-    def __init__(self) -> None:
-        # Get the current IPython instance running in this notebook.
-        self._ipython = get_ipython()
-
-    def execute_code_blocks(self, code_blocks: List[CodeBlock]) -> CodeResult:
-        log = ""
-        for code_block in code_blocks:
-            result = self._ipython.run_cell("%%capture --no-display cap\n" + code_block.code,store_history=False)
-            # result = self._ipython.run_cell(code_block.code,store_history=False)
-            # result = self._ipython.run_cell(code_block.code,store_history=False)
-            log += self._ipython.ev("cap.stdout")
-            log += self._ipython.ev("cap.stderr")
-            # log += captured.stdout + captured.stderr
-            # if cap.stdout:
-            #     print(captured.stdout, end="")
-            # if captured.stderr:
-            #     log+=captured.stdout
-            if result.result is not None:
-                log += str(result.result)
-            exitcode = 0 if result.success else 1
-            if result.error_before_exec is not None:
-                log += f"Error before execution: {result.error_before_exec}\n"
-                exitcode = 1
-            if result.error_in_exec is not None:
-                log += f"Error during execution: {result.error_in_exec}\n"
-                exitcode = 1
-            if exitcode != 0:
-                break
-        return CodeResult(exit_code=exitcode, output=log)
             
 def format_function(function_response):
     obb_func = function_response.additional_kwargs["function_call"]
@@ -112,10 +75,7 @@ class DSPYOpenBBAgent(dspy.Module):
                 notebook_output = self.notebook_executor.execute_code_blocks([code_block])
                 print(notebook_output)
 
-                error_msg = notebook_output.output
-                if error_msg != '':
-                    self.logger.info(f"{question}\nCode:\n{code_block.code}\n{notebook_output.output}")
-                    return notebook_output.output
+                error_msg = notebook_output.output                  
                 # API error message
                 if error_msg.startswith("Error before execution: "):
                     e = error_msg.split("Error before execution: ")[1]
@@ -125,6 +85,10 @@ class DSPYOpenBBAgent(dspy.Module):
                     # The API is not working
                     if "Unexpected error" in e:
                         break
+                # The code worked successfully
+                else:
+                    self.logger.info(f"{question}\nCode:\n{code_block.code}\n{notebook_output.output}")
+                    return notebook_output.output
                 system_message = f"Resolve the following error {e} by writing the function from the given tool and modify the current code {code_block.code}. Double check your response so that you are resolving the error"
                 max_tries += 1
                
