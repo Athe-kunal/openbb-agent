@@ -158,7 +158,16 @@ def build_graph():
     return router_names_graph, routers_names
 
 
-def build_docs_metadata(router_names_graph, MAX_WORDS: int = 500):
+def build_docs_metadata(router_names_graph, MAX_WORDS: int = 500)->tuple[List[str],List[str]]:
+    """Build the documents and metadata for all the routers and its graphs
+
+    Args:
+        router_names_graph (dict): router names and its corresponding graph
+        MAX_WORDS (int, optional): maximum words in the parent node. Defaults to 500.
+
+    Returns:
+        tuple[List[str],List[str]]: documents and metadata
+    """
     embed_docs = []
     embed_metadata = []
     non_embed_docs = []
